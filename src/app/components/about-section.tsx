@@ -16,7 +16,7 @@ export default function AboutSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-8">About Me</h2>
           <div className="prose dark:prose-invert prose-lg max-w-none">
             <p>
-              I'm a passionate designer and developer focused on creating beautiful, 
+              I&apos;m a passionate designer and developer focused on creating beautiful, 
               functional digital experiences. With expertise in modern frontend 
               technologies and a keen eye for design, I bridge the gap between 
               technical implementation and user-centered design.

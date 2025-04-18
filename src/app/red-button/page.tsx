@@ -12,7 +12,7 @@ export default function RedButtonPage() {
   const [counter, setCounter] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   // This subscription state is used for cleanup
-  const [subscription, setSubscription] = useState<RealtimeChannel | null>(null);
+  const [, setSubscription] = useState<RealtimeChannel | null>(null);
   
   // Fetch initial counter value
   useEffect(() => {
