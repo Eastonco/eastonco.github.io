@@ -1,3 +1,5 @@
+"use client";
+
 import UnderConstruction from "../components/under-construction";
 import { ThemeProvider } from "../components/theme-provider";
 import LandingPage from "../components/landing-page-v1/landing-page";
