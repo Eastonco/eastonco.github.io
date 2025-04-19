@@ -7,14 +7,14 @@ import { useFeatureFlagEnabled } from 'posthog-js/react';
 import ThemeToggle from '../components/theme-toggle';
 
 export default function Home() {
-  const isFeatureEnabled = useFeatureFlagEnabled('under-construction');
+  const isSiteLive = !useFeatureFlagEnabled('under-construction');
 
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
-      {isFeatureEnabled ? <UnderConstruction /> : <LandingPage />}
+      {isSiteLive ? <LandingPage /> : <UnderConstruction />}
     </ThemeProvider>
   );
 }
