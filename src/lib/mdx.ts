@@ -17,14 +17,14 @@ export async function getAllPosts() {
   }
 
   const files = fs.readdirSync(contentDirectory);
-  
+
   const posts = files
-    .filter((file) => path.extname(file) === '.mdx')
-    .map((file) => {
+    .filter(file => path.extname(file) === '.mdx')
+    .map(file => {
       const filePath = path.join(contentDirectory, file);
       const fileContents = fs.readFileSync(filePath, 'utf8');
       const { data } = matter(fileContents);
-      
+
       return {
         slug: path.basename(file, '.mdx'),
         frontmatter: {
@@ -34,26 +34,28 @@ export async function getAllPosts() {
           tags: data.tags || [],
           author: data.author || 'Anonymous',
           readingTime: data.readingTime || '3 min read',
-        }
+        },
       };
     })
-    .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
-  
+    .sort(
+      (a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+    );
+
   return posts;
 }
 
 // Get a single post by slug
 export async function getPostBySlug(slug: string) {
   const filePath = path.join(contentDirectory, `${slug}.mdx`);
-  
+
   // Check if the file exists
   if (!fs.existsSync(filePath)) {
     return null;
   }
-  
+
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const { content, data } = matter(fileContents);
-  
+
   // Compile the MDX content
   const mdxSource = await compileMDX({
     source: content,
@@ -61,10 +63,13 @@ export async function getPostBySlug(slug: string) {
       mdxOptions: {
         rehypePlugins: [
           rehypeSlug,
-          [rehypePrettyCode, {
-            theme: 'github-dark',
-            keepBackground: true,
-          }],
+          [
+            rehypePrettyCode,
+            {
+              theme: 'github-dark',
+              keepBackground: true,
+            },
+          ],
         ],
         remarkPlugins: [remarkGfm],
       },
@@ -82,6 +87,6 @@ export async function getPostBySlug(slug: string) {
       tags: data.tags || [],
       author: data.author || 'Anonymous',
       readingTime: data.readingTime || '3 min read',
-    }
+    },
   };
 }

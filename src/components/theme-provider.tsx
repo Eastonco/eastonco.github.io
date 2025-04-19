@@ -1,17 +1,17 @@
-"use client";
-import { useEffect, useState } from "react";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { ThemeProviderProps } from "next-themes";
+'use client';
+import { useEffect, useState } from 'react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import { ThemeProviderProps } from 'next-themes';
 
 export function ThemeProvider({
   children,
-  attribute = "data-theme",
-  defaultTheme = "system",
+  attribute = 'data-theme',
+  defaultTheme = 'system',
   enableSystem = true,
   disableTransitionOnChange = false,
 }: {
   children: React.ReactNode;
-  attribute?: ThemeProviderProps["attribute"];
+  attribute?: ThemeProviderProps['attribute'];
   defaultTheme?: string;
   enableSystem?: boolean;
   disableTransitionOnChange?: boolean;
