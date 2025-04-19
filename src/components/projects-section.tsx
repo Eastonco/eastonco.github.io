@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 export default function ProjectsSection() {
   return (
@@ -12,13 +12,15 @@ export default function ProjectsSection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center md:text-left">Projects</h2>
-          
-          <div className="flex flex-col items-center justify-center min-h-[200px] border-2 border-dashed border-secondary rounded-xl p-8">
-            <p className="text-muted-foreground text-lg text-center">
+          <h2 className="mb-12 text-center text-3xl font-bold md:text-left md:text-4xl">
+            Projects
+          </h2>
+
+          <div className="border-secondary flex min-h-[200px] flex-col items-center justify-center rounded-xl border-2 border-dashed p-8">
+            <p className="text-muted-foreground text-center text-lg">
               Projects section coming soon.
             </p>
-            <p className="text-muted-foreground text-center mt-2">
+            <p className="text-muted-foreground mt-2 text-center">
               This area will showcase my latest work and side projects.
             </p>
           </div>
