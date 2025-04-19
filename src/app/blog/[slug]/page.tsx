@@ -1,6 +1,6 @@
-import { getPostBySlug } from "@/app/lib/mdx";
-import Header from "@/app/components/header";
-import Footer from "@/app/components/footer";
+import { getPostBySlug } from "@/lib/mdx";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 import { notFound } from "next/navigation";
 import { format } from "date-fns";
 import Link from "next/link";
