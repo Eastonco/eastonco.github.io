@@ -23,10 +23,10 @@ interface MetadataProps {
 }
 
 export function generateMetadata({
-  title = "Your Name | Personal Website",
-  description = "Designer, developer, and creative technologist",
+  title = "Connor Easton | Personal Website",
+  description = "Developer, Teacher, Pilot",
   image = "/og-image.jpg",
-  url = "https://yourwebsite.com",
+  url = "https://eastonco.net",
   type = "website",
 }: MetadataProps): Metadata {
   return {
@@ -36,7 +36,7 @@ export function generateMetadata({
       title,
       description,
       url,
-      siteName: "Your Name",
+      siteName: "Connor Easton",
       images: [
         {
           url: image,
@@ -47,12 +47,6 @@ export function generateMetadata({
       ],
       type,
     },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [image],
-      creator: "@yourusername",
-    },
+  
   };
 }
