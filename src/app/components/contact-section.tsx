@@ -15,7 +15,7 @@ export default function ContactSection() {
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Get in Touch</h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Have a project in mind? Feel free to reach out. I'm always open to discussing new opportunities and creative collaborations.
+            Have a project in mind? Feel free to reach out. I&apos;m always open to discussing new opportunities and creative collaborations.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

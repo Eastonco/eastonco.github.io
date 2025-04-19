@@ -7,14 +7,14 @@ import Link from "next/link";
 
 export const dynamicParams = true;
 
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
+type Params = Promise<{ slug: string }>;
 
-export default async function BlogPost({ params }: PageProps) {
-  const post = await getPostBySlug(params.slug);
+export default async function BlogPost({
+  params,
+}: {
+  params: Params;
+}) {
+  const post = await getPostBySlug((await params).slug);
   
   if (!post) {
     notFound();

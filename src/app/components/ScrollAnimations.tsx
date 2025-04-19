@@ -5,7 +5,7 @@ export default function ScrollAnimations() {
   useEffect(() => {
     // Progress bar at the top of the page
     const updateScrollProgress = () => {
-      const scrollProgress = document.querySelector('.scroll-progress');
+      const scrollProgress = document.querySelector('.scroll-progress') as HTMLElement;
       const totalHeight = document.body.scrollHeight - window.innerHeight;
       const progress = (window.pageYOffset / totalHeight) * 100;
       

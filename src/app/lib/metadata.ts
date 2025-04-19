@@ -1,11 +1,25 @@
 import { Metadata } from "next";
 
+type OpenGraphType = 
+  | "website" 
+  | "article" 
+  | "book" 
+  | "profile" 
+  | "music.song" 
+  | "music.album" 
+  | "music.playlist" 
+  | "music.radio_station" 
+  | "video.movie" 
+  | "video.episode" 
+  | "video.tv_show" 
+  | "video.other";
+
 interface MetadataProps {
   title?: string;
   description?: string;
   image?: string;
   url?: string;
-  type?: string;
+  type?: OpenGraphType;
 }
 
 export function generateMetadata({
