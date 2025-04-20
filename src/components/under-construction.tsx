@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Instagram } from 'lucide-react';
 import { useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import ThemeToggle from './theme-toggle';
 
 export default function UnderConstruction() {
   const [email, setEmail] = useState('');
@@ -44,6 +45,11 @@ export default function UnderConstruction() {
 
   return (
     <section className="bg-background flex h-screen flex-col items-center justify-center p-4">
+      {/* Theme Toggle */}
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
+      
       <div className="absolute top-1/2 left-1/2 flex w-full max-w-md -translate-x-1/2 -translate-y-1/2 transform flex-col items-center text-center">
         {/* Main Heading */}
         <motion.h1

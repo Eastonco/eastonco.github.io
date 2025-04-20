@@ -27,7 +27,7 @@ export default function ContactSection() {
               Send me an email
             </a>
             <a
-              href="https://calendly.com/yourusername"
+              href="https://calendly.com/eastonco"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-secondary text-secondary-foreground hover:bg-secondary/80 w-full rounded-lg px-6 py-3 transition-colors sm:w-auto"
@@ -38,7 +38,7 @@ export default function ContactSection() {
 
           <div className="mt-12 flex items-center justify-center gap-6">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/eastonco"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/80 hover:text-primary transition-colors"
@@ -80,7 +80,7 @@ export default function ContactSection() {
               </svg>
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://linkedin.com/in/eastonco"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/80 hover:text-primary transition-colors"
