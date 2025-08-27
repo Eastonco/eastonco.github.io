@@ -10,6 +10,7 @@ const COUNTER_ID = 'global-button-counter';
 
 export default function RedButtonPage() {
   const [counter, setCounter] = useState(0);
+  const [onlineUsers, setOnlineUsers] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   // This subscription state is used for cleanup
   const [, setSubscription] = useState<RealtimeChannel | null>(null);
@@ -45,9 +46,15 @@ export default function RedButtonPage() {
 
   // Set up real-time subscription
   useEffect(() => {
-    // Subscribe to changes on the counters table
-    const subscription = supabase
-      .channel('counters-channel')
+    const channel = supabase.channel('red-button-page', {
+      config: {
+        presence: {
+          key: `user-${Math.random().toString(36).substring(7)}`,
+        },
+      },
+    });
+
+    channel
       .on(
         'postgres_changes',
         {
@@ -58,19 +65,28 @@ export default function RedButtonPage() {
         },
         payload => {
           // Update our local state when the database changes
-          if (payload.new && payload.new.count) {
+          if (payload.new && typeof payload.new.count === 'number') {
             setCounter(payload.new.count);
           }
         }
       )
-      .subscribe();
+      .on('presence', { event: 'sync' }, () => {
+        const presenceState = channel.presenceState();
+        const count = Object.keys(presenceState).length;
+        setOnlineUsers(count);
+      })
+      .subscribe(async status => {
+        if (status === 'SUBSCRIBED') {
+          await channel.track({ online_at: new Date().toISOString() });
+        }
+      });
 
-    setSubscription(subscription);
+    setSubscription(channel);
 
     // Clean up the subscription when component unmounts
     return () => {
-      if (subscription) {
-        supabase.removeChannel(subscription);
+      if (channel) {
+        supabase.removeChannel(channel);
       }
     };
   }, []);
@@ -137,6 +153,9 @@ export default function RedButtonPage() {
         <p className="mt-6 text-sm text-gray-500 dark:text-gray-400">
           This counter is synced across all users in real-time
         </p>
+        <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+          <p>{onlineUsers} user(s) currently online</p>
+        </div>
       </div>
     </div>
   );
