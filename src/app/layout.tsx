@@ -1,6 +1,5 @@
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
-import { ThemeProvider } from '@/components/theme-provider';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { PostHogProvider } from '@/components/PostHogProvider';
@@ -38,14 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         className='bg-background text-foreground min-h-screen antialiased'
       >
         <PostHogProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
             {children}
-          </ThemeProvider>
           <Analytics />
           <SpeedInsights />
         </PostHogProvider>

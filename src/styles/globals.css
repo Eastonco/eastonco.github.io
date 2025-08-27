@@ -7,19 +7,19 @@
   :root {
     /* Soft light mode - warm off-white background with softer contrasts */
     --background: #f5f0e8; /* Warm off-white */
-    --foreground: #1e2a3a; /* Soft navy */
+    --foreground: #ffffff; /* White text */
     --card: #faf6f0;
-    --card-foreground: #1e2a3a;
+    --card-foreground: #ffffff;
     --popover: #faf6f0;
-    --popover-foreground: #1e2a3a;
+    --popover-foreground: #ffffff;
     --primary: #3b5998; /* Medium blue */
     --primary-foreground: #fafafa;
     --secondary: #eee6dd; /* Softer secondary */
-    --secondary-foreground: #1e2a3a;
+    --secondary-foreground: #ffffff;
     --muted: #eee6dd;
     --muted-foreground: #526580;
     --accent: #eee0f7; /* Slight purple accent */
-    --accent-foreground: #1e2a3a;
+    --accent-foreground: #ffffff;
     --destructive: #e05252; /* Softer red */
     --destructive-foreground: #fafafa;
     --border: #d1d8e0;
@@ -28,37 +28,15 @@
     --radius: 0.5rem;
   }
 
-  .dark {
-    /* Rich dark mode - deep navy rather than black */
-    --background: #12203a; /* Deep navy blue */
-    --foreground: #e6eaef; /* Soft white */
-    --card: #1a2b49;
-    --card-foreground: #e6eaef;
-    --popover: #1a2b49;
-    --popover-foreground: #e6eaef;
-    --primary: #7cb9f8; /* Lighter blue */
-    --primary-foreground: #12203a;
-    --secondary: #263452; /* Dark blue-gray */
-    --secondary-foreground: #e6eaef;
-    --muted: #263452;
-    --muted-foreground: #b4c3d8;
-    --accent: #352a56; /* Subtle purple accent */
-    --accent-foreground: #e6eaef;
-    --destructive: #8a1c1c; /* Rich red */
-    --destructive-foreground: #e6eaef;
-    --border: #2d3a51;
-    --input: #2d3a51;
-    --ring: #7cb9f8;
-  }
 }
 
 @layer base {
   * {
-    @apply border-[hsl(var(--border))];
+    @apply border-[var(--border)];
   }
 
   body {
-    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
+    @apply bg-[var(--background)] text-[var(--foreground)];
   }
 }
 
@@ -69,7 +47,7 @@ html {
 
 /* Custom selection color */
 ::selection {
-  @apply bg-[hsl(var(--primary)/0.2)] text-[hsl(var(--foreground))];
+  @apply bg-[var(--primary)]/20 text-[var(--foreground)];
 }
 
 /* GitHub-like markdown styling */

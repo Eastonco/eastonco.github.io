@@ -29,24 +29,24 @@ export function AnimatedBlogPreview({ post, index = 0 }: { post: BlogPost; index
         type: "spring",
         stiffness: 50
       }}
-      className="group max-w-3xl w-full rounded-xl p-5 hover:bg-secondary/15 dark:hover:bg-secondary/20 transition-all border border-transparent hover:border-secondary/20 dark:hover:border-secondary/30"
+      className="group max-w-3xl w-full rounded-xl p-5 hover:bg-gray-900/30 transition-all border border-transparent hover:border-gray-700/50"
     >
       <Link href={`/blog/${post.slug}`} className="block">
         <div>
-          <div className="text-muted-foreground mb-2 flex items-center gap-2 text-sm">
+          <div className="text-gray-400 mb-2 flex items-center gap-2 text-sm">
             <span className="font-medium">{post.frontmatter.date}</span>
-            <span className="text-muted-foreground/50 dark:text-muted-foreground/40">•</span>
+            <span className="text-gray-500">•</span>
             <span className="font-medium">{post.frontmatter.readingTime}</span>
           </div>
-          <h2 className="text-foreground group-hover:text-primary mb-3 text-2xl font-bold transition-colors">
+          <h2 className="text-white group-hover:text-blue-400 mb-3 text-2xl font-bold transition-colors">
             {post.frontmatter.title}
           </h2>
-          <p className="text-muted-foreground dark:text-muted-foreground/90 mb-6 leading-relaxed">{post.frontmatter.excerpt}</p>
+          <p className="text-gray-300 mb-6 leading-relaxed">{post.frontmatter.excerpt}</p>
           <div className="flex flex-wrap gap-2">
             {post.frontmatter.tags.map(tag => (
               <span
                 key={tag}
-                className="bg-primary/10 dark:bg-primary/20 hover:bg-primary/15 dark:hover:bg-primary/25 text-primary dark:text-primary rounded-full px-3 py-1 text-xs font-semibold transition-colors backdrop-blur-sm shadow-sm border border-primary/10 dark:border-primary/30"
+                className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 rounded-full px-3 py-1 text-xs font-semibold transition-colors backdrop-blur-sm shadow-sm border border-blue-400/30"
               >
                 {tag}
               </span>
@@ -69,7 +69,7 @@ export function AnimatedHeader() {
       transition: {
         delay: i * 0.05,
         duration: 0.5,
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100
       }
     })
@@ -104,7 +104,7 @@ export function AnimatedHeader() {
           initial={{ rotate: -10, scale: 0 }}
           animate={{ rotate: 0, scale: 1 }}
           transition={{ type: "spring", stiffness: 200, delay: 0.5 }}
-          className="inline-flex items-center justify-center mb-1 text-sm font-bold text-primary bg-primary/15 dark:bg-primary/20 h-8 w-8 rounded-full"
+          className="inline-flex items-center justify-center mb-1 text-sm font-bold text-blue-300 bg-blue-500/20 h-8 w-8 rounded-full"
         >
           ✏️
         </motion.span>
@@ -112,7 +112,7 @@ export function AnimatedHeader() {
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.6, duration: 0.5 }}
-          className="inline-block text-sm uppercase tracking-wider font-semibold text-primary/80 dark:text-primary/90 border border-primary/20 dark:border-primary/30 rounded-full px-3 py-1 bg-primary/5 dark:bg-primary/10"
+          className="inline-block text-sm uppercase tracking-wider font-semibold text-blue-300 border border-blue-400/30 rounded-full px-3 py-1 bg-blue-500/10"
         >
           My Thoughts & Ramblings
         </motion.span>
@@ -128,8 +128,8 @@ export function AnimatedHeader() {
             animate="visible"
             className="inline-block text-5xl md:text-6xl lg:text-7xl font-extrabold"
             style={{ 
-              textShadow: "3px 3px 0px rgba(var(--primary-rgb), 0.2)",
-              color: "var(--foreground)"
+              textShadow: "3px 3px 0px rgba(59, 89, 152, 0.2)",
+              color: "white"
             }}
           >
             {letter}
@@ -141,7 +141,7 @@ export function AnimatedHeader() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.7 }}
-        className="text-muted-foreground dark:text-muted-foreground/90 mb-10 text-xl leading-relaxed max-w-2xl relative z-10"
+        className="text-gray-300 mb-10 text-xl leading-relaxed max-w-2xl relative z-10"
       >
         <motion.span
           initial={{ opacity: 0, scale: 0.8 }}
@@ -166,7 +166,7 @@ export function AnimatedHeader() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 1.2 + i * 0.1, type: "spring" }}
-            className="bg-secondary/30 dark:bg-secondary/40 hover:bg-secondary/40 dark:hover:bg-secondary/50 text-foreground/80 dark:text-foreground/90 rounded-full px-3 py-1 text-sm font-medium transition-all cursor-pointer hover:-translate-y-1"
+            className="bg-gray-800/60 hover:bg-gray-700/60 text-gray-200 rounded-full px-3 py-1 text-sm font-medium transition-all cursor-pointer hover:-translate-y-1"
           >
             #{tag}
           </motion.span>
