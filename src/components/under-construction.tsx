@@ -44,6 +44,9 @@ export default function UnderConstruction() {
 
   return (
     <section className="bg-background flex h-screen flex-col items-center justify-center p-4">
+      {/* Theme Toggle */}
+      
+      
       <div className="absolute top-1/2 left-1/2 flex w-full max-w-md -translate-x-1/2 -translate-y-1/2 transform flex-col items-center text-center">
         {/* Main Heading */}
         <motion.h1

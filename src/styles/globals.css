@@ -5,58 +5,38 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    /* Soft light mode - warm off-white background with softer contrasts */
+    --background: #f5f0e8; /* Warm off-white */
+    --foreground: #ffffff; /* White text */
+    --card: #faf6f0;
+    --card-foreground: #ffffff;
+    --popover: #faf6f0;
+    --popover-foreground: #ffffff;
+    --primary: #3b5998; /* Medium blue */
+    --primary-foreground: #fafafa;
+    --secondary: #eee6dd; /* Softer secondary */
+    --secondary-foreground: #ffffff;
+    --muted: #eee6dd;
+    --muted-foreground: #526580;
+    --accent: #eee0f7; /* Slight purple accent */
+    --accent-foreground: #ffffff;
+    --destructive: #e05252; /* Softer red */
+    --destructive-foreground: #fafafa;
+    --border: #d1d8e0;
+    --input: #d1d8e0;
+    --ring: #3b5998;
     --radius: 0.5rem;
   }
 
-  .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-  }
 }
 
 @layer base {
   * {
-    @apply border-[hsl(var(--border))];
+    @apply border-[var(--border)];
   }
 
   body {
-    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))];
+    @apply bg-[var(--background)] text-[var(--foreground)];
   }
 }
 
@@ -67,7 +47,195 @@ html {
 
 /* Custom selection color */
 ::selection {
-  @apply bg-[hsl(var(--primary)/0.2)] text-[hsl(var(--foreground))];
+  @apply bg-[var(--primary)]/20 text-[var(--foreground)];
+}
+
+/* GitHub-like markdown styling */
+.prose {
+  color: hsl(var(--foreground));
+  max-width: 65ch;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.prose h1 {
+  font-size: 2em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.prose h2 {
+  font-size: 1.5em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid hsl(var(--border));
+}
+
+.prose h3 {
+  font-size: 1.25em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.prose h4 {
+  font-size: 1em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.prose h5 {
+  font-size: 0.875em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.prose h6 {
+  font-size: 0.85em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+  color: hsl(var(--muted-foreground));
+}
+
+.prose p {
+  margin-top: 0;
+  margin-bottom: 1em;
+  line-height: 1.6;
+}
+
+.prose a {
+  color: hsl(212, 100%, 47%);
+  text-decoration: none;
+}
+
+.prose a:hover {
+  text-decoration: underline;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 2em;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.prose li > ul,
+.prose li > ol {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.prose blockquote {
+  margin: 1em 0;
+  padding: 0 1em;
+  color: hsl(var(--muted-foreground));
+  border-left: 0.25em solid hsl(var(--border));
+  font-size: 1em;
+}
+
+.prose img {
+  max-width: 100%;
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+.prose hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: hsl(var(--border));
+  border: 0;
+}
+
+.prose code {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: hsl(var(--secondary)/0.5);
+  border-radius: 3px;
+}
+
+.prose pre {
+  background-color: hsl(var(--secondary));
+  border-radius: 6px;
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  overflow: visible;
+}
+
+.prose table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.prose table th {
+  font-weight: 600;
+  padding: 6px 13px;
+  border: 1px solid hsl(var(--border));
+}
+
+.prose table td {
+  padding: 6px 13px;
+  border: 1px solid hsl(var(--border));
+}
+
+.prose table tr {
+  background-color: transparent;
+  border-top: 1px solid hsl(var(--border));
+}
+
+.prose table tr:nth-child(2n) {
+  background-color: hsl(var(--secondary)/0.3);
 }
 
 /* Animation utilities */

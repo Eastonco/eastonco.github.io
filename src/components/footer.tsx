@@ -14,19 +14,19 @@ export default function Footer() {
       <div className="framer-container">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Your Name. All rights reserved.
+            © {new Date().getFullYear()} Connor Easton. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="https://twitter.com/yourusername"
+              href="https://instagram.com/eastonco"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground text-sm transition-colors"
             >
-              Twitter
+              Instagram
             </a>
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/eastonco"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground text-sm transition-colors"
@@ -34,7 +34,7 @@ export default function Footer() {
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://linkedin.com/in/eastonco"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-foreground text-sm transition-colors"

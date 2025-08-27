@@ -1,20 +1,14 @@
-'use client';
-
 import UnderConstruction from '../components/under-construction';
-import { ThemeProvider } from '../components/theme-provider';
 import LandingPage from '../components/landing-page-v1/landing-page';
-import { useFeatureFlagEnabled } from 'posthog-js/react';
-import ThemeToggle from '../components/theme-toggle';
 
-export default function Home() {
-  const isSiteLive = !useFeatureFlagEnabled('under-construction');
+export default async function Home() {
+  // For now, we'll just show the landing page
+  // The feature flag logic can be moved to a client component wrapper if needed
+  const isSiteLive = true; // Set this to false if you want to show under construction
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
+    <>
       {isSiteLive ? <LandingPage /> : <UnderConstruction />}
-    </ThemeProvider>
+    </>
   );
 }
