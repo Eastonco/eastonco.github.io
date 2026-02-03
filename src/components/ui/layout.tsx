@@ -75,7 +75,7 @@ export function AnimatedContainer({
   const motionProps = motionVariants[variant];
   
   // Handle stagger variant differently
-  if (variant === 'stagger') {
+  if (variant === 'stagger' && 'animate' in motionProps) {
     return (
       <motion.div
         className={className}

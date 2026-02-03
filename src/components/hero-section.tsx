@@ -1,49 +1,81 @@
 'use client';
 
-import { Section, Container, AnimatedContainer } from './ui/layout';
-import { AnimatedOrb } from './ui/animated-backgrounds';
-import { Button } from './ui/button';
-import { typography, spacing } from '../lib/design-system';
-import ShadowedGradientText from './ui/shadowed-gradient-text';
+import { motion } from 'framer-motion';
+import { HardwareButton } from './ui/hardware-button';
+import { IndicatorLight } from './ui/indicator-light';
 
 export default function HeroSection() {
   return (
-    <Section className="flex min-h-screen items-center" size="large">
-      {/* Hero-specific accent element */}
-      <AnimatedOrb
-        size="large"
-        position={{ top: '5rem', right: '5rem' }}
-        colors="from-[#4f46e5] to-[#8b5cf6]"
-        opacity={0.2}
-        duration={8}
-      />
-      
-      <Container>
-        <div className={`flex max-w-[700px] flex-col ${spacing.gap.lg}`}>
-          <AnimatedContainer variant="fadeInUp">
-            <ShadowedGradientText gradient="from-[#4f46e5] via-[#ec4899] to-[#0ea5e9]">
-              Software Engineer, Teacher, Plane guy
-            </ShadowedGradientText>
-          </AnimatedContainer>
-          
-          <AnimatedContainer variant="fadeInUp" delay={0.3}>
-            <p className={`${typography.body.large} text-gray-300`}>
-              and you found my website, neat!
+    <section className="min-h-screen flex items-center py-16 md:py-24">
+      <div className="framer-container">
+        <div className="max-w-4xl">
+          {/* Name block */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <h1 className="font-mono text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-ink uppercase">
+              Connor Easton
+            </h1>
+            <div className="h-1 bg-ink mt-4 mb-8 w-full max-w-md" />
+          </motion.div>
+
+          {/* Identity tagline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+            className="mb-8"
+          >
+            <p className="font-mono text-xl md:text-2xl lg:text-3xl text-ink tracking-wide">
+              Software Engineer. Pilot. Trader.
+              <br />
+              <span className="text-muted-foreground">Photographer. Tinkerer.</span>
             </p>
-          </AnimatedContainer>
-          
-          <AnimatedContainer variant="fadeInUp" delay={0.5}>
-            <div className={`mt-6 flex ${spacing.gap.sm}`}>
-              <Button href="#about" variant="primary">
-                Learn more
-              </Button>
-              <Button href="#contact" variant="secondary">
-                Get in touch
-              </Button>
+          </motion.div>
+
+          {/* Status indicators */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            className="flex flex-wrap gap-6 mb-12 py-4 border-y-2 border-ink"
+          >
+            <div className="flex items-center gap-3">
+              <IndicatorLight status="on" color="green" size="md" />
+              <span className="font-mono text-sm uppercase tracking-wide">
+                Status: Building Things
+              </span>
             </div>
-          </AnimatedContainer>
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-sm uppercase tracking-wide text-muted-foreground">
+                Location: Seattle, WA
+              </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="font-mono text-sm uppercase tracking-wide text-muted-foreground">
+                Role: SDE @ Expedia
+              </span>
+            </div>
+          </motion.div>
+
+          {/* CTA buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            className="flex flex-wrap gap-4"
+          >
+            <HardwareButton href="#projects" variant="primary" size="lg">
+              View Projects
+            </HardwareButton>
+            <HardwareButton href="#contact" variant="secondary" size="lg">
+              Get in Touch
+            </HardwareButton>
+          </motion.div>
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }

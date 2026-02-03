@@ -1,49 +1,48 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 export default function Footer() {
   return (
-    <motion.footer
-      className="mt-auto border-t py-8"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-    >
+    <footer className="mt-auto border-t-4 border-ink bg-paper py-6">
       <div className="framer-container">
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-          <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Connor Easton. All rights reserved.
-          </p>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+          {/* Left side - site info */}
+          <div className="flex items-center gap-4 font-mono text-xs uppercase tracking-wide text-muted-foreground">
+            <span>EASTONCO.NET v2.0</span>
+            <span className="hidden md:inline">|</span>
+            <span>&copy; {new Date().getFullYear()}</span>
+            <span className="hidden md:inline">|</span>
+            <span>Seattle, WA</span>
+          </div>
+
+          {/* Right side - links */}
           <div className="flex items-center gap-4">
-            <a
-              href="https://instagram.com/eastonco"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
-            >
-              Instagram
-            </a>
             <a
               href="https://github.com/eastonco"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+              className="font-mono text-xs uppercase tracking-wide text-muted-foreground hover:text-ink transition-colors"
             >
-              GitHub
+              [GH]
             </a>
             <a
               href="https://linkedin.com/in/eastonco"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+              className="font-mono text-xs uppercase tracking-wide text-muted-foreground hover:text-ink transition-colors"
             >
-              LinkedIn
+              [LI]
+            </a>
+            <a
+              href="https://instagram.com/eastonco"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs uppercase tracking-wide text-muted-foreground hover:text-ink transition-colors"
+            >
+              [IG]
             </a>
           </div>
         </div>
       </div>
-    </motion.footer>
+    </footer>
   );
 }

@@ -1,44 +1,41 @@
 import Link from 'next/link';
-import { Section, Container, AnimatedContainer } from './ui/layout';
-import { typography, spacing } from '../lib/design-system';
 import { getAllPosts } from '../lib/mdx';
-
-// Client component for the blog card with animations
-import { BlogCard}  from './blog-card'
+import { BlogCardClient } from './blog-card';
 
 export default async function BlogPreviewSection() {
-  // Fetch all blog posts and get the top 3 most recent
   const allPosts = await getAllPosts();
   const recentPosts = allPosts.slice(0, 3);
 
-  // Don't render the section if there are no posts
   if (recentPosts.length === 0) {
     return null;
   }
 
   return (
-    <Section size="medium">
-      <Container>
-        <div className={`mb-12 flex items-baseline justify-between`}>
-          <AnimatedContainer variant="fadeInUp">
-            <h2 className={`${typography.heading.h3} md:${typography.heading.h4}`}>
-              Latest Articles
+    <section className="py-16 md:py-24 border-t-4 border-ink">
+      <div className="framer-container">
+        {/* Section header */}
+        <div className="flex items-baseline justify-between mb-8">
+          <div className="flex items-baseline gap-4">
+            <span className="font-mono text-sm font-bold text-muted-foreground">LOG</span>
+            <h2 className="font-mono text-2xl md:text-3xl font-bold uppercase tracking-wide text-ink">
+              Recent Transmissions
             </h2>
-          </AnimatedContainer>
-          
-          <AnimatedContainer variant="slideIn" delay={0.2}>
-            <Link href="/blog" className="text-primary text-sm font-medium hover:underline">
-              View all articles →
-            </Link>
-          </AnimatedContainer>
+          </div>
+          <Link
+            href="/blog"
+            className="font-mono text-xs uppercase tracking-wide text-signal-red hover:underline"
+          >
+            View All
+          </Link>
         </div>
 
-        <div className={`grid grid-cols-1 ${spacing.gap.lg} md:grid-cols-2 lg:grid-cols-3`}>
+        {/* Posts grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {recentPosts.map((post, i) => (
-            <BlogCard key={post.slug} post={post} index={i} />
+            <BlogCardClient key={post.slug} post={post} index={i} />
           ))}
         </div>
-      </Container>
-    </Section>
+      </div>
+    </section>
   );
 }

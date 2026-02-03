@@ -1,85 +1,97 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Section, Container, AnimatedContainer, GradientText } from './ui/layout';
-import { AnimatedOrb } from './ui/animated-backgrounds';
-import { typography, spacing } from '../lib/design-system';
+import { ManualCard, SpecRow, TechnicalRule } from './ui/manual-card';
 
 const skills = [
   'TypeScript',
-  'Kotlin',
-  'Docker',
   'React',
   'Next.js',
-  'Node.js',
-  'Figma',
-  'AI'
+  'Kotlin',
+  'Java',
+  'GraphQL',
+  'Docker',
+  'AWS',
+];
+
+const interests = [
+  { label: 'Aviation', detail: 'PPL, working on IR' },
+  { label: 'Algorithmic Trading', detail: 'Polymarket, crypto arbitrage' },
+  { label: 'Film Photography', detail: '35mm & medium format' },
+  { label: 'Hardware Modding', detail: 'GameCube, Raspberry Pi' },
 ];
 
 export default function AboutSection() {
   return (
-    <Section id="about" size="medium">
-      {/* About-specific accent element */}
-      <AnimatedOrb
-        size="medium"
-        position={{ left: '33%', top: '25%' }}
-        colors="from-[#0ea5e9]/20 to-[#22d3ee]/20"
-        opacity={0.15}
-        duration={7}
-      />
-      
-      <Container size="content">
-        <AnimatedContainer variant="fadeInUp">
-          <GradientText 
-            as="h2" 
-            className={`mb-10 ${typography.heading.h2}`}
-            gradient="from-[#0ea5e9] to-[#8b5cf6]"
-          >
-            About Me
-          </GradientText>
-          
-          <div className="prose dark:prose-invert prose-lg max-w-none text-gray-200">
-            <p className={typography.body.large}>
-              I&apos;m a passionate designer and developer focused on creating beautiful, functional
-              digital experiences. With expertise in modern frontend technologies and a keen eye for
-              design, I bridge the gap between technical implementation and user-centered design.
-            </p>
-            <p className={typography.body.large}>
-              My approach combines clean aesthetics with performance-optimized code, resulting in
-              websites and applications that are both visually compelling and technically sound.
-            </p>
-            
-            <AnimatedContainer variant="fadeIn" delay={0.3}>
-              <GradientText 
-                as="h3" 
-                className={`mt-12 mb-6 ${typography.heading.h3}`}
-                gradient="from-[#ec4899] to-[#8b5cf6]"
-              >
-                Skills & Expertise
-              </GradientText>
-            </AnimatedContainer>
-            
-            <div className={`mt-6 flex flex-wrap ${spacing.gap.sm}`}>
-              {skills.map((skill, index) => (
-                <motion.span
-                  key={skill}
-                  className="bg-gradient-to-r from-[#4f46e5]/20 to-[#8b5cf6]/20 border border-[#8b5cf6]/30 text-white rounded-full px-4 py-2 text-sm font-medium shadow-lg hover:shadow-[#8b5cf6]/20"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index, duration: 0.5 }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    backgroundColor: "rgba(139, 92, 246, 0.3)",
-                  }}
-                >
-                  {skill}
-                </motion.span>
-              ))}
+    <section id="about" className="py-16 md:py-24">
+      <div className="framer-container">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          {/* Section header */}
+          <div className="flex items-baseline gap-4 mb-8">
+            <span className="font-mono text-sm font-bold text-muted-foreground">01.</span>
+            <h2 className="font-mono text-2xl md:text-3xl lg:text-4xl font-bold uppercase tracking-wide text-ink">
+              Specifications
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Left column - Core specs */}
+            <ManualCard sectionNumber="01.A" title="System Info">
+              <div className="space-y-1">
+                <SpecRow label="Model" value="Connor Easton" />
+                <SpecRow label="Role" value="Software Engineer (SDE III)" />
+                <SpecRow label="Org" value="Expedia Group" />
+                <SpecRow label="Location" value="Seattle, WA" />
+                <SpecRow label="Age" value="26" />
+              </div>
+
+              <TechnicalRule />
+
+              <p className="font-sans text-sm text-muted-foreground leading-relaxed">
+                Building products at Expedia using TypeScript, React, and GraphQL.
+                Previously studied CS at WSU where I was a TA. Currently volunteer
+                with Microsoft TEALS teaching high school CS.
+              </p>
+            </ManualCard>
+
+            {/* Right column - Capabilities */}
+            <div className="space-y-8">
+              <ManualCard sectionNumber="01.B" title="Capabilities">
+                <div className="flex flex-wrap gap-2">
+                  {skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 font-mono text-xs uppercase border-2 border-ink bg-cream"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </ManualCard>
+
+              <ManualCard sectionNumber="01.C" title="Interests">
+                <div className="space-y-3">
+                  {interests.map((interest) => (
+                    <div key={interest.label} className="flex justify-between items-baseline">
+                      <span className="font-mono text-sm font-bold text-ink">
+                        {interest.label}
+                      </span>
+                      <span className="font-mono text-xs text-muted-foreground">
+                        {interest.detail}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </ManualCard>
             </div>
           </div>
-        </AnimatedContainer>
-      </Container>
-    </Section>
+        </motion.div>
+      </div>
+    </section>
   );
 }

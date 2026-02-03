@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../../lib/supabase';
 import { RealtimeChannel } from '@supabase/supabase-js';
+import Link from 'next/link';
 
 // Counter ID - use this same ID in your Supabase table
 const COUNTER_ID = 'global-button-counter';
@@ -12,6 +13,7 @@ export default function RedButtonPage() {
   const [counter, setCounter] = useState(0);
   const [onlineUsers, setOnlineUsers] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPressed, setIsPressed] = useState(false);
   // This subscription state is used for cleanup
   const [, setSubscription] = useState<RealtimeChannel | null>(null);
 
@@ -93,6 +95,9 @@ export default function RedButtonPage() {
 
   // Handle button click
   const incrementCounter = async () => {
+    setIsPressed(true);
+    setTimeout(() => setIsPressed(false), 150);
+
     // Optimistically update the UI
     setCounter(prevCount => prevCount + 1);
 
@@ -108,55 +113,131 @@ export default function RedButtonPage() {
     }
   };
 
+  // Format counter with leading zeros for segment display effect
+  const formatCounter = (num: number) => {
+    return num.toString().padStart(8, '0');
+  };
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900">
-      <div className="text-center">
-        <div className="mb-8 flex h-48 items-center justify-center">
-          {isLoading ? (
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-              className="h-12 w-12 rounded-full border-4 border-red-600 border-t-transparent"
-            />
-          ) : (
-            <AnimatePresence mode="popLayout">
-              <motion.span
-                key={counter}
-                initial={{ y: 20, opacity: 0, scale: 0.8 }}
-                animate={{ y: 0, opacity: 1, scale: 1 }}
-                exit={{ y: -20, opacity: 0, scale: 0.8 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 300,
-                  damping: 20,
-                  duration: 0.4,
+    <div className="flex min-h-screen flex-col bg-paper paper-texture">
+      {/* Header */}
+      <header className="border-b-4 border-ink bg-paper py-4">
+        <div className="framer-container flex items-center justify-between">
+          <Link href="/" className="font-mono text-xs uppercase tracking-wide text-muted-foreground hover:text-ink transition-colors">
+            &larr; Back to Home
+          </Link>
+          <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+            Module 02.B
+          </span>
+        </div>
+      </header>
+
+      {/* Main content */}
+      <main className="flex-1 flex items-center justify-center py-12">
+        <div className="text-center">
+          {/* Industrial panel frame */}
+          <div className="bg-cardboard border-4 border-ink shadow-brutal-lg p-8 md:p-12">
+            {/* Panel label */}
+            <div className="border-b-2 border-ink pb-4 mb-8">
+              <h1 className="font-mono text-lg md:text-xl font-bold uppercase tracking-wider text-ink">
+                The Big Red Button
+              </h1>
+              <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground mt-1">
+                Global Counter System
+              </p>
+            </div>
+
+            {/* Counter display */}
+            <div className="mb-8">
+              <div className="bg-ink p-4 border-4 border-ink">
+                <div className="bg-cream px-6 py-4">
+                  {isLoading ? (
+                    <div className="flex items-center justify-center h-16">
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                        className="h-8 w-8 border-4 border-signal-red border-t-transparent"
+                      />
+                    </div>
+                  ) : (
+                    <AnimatePresence mode="popLayout">
+                      <motion.div
+                        key={counter}
+                        initial={{ y: 10, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -10, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="font-mono text-4xl md:text-6xl font-bold text-ink tracking-wider"
+                        style={{ fontVariantNumeric: 'tabular-nums' }}
+                      >
+                        {formatCounter(counter)}
+                      </motion.div>
+                    </AnimatePresence>
+                  )}
+                </div>
+              </div>
+              <div className="font-mono text-xs uppercase tracking-wide text-muted-foreground mt-2">
+                Total Presses
+              </div>
+            </div>
+
+            {/* The big red button */}
+            <div className="flex justify-center mb-8">
+              <motion.button
+                onClick={incrementCounter}
+                disabled={isLoading}
+                animate={{
+                  y: isPressed ? 4 : 0,
+                  boxShadow: isPressed
+                    ? '0px 0px 0px #1A1A1A'
+                    : '6px 6px 0px #1A1A1A',
                 }}
-                className="text-8xl font-bold text-gray-800 dark:text-gray-200"
+                transition={{ duration: 0.1 }}
+                className={`
+                  relative
+                  w-40 h-40 md:w-48 md:h-48
+                  bg-signal-red
+                  border-4 border-ink
+                  font-mono text-cream text-lg md:text-xl font-bold uppercase tracking-wide
+                  ${isLoading ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
+                `}
+                style={{
+                  boxShadow: isPressed ? '0px 0px 0px #1A1A1A' : '6px 6px 0px #1A1A1A',
+                }}
               >
-                {counter}
-              </motion.span>
-            </AnimatePresence>
-          )}
-        </div>
+                {/* Button surface with beveled effect */}
+                <div className="absolute inset-2 border-2 border-ink/20 flex items-center justify-center">
+                  <span>Press</span>
+                </div>
+              </motion.button>
+            </div>
 
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          whileHover={{ scale: 1.1 }}
-          onClick={incrementCounter}
-          disabled={isLoading}
-          className={`rounded-full bg-red-600 px-8 py-4 text-xl font-bold text-white shadow-lg ${isLoading ? 'cursor-not-allowed opacity-50' : ''}`}
-          style={{ minWidth: '200px', minHeight: '80px' }}
-        >
-          Press me!
-        </motion.button>
+            {/* Status indicators */}
+            <div className="border-t-2 border-ink pt-4 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+              {/* Online users indicator */}
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-signal-green animate-pulse" />
+                <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                  {onlineUsers} Online
+                </span>
+              </div>
 
-        <p className="mt-6 text-sm text-gray-500 dark:text-gray-400">
-          This counter is synced across all users in real-time
-        </p>
-        <div className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-          <p>{onlineUsers} user(s) currently online</p>
+              {/* Real-time sync indicator */}
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-signal-orange" />
+                <span className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
+                  Real-Time Sync
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer note */}
+          <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground mt-6">
+            Counter synced across all users globally
+          </p>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
