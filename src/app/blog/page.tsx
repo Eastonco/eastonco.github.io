@@ -113,7 +113,7 @@ export default async function BlogPage() {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   {post.frontmatter.tags.length > 0 && (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
-                      {post.frontmatter.tags.map((tag) => (
+                      {post.frontmatter.tags.map((tag: string) => (
                         <span key={tag} className="fr-tag">
                           {tag}
                         </span>
