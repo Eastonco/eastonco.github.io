@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { typography, spacing, colors } from '../lib/design-system';
+import { typography, spacing, colors } from '../../../lib/design-system';
 
 interface BlogPost {
   slug: string;

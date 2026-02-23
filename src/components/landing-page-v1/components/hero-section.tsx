@@ -1,10 +1,10 @@
 'use client';
 
-import { Section, Container, AnimatedContainer } from './ui/layout';
-import { AnimatedOrb } from './ui/animated-backgrounds';
-import { Button } from './ui/button';
-import { typography, spacing } from '../lib/design-system';
-import ShadowedGradientText from './ui/shadowed-gradient-text';
+import { Section, Container, AnimatedContainer } from '../../ui/layout';
+import { AnimatedOrb } from '../../ui/animated-backgrounds';
+import { Button } from '../../ui/button';
+import { typography, spacing } from '../../../lib/design-system';
+import ShadowedGradientText from '../../ui/shadowed-gradient-text';
 
 export default function HeroSection() {
   return (

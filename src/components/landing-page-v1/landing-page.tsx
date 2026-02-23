@@ -1,10 +1,10 @@
-import Header from '../header';
-import HeroSection from '../hero-section';
-import AboutSection from '../about-section';
-import BlogPreviewSection from '../blog-preview-section';
-import ProjectsSection from '../projects-section';
-import ContactSection from '../contact-section';
-import Footer from '../footer';
+import Header from './components/header';
+import HeroSection from './components/hero-section';
+import AboutSection from './components/about-section';
+import BlogPreviewSection from './components/blog-preview-section';
+import ProjectsSection from './components/projects-section';
+import ContactSection from './components/contact-section';
+import Footer from './components/footer';
 import ScrollAnimations from '../ScrollAnimations';
 import { GlobalBackground } from '../ui/animated-backgrounds';
 

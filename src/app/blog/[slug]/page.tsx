@@ -1,14 +1,21 @@
 import { getPostBySlug } from '@/lib/mdx';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 import { notFound } from 'next/navigation';
-import { format } from 'date-fns';
-import Link from 'next/link';
-import { GlobalBackground } from '@/components/ui/animated-backgrounds';
+import Background from '@/components/framer-theme/Background';
+import Nav from '@/components/framer-theme/Nav';
+import Footer from '@/components/framer-theme/Footer';
+import ScrollRevealInit from '@/components/framer-theme/ScrollRevealInit';
 
 export const dynamicParams = true;
 
 type Params = Promise<{ slug: string }>;
+
+function formatDate(iso: string): string {
+  return new Date(iso).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
 
 export default async function BlogPost({ params }: { params: Params }) {
   const post = await getPostBySlug((await params).slug);
@@ -18,77 +25,81 @@ export default async function BlogPost({ params }: { params: Params }) {
   }
 
   const { frontmatter, content } = post;
-  const formattedDate = format(new Date(frontmatter.date), 'MMMM d, yyyy');
 
   return (
-    <div className="flex min-h-screen flex-col relative overflow-hidden">
-      <GlobalBackground>
-        <Header />
-        <main className="flex-1 py-12 md:py-16 relative z-10">
-          <article className="framer-container">
-            <div className="mx-auto max-w-3xl">
-              <Link
-                href="/blog"
-                className="text-gray-400 hover:text-gray-200 mb-8 flex items-center gap-2 text-sm transition-colors duration-200"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="transition-transform duration-200 group-hover:-translate-x-1"
-                >
-                  <path d="M19 12H5M12 19l-7-7 7-7" />
-                </svg>
-                Back to all posts
-              </Link>
-              
-              <div className="mb-12 rounded-xl border border-gray-700 bg-gray-900/40 backdrop-blur-sm p-8 shadow-lg">
-                <h1 className="mb-6 text-3xl font-bold md:text-4xl lg:text-5xl text-white">{frontmatter.title}</h1>
+    <div style={{ background: '#0A0A0E', minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+      <Background />
+      <Nav />
+      <ScrollRevealInit />
 
-                <div className="flex flex-wrap items-center gap-6 text-sm">
-                  <div className="flex items-center gap-2 text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
-                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                      <line x1="16" y1="2" x2="16" y2="6" />
-                      <line x1="8" y1="2" x2="8" y2="6" />
-                      <line x1="3" y1="10" x2="21" y2="10" />
-                    </svg>
-                    <time dateTime={frontmatter.date}>{formattedDate}</time>
-                  </div>
-                  
-                  <div className="flex items-center gap-2 text-gray-400">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
-                      <circle cx="12" cy="12" r="10" />
-                      <polyline points="12 6 12 12 16 14" />
-                    </svg>
-                    <span>{frontmatter.readingTime}</span>
-                  </div>
-                </div>
+      <main
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          maxWidth: 800,
+          margin: '0 auto',
+          padding: '120px 32px 80px',
+          flex: 1,
+        }}
+      >
+        {/* Back link */}
+        <a
+          href="/blog"
+          className="fr-btn fr-btn-ghost"
+          style={{ marginBottom: 40, display: 'inline-flex', alignItems: 'center', gap: 8 }}
+        >
+          ← All posts
+        </a>
 
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {frontmatter.tags.map((tag: string) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center rounded-full border border-gray-600 bg-gray-800/60 px-3 py-1 text-xs font-medium text-gray-200 shadow-sm transition-all duration-200 hover:bg-blue-500/20 hover:text-blue-300 hover:border-blue-400/50 cursor-default"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-white prose-p:text-gray-300 prose-p:text-base prose-a:text-blue-400 prose-strong:text-white prose-code:text-pink-300 prose-code:bg-gray-800/50 prose-pre:bg-gray-900/80 prose-pre:border prose-pre:border-gray-700">{content}</div>
+        {/* Post header card */}
+        <div className="fr-card" style={{ padding: '36px', marginBottom: 40 }}>
+          {frontmatter.tags.length > 0 && (
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 20 }}>
+              {frontmatter.tags.map((tag: string) => (
+                <span key={tag} className="fr-tag">
+                  {tag}
+                </span>
+              ))}
             </div>
-          </article>
-        </main>
-        <Footer />
-      </GlobalBackground>
+          )}
+
+          <h1
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(32px, 5vw, 56px)',
+              fontWeight: 800,
+              letterSpacing: '-0.03em',
+              color: '#F2F2F5',
+              lineHeight: 1.1,
+              margin: '0 0 20px',
+            }}
+          >
+            {frontmatter.title}
+          </h1>
+
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              fontFamily: 'ui-monospace, monospace',
+              fontSize: 13,
+              color: 'rgba(242,242,245,0.35)',
+            }}
+          >
+            <time dateTime={frontmatter.date}>{formatDate(frontmatter.date)}</time>
+            <span>·</span>
+            <span>{frontmatter.readingTime}</span>
+          </div>
+        </div>
+
+        {/* MDX content */}
+        <div className="prose" style={{ color: 'rgba(242,242,245,0.82)' }}>
+          {content}
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

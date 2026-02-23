@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Section, Container, AnimatedContainer, GradientText } from './ui/layout';
-import { AnimatedOrb } from './ui/animated-backgrounds';
-import { typography, spacing } from '../lib/design-system';
+import { Section, Container, AnimatedContainer, GradientText } from '../../ui/layout';
+import { AnimatedOrb } from '../../ui/animated-backgrounds';
+import { typography, spacing } from '../../../lib/design-system';
 
 const skills = [
   'TypeScript',

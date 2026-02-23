@@ -1,8 +1,12 @@
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
+import { Bricolage_Grotesque, DM_Sans } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { PostHogProvider } from '@/components/PostHogProvider';
+
+const bricolage = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-display' });
+const dm = DM_Sans({ subsets: ['latin'], variable: '--font-body' });
 
 
 export const metadata: Metadata = {
@@ -32,7 +36,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${dm.variable}`}>
       <body
         className='bg-background text-foreground min-h-screen antialiased'
       >

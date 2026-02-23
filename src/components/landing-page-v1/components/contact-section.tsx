@@ -1,9 +1,9 @@
 'use client';
 
-import { Section, Container, AnimatedContainer, GradientText } from './ui/layout';
-import { AnimatedOrb } from './ui/animated-backgrounds';
-import { Button, IconButton } from './ui/button';
-import { typography, spacing } from '../lib/design-system';
+import { Section, Container, AnimatedContainer, GradientText } from '../../ui/layout';
+import { AnimatedOrb } from '../../ui/animated-backgrounds';
+import { Button, IconButton } from '../../ui/button';
+import { typography, spacing } from '../../../lib/design-system';
 
 export default function ContactSection() {
   return (
