@@ -83,7 +83,7 @@ export default function HeroSection() {
         }}
       >
         Software Engineer at Expedia Group building the future of travel technology. Private pilot, film photographer, and lifelong tinkerer. Have you sent me a{' '}
-        <a href="http://printer.eastonco.net" style={{ color: 'rgba(242,242,245,0.55)', textDecoration: 'underline' }}>recipt</a>
+        <a href="https://printer.eastonco.net" style={{ color: 'rgba(242,242,245,0.55)', textDecoration: 'underline' }}>receipt</a>
         {' '}yet?
       </p>
 

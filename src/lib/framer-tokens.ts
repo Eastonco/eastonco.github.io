@@ -38,12 +38,13 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    title: 'Recipt Printer',
-    desc: 'Tired of writing boring emails? Send an anonymous physical recipt directly to my desk',
+    title: 'Receipt Printer',
+    desc: 'Tired of writing boring emails? Send an anonymous physical receipt directly to my desk',
     href: 'https://printer.eastonco.net',
     year: '2026',
     tags: ['Raspberry Pi', 'CloudFlare', 'Printer drivers?'],
-    image: 'https://media.licdn.com/dms/image/v2/D5622AQFHMUl5xevY9Q/feedshare-shrink_1280/B56ZpvJIJMJsAs-/0/1762801256556?e=1773273600&v=beta&t=DCylRcz-DtzIl0iTB4hkyNrLX9KrzbR6Cn4d-6BAqHE'
+    // ponytail: LinkedIn CDN hotlink-blocks (403); drop a local image in /public to restore a photo.
+    // Falls back to the auto-generated number card meanwhile.
   },
   {
     title: 'The Big Red Button',

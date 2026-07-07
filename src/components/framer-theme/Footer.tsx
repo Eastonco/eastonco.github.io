@@ -12,6 +12,8 @@ export default function Footer() {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '6px 20px',
         position: 'relative',
         zIndex: 1,
         boxSizing: 'border-box',
