@@ -43,6 +43,7 @@ export default function Nav() {
   return (
     <>
       <nav
+        className="fr-navbar"
         style={{
           position: 'fixed',
           top: 16,

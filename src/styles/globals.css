@@ -405,10 +405,9 @@ html {
   .fr-nav-menu {
     position: fixed;
     top: 62px;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 16px;
     z-index: 100;
-    width: min(92vw, 300px);
+    width: min(80vw, 260px);
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -425,7 +424,14 @@ html {
     font-size: 15px;
   }
 
-  @media (max-width: 640px) {
+  /* Switch to the hamburger only once the full nav bar (~606px) no longer
+     fits comfortably; collapsed nav + menu anchor to the top right. */
+  @media (max-width: 680px) {
+    .fr-navbar {
+      left: auto !important;
+      right: 16px !important;
+      transform: none !important;
+    }
     .fr-nav-desktop {
       display: none !important;
     }
@@ -433,7 +439,7 @@ html {
       display: inline-flex;
     }
   }
-  @media (min-width: 641px) {
+  @media (min-width: 681px) {
     .fr-nav-menu {
       display: none;
     }
