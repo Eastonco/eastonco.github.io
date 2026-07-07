@@ -384,6 +384,61 @@ html {
     background: rgba(255, 255, 255, 0.07);
   }
 
+  /* Mobile nav */
+  .fr-nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #f2f2f5;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .fr-nav-toggle:hover {
+    background: rgba(255, 255, 255, 0.07);
+  }
+  .fr-nav-menu {
+    position: fixed;
+    top: 62px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: min(92vw, 300px);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px;
+    background: rgba(10, 10, 14, 0.92);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    animation: fr-load 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .fr-nav-menu .fr-nav {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  @media (max-width: 640px) {
+    .fr-nav-desktop {
+      display: none !important;
+    }
+    .fr-nav-toggle {
+      display: inline-flex;
+    }
+  }
+  @media (min-width: 641px) {
+    .fr-nav-menu {
+      display: none;
+    }
+  }
+
   /* Buttons */
   .fr-btn {
     display: inline-block;
