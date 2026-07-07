@@ -9,14 +9,14 @@ export default function BentoSection() {
       id="about"
       style={{ maxWidth: 1100, margin: '0 auto', padding: '0 32px 80px', position: 'relative', zIndex: 1 }}
     >
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
+      <div className="fr-bento">
         {/* Bio card — 2 cols */}
         <div
           data-reveal
           data-delay="0"
           onMouseMove={trackMouse}
-          className="fr-card fr-spot"
-          style={{ gridColumn: '1 / 3', padding: '36px 36px' }}
+          className="fr-card fr-spot fr-bento-bio"
+          style={{ padding: '36px 36px' }}
         >
           <span className="fr-label" style={{ display: 'block', marginBottom: 20 }}>
             01 · About
