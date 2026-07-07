@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { GREEN } from '@/lib/framer-tokens';
 
 const LINKS = [
   { label: 'About', href: '/#about' },
@@ -17,24 +16,6 @@ const divider = (extraClass?: string) => (
     className={extraClass}
     style={{ width: 1, height: 18, background: 'rgba(255,255,255,0.1)', margin: '0 4px' }}
   />
-);
-
-const availableBadge = (className?: string) => (
-  <div
-    className={className}
-    style={{
-      display: 'flex',
-      alignItems: 'center',
-      gap: 6,
-      padding: '4px 10px',
-      borderRadius: 8,
-      background: 'rgba(74,222,128,0.08)',
-      border: '1px solid rgba(74,222,128,0.18)',
-    }}
-  >
-    <div className="fr-pulse" style={{ width: 7, height: 7, borderRadius: '50%', background: GREEN, flexShrink: 0 }} />
-    <span style={{ fontSize: 12, fontWeight: 600, color: GREEN }}>Available</span>
-  </div>
 );
 
 export default function Nav() {
@@ -81,8 +62,6 @@ export default function Nav() {
             {l.label}
           </Link>
         ))}
-        {divider('fr-nav-desktop')}
-        {availableBadge('fr-nav-desktop')}
 
         {/* Mobile hamburger */}
         <button
@@ -112,8 +91,6 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
-          <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', margin: '6px 8px' }} />
-          <div style={{ padding: '4px 6px' }}>{availableBadge()}</div>
         </div>
       )}
     </>

@@ -281,6 +281,18 @@ html {
     animation: fr-load 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both;
   }
 
+  /* 3-column card grid that collapses to 1 on mobile (Blog section) */
+  .fr-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 680px) {
+    .fr-grid-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* Bento grid (About section) — 3 cols, collapses to 1 on mobile */
   .fr-bento {
     display: grid;

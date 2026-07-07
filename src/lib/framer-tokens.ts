@@ -43,8 +43,16 @@ export const PROJECTS: Project[] = [
     href: 'https://printer.eastonco.net',
     year: '2026',
     tags: ['Raspberry Pi', 'CloudFlare', 'Printer drivers?'],
-    // ponytail: LinkedIn CDN hotlink-blocks (403); drop a local image in /public to restore a photo.
-    // Falls back to the auto-generated number card meanwhile.
+    image: '/receipt-printer.jpg',
+  },
+  {
+    // TODO Connor: refine desc/tags to match the real stack.
+    title: 'Craigslist Scraper',
+    desc: 'A bot that watches Craigslist and surfaces fresh listings before anyone else scrolls to them.',
+    href: 'https://cl.eastonco.net',
+    year: '2026',
+    tags: ['Scraper', 'Automation', 'Node.js'],
+    image: '/craigslist.jpg',
   },
   {
     title: 'The Big Red Button',

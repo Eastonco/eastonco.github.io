@@ -17,7 +17,7 @@ export default function BlogSection({ posts }: { posts: Post[] }) {
       <span data-reveal className="fr-label" style={{ display: 'block', marginBottom: 20 }}>
         04 · Blog
       </span>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+      <div className="fr-grid-3">
         {posts.map((post, i) => (
           <a
             key={post.slug}
