@@ -50,6 +50,9 @@ export default function RedButtonPage() {
       config: {
         presence: {
           key: `user-${Math.random().toString(36).substring(7)}`,
+          // Self-hosted Realtime defaults presence to disabled per-tenant
+          // (supabase/realtime PR #1739); the client can force it on per-channel.
+          enabled: true,
         },
       },
     });

@@ -44,3 +44,4 @@ yarn-error.log*
 .playwright-mcp
 .vscode
 .claude
+.env*.local
