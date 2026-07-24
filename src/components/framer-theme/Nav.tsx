@@ -6,6 +6,7 @@ import Link from 'next/link';
 const LINKS = [
   { label: 'About', href: '/#about' },
   { label: 'Work', href: '/#work' },
+  { label: 'Guestbook', href: '/#guestbook' },
   { label: 'Contact', href: '/#contact' },
   { label: 'MCP', href: '/#mcp' },
   { label: 'Blog', href: '/blog' },
@@ -57,7 +58,7 @@ export default function Nav() {
 
         {/* Desktop links */}
         {divider('fr-nav-desktop')}
-        {LINKS.map((l) => (
+        {LINKS.map(l => (
           <Link key={l.label} href={l.href} className="fr-nav fr-nav-desktop">
             {l.label}
           </Link>
@@ -69,14 +70,30 @@ export default function Nav() {
           className="fr-nav-toggle"
           aria-label={open ? 'Close menu' : 'Open menu'}
           aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
+          onClick={() => setOpen(v => !v)}
         >
           {open ? (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
               <path d="M6 6l12 12M18 6L6 18" />
             </svg>
           ) : (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
               <path d="M3 6h18M3 12h18M3 18h18" />
             </svg>
           )}
@@ -86,7 +103,7 @@ export default function Nav() {
       {/* Mobile dropdown menu */}
       {open && (
         <div className="fr-nav-menu">
-          {LINKS.map((l) => (
+          {LINKS.map(l => (
             <Link key={l.label} href={l.href} className="fr-nav" onClick={() => setOpen(false)}>
               {l.label}
             </Link>

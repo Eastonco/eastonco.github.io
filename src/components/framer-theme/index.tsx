@@ -8,6 +8,7 @@ import BentoSection from './BentoSection';
 import SkillsSection from './SkillsSection';
 import WorkSection from './WorkSection';
 import BlogSection from './BlogSection';
+import GuestbookSection from './GuestbookSection';
 import MCPSection from './MCPSection';
 import ContactSection from './ContactSection';
 import Footer from './Footer';
@@ -43,6 +44,7 @@ export default function FramerTheme({ posts }: { posts: Post[] }) {
       <SkillsSection />
       <WorkSection />
       <BlogSection posts={posts} />
+      <GuestbookSection />
       <ContactSection />
       <MCPSection />
       <Footer />
