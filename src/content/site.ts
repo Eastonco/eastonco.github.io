@@ -32,7 +32,7 @@ export interface Project {
   href: string;
   year: string;
   tags: string[];
-  image?: string; // optional URL — shown instead of the auto-generated number
+  image?: string; // optional path under /public — shown instead of the auto-generated number
 }
 
 export const PROJECTS: Project[] = [
