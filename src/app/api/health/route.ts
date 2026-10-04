@@ -2,6 +2,9 @@
 // Checks the self-hosted Supabase stack (behind supabase.eastonco.net) that the red button,
 // dumpster dive, and guestbook depend on.
 
+import { after } from 'next/server';
+import { flushLogs, log } from '@/lib/logger';
+
 export const dynamic = 'force-dynamic';
 
 const TIMEOUT_MS = 5000;
@@ -37,6 +40,15 @@ export async function GET() {
     check('/rest/v1/counters?select=id&limit=1'), // PostgREST + Postgres, via an anon-readable table
   ]);
   const ok = auth.ok && database.ok;
+  if (!ok) {
+    log('warn', '[health] Supabase check failed', {
+      auth_ok: auth.ok,
+      auth_error: auth.error ?? null,
+      database_ok: database.ok,
+      database_error: database.error ?? null,
+    });
+    after(flushLogs);
+  }
 
   return Response.json(
     { status: ok ? 'ok' : 'down', checks: { supabase_auth: auth, supabase_database: database } },
