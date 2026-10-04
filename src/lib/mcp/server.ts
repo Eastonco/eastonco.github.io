@@ -3,7 +3,7 @@
 // To add a tool: register it here; the route needs no changes.
 import { McpServer, type CallToolResult } from '@modelcontextprotocol/server';
 import { z } from 'zod';
-import { getOverview, getTopic, listTopics, searchExperience } from '@/lib/content/cv';
+import { getOverview, getTopic, listSkills, listTopics, searchBySkill } from '@/lib/content/cv';
 
 const READ_ONLY = { readOnlyHint: true, openWorldHint: false } as const;
 
@@ -14,8 +14,9 @@ export function createCvServer(): McpServer {
   server.registerTool(
     'get_overview',
     {
-      title: 'Get CV Overview',
-      description: 'High-level summary of Connor Easton: bio, current role, and top skills.',
+      title: 'Get Overview',
+      description:
+        'Start here. Connor Easton at a glance: current role, location, years of experience, top skills, contact links, and a short bio.',
       annotations: READ_ONLY,
     },
     async () => json(getOverview())
@@ -24,9 +25,9 @@ export function createCvServer(): McpServer {
   server.registerTool(
     'list_topics',
     {
-      title: 'List CV Topics',
+      title: 'List Topics',
       description:
-        'List available CV topics (experience, projects, skills, interests) with ids for get_topic_details.',
+        'List every CV topic (experience, projects, skills, education, interests) with its id, category, and a one-line summary. Pass an id to get_topic_details for the full write-up.',
       annotations: READ_ONLY,
     },
     async () => json(listTopics())
@@ -36,8 +37,11 @@ export function createCvServer(): McpServer {
     'get_topic_details',
     {
       title: 'Get Topic Details',
-      description: 'Fetch full details for one CV topic by its id (see list_topics).',
-      inputSchema: z.object({ id: z.string().describe('Topic id, e.g. "expedia-group"') }),
+      description:
+        'Get the full write-up for one CV topic: summary, the details in markdown, and any extra fields like roles, skills, dates, and links.',
+      inputSchema: z.object({
+        id: z.string().describe('Topic id from list_topics, e.g. "expedia-group"'),
+      }),
       annotations: READ_ONLY,
     },
     async ({ id }) => {
@@ -52,17 +56,21 @@ export function createCvServer(): McpServer {
     }
   );
 
+  // Enum rebuilt from CV frontmatter on every request, so clients always see the current skills.
+  const skills = listSkills() as [string, ...string[]];
+
   server.registerTool(
-    'search_experience',
+    'search_by_skill',
     {
-      title: 'Search Experience',
-      description: 'Free-text search across all CV content; returns matching topics and snippets.',
+      title: 'Search by Skill',
+      description:
+        'Find which jobs and projects used a given skill or technology. Returns each matching topic with a snippet; pass its id to get_topic_details for more.',
       inputSchema: z.object({
-        query: z.string().describe('e.g. "Kotlin", "aviation", "real-time"'),
+        skill: z.enum(skills).describe('Skill or technology to look up'),
       }),
       annotations: READ_ONLY,
     },
-    async ({ query }) => json(searchExperience(query))
+    async ({ skill }) => json(searchBySkill(skill))
   );
 
   return server;

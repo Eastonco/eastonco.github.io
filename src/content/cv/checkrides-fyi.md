@@ -2,7 +2,7 @@
 name: Checkrides.fyi
 category: project
 tech_stack:
-  - Claude (vibe-coded)
+  - Claude
   - Vercel
   - Supabase
   - PostHog
