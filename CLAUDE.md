@@ -32,7 +32,7 @@ This is Connor Easton's personal portfolio site — a Next.js 16 App Router proj
 
 **Analytics:** PostHog is proxied through `/ingest/*` rewrites in `next.config.ts` to avoid ad blockers. Client-side is initialized in `src/components/PostHogProvider.tsx` (wraps the root layout); server-side uses `src/lib/posthog.ts` (a no-op when the key is unset). Every MCP tool call sends an anonymous `mcp_tool_called` event (tool, input, error, duration, client) via `src/lib/mcp/analytics.ts`; the MCP route flushes events with `after()`. Required env: `NEXT_PUBLIC_POSTHOG_KEY`.
 
-**Supabase:** Client is initialized in `src/lib/supabase.ts` (marked `'use client'`). Required env: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+**Supabase:** Client is initialized in `src/lib/supabase.ts` (marked `'use client'`). Required env: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Supabase is self-hosted (Docker, exposed at `supabase.eastonco.net`); `GET /api/health` checks its auth service and database and returns 200 or 503, for uptime monitors.
 
 **Themes:** The homepage renders `src/components/framer-theme`. `src/components/themes/` keeps alternate theme references (cozy, framer, retro, web2) that are intentionally not routed, for a future theme switcher. `src/components/satisfying-interactions.tsx` is likewise kept but unrouted.
 
