@@ -1,15 +1,22 @@
 // Public, read-only MCP server for Connor Easton's CV, served at /api/mcp
 // (src/app/api/mcp/route.ts). All data comes from src/lib/content/cv.ts.
 // To add a tool: register it here; the route needs no changes.
-import { McpServer, type CallToolResult } from '@modelcontextprotocol/server';
+import {
+  McpServer,
+  type CallToolResult,
+  type McpRequestContext,
+} from '@modelcontextprotocol/server';
 import { z } from 'zod';
 import { getOverview, getTopic, listSkills, listTopics, searchBySkill } from '@/lib/content/cv';
+import { createToolTracker } from './analytics';
 
 const READ_ONLY = { readOnlyHint: true, openWorldHint: false } as const;
 
 // Factory, not a singleton: createMcpHandler builds a fresh instance per request.
-export function createCvServer(): McpServer {
+// Every tool handler runs through `track` so each call is recorded in PostHog.
+export function createCvServer(ctx?: McpRequestContext): McpServer {
   const server = new McpServer({ name: 'eastonco-cv', version: '2.0.0' });
+  const track = createToolTracker(server, ctx);
 
   server.registerTool(
     'get_overview',
@@ -19,7 +26,7 @@ export function createCvServer(): McpServer {
         'Start here. Connor Easton at a glance: current role, location, years of experience, top skills, contact links, and a short bio.',
       annotations: READ_ONLY,
     },
-    async () => json(getOverview())
+    async () => track('get_overview', {}, () => json(getOverview()))
   );
 
   server.registerTool(
@@ -30,7 +37,7 @@ export function createCvServer(): McpServer {
         'List every CV topic (experience, projects, skills, education, interests) with its id, category, and a one-line summary. Pass an id to get_topic_details for the full write-up.',
       annotations: READ_ONLY,
     },
-    async () => json(listTopics())
+    async () => track('list_topics', {}, () => json(listTopics()))
   );
 
   server.registerTool(
@@ -44,16 +51,17 @@ export function createCvServer(): McpServer {
       }),
       annotations: READ_ONLY,
     },
-    async ({ id }) => {
-      const topic = getTopic(id);
-      if (!topic) {
-        const valid = listTopics()
-          .map(t => t.id)
-          .join(', ');
-        return { ...json({ error: `No topic "${id}". Valid ids: ${valid}` }), isError: true };
-      }
-      return json(topic);
-    }
+    async ({ id }) =>
+      track('get_topic_details', { id }, () => {
+        const topic = getTopic(id);
+        if (!topic) {
+          const valid = listTopics()
+            .map(t => t.id)
+            .join(', ');
+          return { ...json({ error: `No topic "${id}". Valid ids: ${valid}` }), isError: true };
+        }
+        return json(topic);
+      })
   );
 
   // Enum rebuilt from CV frontmatter on every request, so clients always see the current skills.
@@ -70,7 +78,7 @@ export function createCvServer(): McpServer {
       }),
       annotations: READ_ONLY,
     },
-    async ({ skill }) => json(searchBySkill(skill))
+    async ({ skill }) => track('search_by_skill', { skill }, () => json(searchBySkill(skill)))
   );
 
   return server;
