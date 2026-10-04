@@ -36,7 +36,7 @@ const CATEGORY_ORDER: TopicCategory[] = ['experience', 'project', 'skill', 'educ
 
 // ponytail: no cache — 8 tiny files, sync reads are negligible and dev edits show live.
 function load(): { overview: Overview; topics: Topic[] } {
-  const files = fs.readdirSync(CV_DIR).filter((f) => f.endsWith('.md'));
+  const files = fs.readdirSync(CV_DIR).filter(f => f.endsWith('.md'));
   let overview: Overview | null = null;
   const topics: Topic[] = [];
 
@@ -46,7 +46,11 @@ function load(): { overview: Overview; topics: Topic[] } {
     if (file === 'overview.md') {
       overview = { ...(data as Omit<Overview, 'summary'>), summary: body };
     } else {
-      topics.push({ id: file.replace(/\.md$/, ''), ...(data as Omit<Topic, 'id' | 'details'>), details: body });
+      topics.push({
+        id: file.replace(/\.md$/, ''),
+        ...(data as Omit<Topic, 'id' | 'details'>),
+        details: body,
+      });
     }
   }
 
@@ -65,7 +69,7 @@ export function listTopics() {
 }
 
 export function getTopic(id: string): Topic | null {
-  return load().topics.find((t) => t.id === id) ?? null;
+  return load().topics.find(t => t.id === id) ?? null;
 }
 
 // Every skill/technology tag in topic frontmatter (skills + tech_stack), deduped case-insensitively.
@@ -86,7 +90,7 @@ export function searchBySkill(skill: string) {
   const q = skill.toLowerCase().trim();
   if (!q) return [];
   return load()
-    .topics.map((t) => {
+    .topics.map(t => {
       const text = [t.name, t.summary, t.details, ...(t.skills ?? []), ...(t.tech_stack ?? [])]
         .join(' ')
         .replace(/\s+/g, ' ');

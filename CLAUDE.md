@@ -19,6 +19,7 @@ No test suite is configured.
 This is Connor Easton's personal portfolio site — a Next.js 15 App Router project deployed to Vercel at [eastonco.net](https://eastonco.net).
 
 **Key directories:**
+
 - `src/app/` — App Router pages (`page.tsx`, `layout.tsx`) and route segments
 - `src/components/` — Shared React components; `ui/` holds primitives
 - `src/lib/` — Utilities: `content/blog.ts` and `content/cv.ts` (content loaders), `mcp/server.ts` (MCP server), `supabase.ts` (client), `posthog.ts` (server-side analytics), `design-system.ts` (design tokens), `metadata.ts`

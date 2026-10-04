@@ -34,7 +34,18 @@ const PROJECTS = [
   },
 ];
 
-const TAGS = ['TypeScript', 'React', 'Next.js', 'Kotlin', 'Node.js', 'Docker', 'Figma', 'AI', 'Design', 'Teaching'];
+const TAGS = [
+  'TypeScript',
+  'React',
+  'Next.js',
+  'Kotlin',
+  'Node.js',
+  'Docker',
+  'Figma',
+  'AI',
+  'Design',
+  'Teaching',
+];
 
 const STATS = [
   { label: 'Projects Shipped', val: '20+' },
@@ -49,7 +60,15 @@ const SOCIALS = [
   { label: 'Twitter / X', bg: '#1DA1F2', href: '#' },
 ];
 
-function GlossOrb({ size, fontSize, style }: { size: number; fontSize: number; style?: React.CSSProperties }) {
+function GlossOrb({
+  size,
+  fontSize,
+  style,
+}: {
+  size: number;
+  fontSize: number;
+  style?: React.CSSProperties;
+}) {
   return (
     <div
       style={{
@@ -77,7 +96,8 @@ function GlossOrb({ size, fontSize, style }: { size: number; fontSize: number; s
           left: '15%',
           right: '15%',
           height: '38%',
-          background: 'radial-gradient(ellipse, rgba(255,255,255,0.52) 0%, rgba(255,255,255,0) 100%)',
+          background:
+            'radial-gradient(ellipse, rgba(255,255,255,0.52) 0%, rgba(255,255,255,0) 100%)',
           borderRadius: '50%',
         }}
       />
@@ -98,7 +118,9 @@ function CardHead({ label, right }: { label: string; right?: React.ReactNode }) 
         borderBottom: '1px solid #1a5090',
       }}
     >
-      <span style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'white' }}>{label}</span>
+      <span style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'white' }}>
+        {label}
+      </span>
       {right && <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.55)' }}>{right}</span>}
     </div>
   );
@@ -220,9 +242,18 @@ export default function Web2Theme() {
             gap: 16,
           }}
         >
-          <a href="mailto:hello@eastonco.net" className="w2-topbar-link">✉ hello@eastonco.net</a>
+          <a href="mailto:hello@eastonco.net" className="w2-topbar-link">
+            ✉ hello@eastonco.net
+          </a>
           <span style={{ color: 'rgba(255,255,255,0.2)' }}>|</span>
-          <a href="https://github.com/Eastonco" target="_blank" rel="noopener noreferrer" className="w2-topbar-link">GitHub</a>
+          <a
+            href="https://github.com/Eastonco"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w2-topbar-link"
+          >
+            GitHub
+          </a>
           <span style={{ color: 'rgba(255,255,255,0.2)' }}>|</span>
           {/* RSS badge */}
           <span
@@ -258,7 +289,12 @@ export default function Web2Theme() {
             <GlossOrb size={44} fontSize={16} />
             <div>
               <div
-                style={{ fontFamily: 'var(--font-display)', fontSize: 20, color: 'white', letterSpacing: '-0.01em' }}
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 20,
+                  color: 'white',
+                  letterSpacing: '-0.01em',
+                }}
               >
                 Connor Easton
               </div>
@@ -335,7 +371,13 @@ export default function Web2Theme() {
             </h1>
 
             <p
-              style={{ fontSize: 14, color: '#4A6080', lineHeight: 1.75, maxWidth: 500, margin: '0 0 28px' }}
+              style={{
+                fontSize: 14,
+                color: '#4A6080',
+                lineHeight: 1.75,
+                maxWidth: 500,
+                margin: '0 0 28px',
+              }}
             >
               TypeScript, React, Next.js, Kotlin, distributed systems. I care about clean
               abstractions, thoughtful UX, and systems that don&apos;t page you at 3am.
@@ -372,17 +414,25 @@ export default function Web2Theme() {
       >
         {/* ── LEFT COLUMN ───── */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-
           {/* Skills */}
           <div className="w2-card">
             <CardHead label="⚙ Skills &amp; Expertise" right="Updated 2025" />
-            <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 13 }}>
+            <div
+              style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 13 }}
+            >
               {SKILLS.map(s => (
                 <div key={s.name}>
                   <div
-                    style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5, alignItems: 'baseline' }}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      marginBottom: 5,
+                      alignItems: 'baseline',
+                    }}
                   >
-                    <span style={{ fontSize: 13, color: '#2D3748', fontFamily: 'var(--font-display)' }}>
+                    <span
+                      style={{ fontSize: 13, color: '#2D3748', fontFamily: 'var(--font-display)' }}
+                    >
                       {s.name}
                     </span>
                     <span style={{ fontSize: 11, color: '#718096' }}>{s.pct}%</span>
@@ -405,11 +455,21 @@ export default function Web2Theme() {
                 style={{ padding: '18px 20px', borderTop: i > 0 ? '1px solid #EAF0F6' : 'none' }}
               >
                 <div
-                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginBottom: 8,
+                  }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                     <h3
-                      style={{ fontFamily: 'var(--font-display)', fontSize: 14, color: '#1A3A60', margin: 0 }}
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: 14,
+                        color: '#1A3A60',
+                        margin: 0,
+                      }}
                     >
                       {p.title}
                     </h3>
@@ -435,9 +495,13 @@ export default function Web2Theme() {
                   <span style={{ color: '#F59E0B', fontSize: 15, letterSpacing: 1 }}>★★★★★</span>
                 </div>
 
-                <p style={{ fontSize: 13, color: '#4A6080', lineHeight: 1.65, margin: '0 0 12px' }}>{p.desc}</p>
+                <p style={{ fontSize: 13, color: '#4A6080', lineHeight: 1.65, margin: '0 0 12px' }}>
+                  {p.desc}
+                </p>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+                >
                   <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
                     {p.tags.map(t => (
                       <span key={t} className="w2-tag">
@@ -445,7 +509,11 @@ export default function Web2Theme() {
                       </span>
                     ))}
                   </div>
-                  <a href={p.href} className="w2-btn w2-btn-blue" style={{ fontSize: 11, padding: '5px 13px' }}>
+                  <a
+                    href={p.href}
+                    className="w2-btn w2-btn-blue"
+                    style={{ fontSize: 11, padding: '5px 13px' }}
+                  >
                     View ›
                   </a>
                 </div>
@@ -468,9 +536,9 @@ export default function Web2Theme() {
               <GlossOrb size={76} fontSize={20} />
               <div>
                 <p style={{ fontSize: 13, color: '#4A6080', lineHeight: 1.75, margin: '0 0 14px' }}>
-                  Engineer by trade, teacher by choice. I&apos;ve built and shipped software for years, and
-                  spent just as long making it teachable. The craft of making complexity legible never gets
-                  old.
+                  Engineer by trade, teacher by choice. I&apos;ve built and shipped software for
+                  years, and spent just as long making it teachable. The craft of making complexity
+                  legible never gets old.
                 </p>
                 <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap' }}>
                   {TAGS.map(t => (
@@ -488,8 +556,8 @@ export default function Web2Theme() {
             <CardHead label="✉ Get In Touch" />
             <div style={{ padding: '20px' }}>
               <p style={{ fontSize: 13, color: '#4A6080', lineHeight: 1.7, margin: '0 0 16px' }}>
-                Interested in working together? I&apos;m available for the right projects and consulting
-                engagements.
+                Interested in working together? I&apos;m available for the right projects and
+                consulting engagements.
               </p>
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
                 <a href="mailto:hello@eastonco.net" className="w2-btn w2-btn-orange">
@@ -518,7 +586,6 @@ export default function Web2Theme() {
 
         {/* ── RIGHT SIDEBAR ───── */}
         <aside style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-
           {/* Status */}
           <div className="w2-card">
             <CardHead
@@ -538,7 +605,12 @@ export default function Web2Theme() {
             />
             <div style={{ padding: '14px 16px' }}>
               <div
-                style={{ fontSize: 12, color: '#2D3748', fontFamily: 'var(--font-display)', marginBottom: 6 }}
+                style={{
+                  fontSize: 12,
+                  color: '#2D3748',
+                  fontFamily: 'var(--font-display)',
+                  marginBottom: 6,
+                }}
               >
                 Open to Freelance
               </div>
@@ -573,7 +645,9 @@ export default function Web2Theme() {
                 }}
               >
                 <span style={{ fontSize: 12, color: '#4A6080' }}>{s.label}</span>
-                <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: BLUE }}>{s.val}</span>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, color: BLUE }}>
+                  {s.val}
+                </span>
               </div>
             ))}
           </div>
@@ -624,7 +698,9 @@ export default function Web2Theme() {
             <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: BLUE }}>
               Next.js 15 + Vercel
             </div>
-            <div style={{ color: '#F59E0B', fontSize: 13, marginTop: 4, letterSpacing: 2 }}>★★★★★</div>
+            <div style={{ color: '#F59E0B', fontSize: 13, marginTop: 4, letterSpacing: 2 }}>
+              ★★★★★
+            </div>
           </div>
         </aside>
       </div>
@@ -650,7 +726,13 @@ export default function Web2Theme() {
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <GlossOrb size={30} fontSize={11} />
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: 12, color: 'rgba(255,255,255,0.8)' }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 12,
+                color: 'rgba(255,255,255,0.8)',
+              }}
+            >
               Connor Easton
             </span>
           </div>

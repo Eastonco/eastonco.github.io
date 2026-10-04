@@ -27,7 +27,7 @@ export const colors = {
     secondary: 'text-gray-300',
     muted: 'text-gray-400',
     accent: 'text-white/80',
-  }
+  },
 } as const;
 
 // Spacing tokens
@@ -49,7 +49,7 @@ export const spacing = {
     md: 'gap-6',
     lg: 'gap-8',
     xl: 'gap-12',
-  }
+  },
 } as const;
 
 // Typography tokens
@@ -71,7 +71,7 @@ export const typography = {
     medium: 'font-medium',
     semibold: 'font-semibold',
     bold: 'font-bold',
-  }
+  },
 } as const;
 
 // Animation tokens
@@ -88,7 +88,7 @@ export const animations = {
   },
   focus: {
     ring: 'focus:ring-2 focus:ring-primary focus:ring-offset-2',
-  }
+  },
 } as const;
 
 // Component variants
@@ -104,7 +104,7 @@ export const components = {
   },
   input: {
     default: `${colors.backgrounds.glass} rounded-lg px-4 py-3 ${colors.text.primary} placeholder-gray-400 ${animations.transitions.default}`,
-  }
+  },
 } as const;
 
 // Framer Motion variants
@@ -112,30 +112,30 @@ export const motionVariants = {
   fadeInUp: {
     initial: { opacity: 0, y: 30 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.8, ease: "easeOut" }
+    transition: { duration: 0.8, ease: 'easeOut' },
   },
   fadeIn: {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.6 },
   },
   slideIn: {
     initial: { opacity: 0, x: -20 },
     animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.5 }
+    transition: { duration: 0.5 },
   },
   scaleIn: {
     initial: { opacity: 0, scale: 0.95 },
     animate: { opacity: 1, scale: 1 },
-    transition: { duration: 0.5 }
+    transition: { duration: 0.5 },
   },
   stagger: {
     animate: {
       transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
+        staggerChildren: 0.1,
+      },
+    },
+  },
 } as const;
 
 // Responsive breakpoints (for reference)

@@ -17,7 +17,7 @@ export default function HeroSection() {
         opacity={0.2}
         duration={8}
       />
-      
+
       <Container>
         <div className={`flex max-w-[700px] flex-col ${spacing.gap.lg}`}>
           <AnimatedContainer variant="fadeInUp">
@@ -25,13 +25,13 @@ export default function HeroSection() {
               Software Engineer, Teacher, Plane guy
             </ShadowedGradientText>
           </AnimatedContainer>
-          
+
           <AnimatedContainer variant="fadeInUp" delay={0.3}>
             <p className={`${typography.body.large} text-gray-300`}>
               and you found my website, neat!
             </p>
           </AnimatedContainer>
-          
+
           <AnimatedContainer variant="fadeInUp" delay={0.5}>
             <div className={`mt-6 flex ${spacing.gap.sm}`}>
               <Button href="#about" variant="primary">

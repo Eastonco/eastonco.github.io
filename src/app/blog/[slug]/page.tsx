@@ -27,7 +27,15 @@ export default async function BlogPost({ params }: { params: Params }) {
   const { frontmatter, content } = post;
 
   return (
-    <div style={{ background: '#0A0A0E', minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+    <div
+      style={{
+        background: '#0A0A0E',
+        minHeight: '100vh',
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <Background />
       <Nav />
       <ScrollRevealInit />

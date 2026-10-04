@@ -66,8 +66,8 @@ export function AnimatedOrb({
       transition={{
         duration,
         repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut"
+        repeatType: 'reverse',
+        ease: 'easeInOut',
       }}
     />
   );
@@ -102,8 +102,8 @@ export function FloatingOrb({
       transition={{
         duration,
         repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut"
+        repeatType: 'reverse',
+        ease: 'easeInOut',
       }}
     />
   );
@@ -121,9 +121,7 @@ export function BackgroundGradient({ variant = 'dark', className = '' }: Backgro
     navy: 'bg-gradient-to-b from-[#0f172a] via-[#1e293b] to-[#334155]',
   };
 
-  return (
-    <div className={`absolute inset-0 ${gradients[variant]} z-0 ${className}`} />
-  );
+  return <div className={`absolute inset-0 ${gradients[variant]} z-0 ${className}`} />;
 }
 
 interface GlobalBackgroundProps {
@@ -134,7 +132,7 @@ export function GlobalBackground({ children }: GlobalBackgroundProps) {
   return (
     <>
       <BackgroundGradient />
-      
+
       {/* Global floating orbs */}
       <FloatingOrb
         size="xl"
@@ -142,21 +140,21 @@ export function GlobalBackground({ children }: GlobalBackgroundProps) {
         colors="from-[#4f46e5]/10 to-[#8b5cf6]/5"
         duration={20}
       />
-      
+
       <FloatingOrb
         size="xl"
         position={{ top: '33%', right: '-24rem' }}
         colors="from-[#ec4899]/10 to-[#8b5cf6]/5"
         duration={25}
       />
-      
+
       <FloatingOrb
         size="large"
         position={{ bottom: '-24rem', left: '-8rem' }}
         colors="from-[#0ea5e9]/10 to-[#22d3ee]/5"
         duration={22}
       />
-      
+
       {children}
     </>
   );

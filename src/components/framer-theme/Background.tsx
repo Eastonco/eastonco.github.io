@@ -1,6 +1,9 @@
 export default function Background() {
   return (
-    <div aria-hidden style={{ position: 'fixed', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+    <div
+      aria-hidden
+      style={{ position: 'fixed', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}
+    >
       <div
         className="fr-mesh"
         style={{

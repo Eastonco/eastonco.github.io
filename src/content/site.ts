@@ -59,7 +59,7 @@ export const PROJECTS: Project[] = [
     href: '/red-button',
     year: '2024',
     tags: ['Supabase', 'React', 'Real-time'],
-    image: '/redbutton.png'
+    image: '/redbutton.png',
   },
   {
     title: 'Dumpster Dive',
@@ -67,6 +67,6 @@ export const PROJECTS: Project[] = [
     href: '/dumpster-dive',
     year: '2024',
     tags: ['Next.js', 'Anonymous', 'Social'],
-    image: '/trash.jpg'
+    image: '/trash.jpg',
   },
 ];

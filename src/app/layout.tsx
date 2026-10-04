@@ -8,7 +8,6 @@ import { PostHogProvider } from '@/components/PostHogProvider';
 const bricolage = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-display' });
 const dm = DM_Sans({ subsets: ['latin'], variable: '--font-body' });
 
-
 export const metadata: Metadata = {
   title: 'Connor Easton | Personal Website',
   description: 'Designer, developer, and creative technologist',
@@ -37,11 +36,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${bricolage.variable} ${dm.variable}`}>
-      <body
-        className='bg-background text-foreground min-h-screen antialiased'
-      >
+      <body className="bg-background text-foreground min-h-screen antialiased">
         <PostHogProvider>
-            {children}
+          {children}
           <Analytics />
           <SpeedInsights />
         </PostHogProvider>

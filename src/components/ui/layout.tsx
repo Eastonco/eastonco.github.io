@@ -23,10 +23,7 @@ export function Section({
   background,
 }: SectionProps) {
   return (
-    <section
-      id={id}
-      className={`relative ${spacing.section[size]} overflow-hidden ${className}`}
-    >
+    <section id={id} className={`relative ${spacing.section[size]} overflow-hidden ${className}`}>
       {background}
       {children}
     </section>
@@ -39,11 +36,7 @@ interface ContainerProps {
   className?: string;
 }
 
-export function Container({
-  children,
-  size = 'full',
-  className = '',
-}: ContainerProps) {
+export function Container({ children, size = 'full', className = '' }: ContainerProps) {
   const sizeClasses = {
     full: spacing.container.maxWidth,
     content: spacing.container.content,
@@ -73,7 +66,7 @@ export function AnimatedContainer({
   viewportOnce = true,
 }: AnimatedContainerProps) {
   const motionProps = motionVariants[variant];
-  
+
   // Handle stagger variant differently
   if (variant === 'stagger') {
     return (
@@ -86,7 +79,7 @@ export function AnimatedContainer({
       </motion.div>
     );
   }
-  
+
   return (
     <motion.div
       className={className}
@@ -117,7 +110,9 @@ export function GradientText({
   as: Component = 'span',
 }: GradientTextProps) {
   return (
-    <Component className={`bg-clip-text text-transparent bg-gradient-to-r ${gradient} ${className}`}>
+    <Component
+      className={`bg-gradient-to-r bg-clip-text text-transparent ${gradient} ${className}`}
+    >
       {children}
     </Component>
   );

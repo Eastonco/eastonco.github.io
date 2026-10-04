@@ -8,7 +8,13 @@ export default function BentoSection() {
   return (
     <section
       id="about"
-      style={{ maxWidth: 1100, margin: '0 auto', padding: '0 32px 80px', position: 'relative', zIndex: 1 }}
+      style={{
+        maxWidth: 1100,
+        margin: '0 auto',
+        padding: '0 32px 80px',
+        position: 'relative',
+        zIndex: 1,
+      }}
     >
       <div className="fr-bento">
         {/* Bio card — 2 cols */}
@@ -34,8 +40,19 @@ export default function BentoSection() {
           >
             I love a good side quest
           </p>
-          <p style={{ fontSize: 15, color: 'rgba(242,242,245,0.5)', lineHeight: 1.8, margin: 0, maxWidth: 460 }}>
-            I'm a Software Engineer at Expedia Group working on travel technology, focusing on modernizing legacy systems to work with AI tooling. Outside of work, I spend time flying as an instrument rated private pilot, traveling, and trying to beat the S&P via algo trading - So far unsuccessful... 
+          <p
+            style={{
+              fontSize: 15,
+              color: 'rgba(242,242,245,0.5)',
+              lineHeight: 1.8,
+              margin: 0,
+              maxWidth: 460,
+            }}
+          >
+            I'm a Software Engineer at Expedia Group working on travel technology, focusing on
+            modernizing legacy systems to work with AI tooling. Outside of work, I spend time flying
+            as an instrument rated private pilot, traveling, and trying to beat the S&P via algo
+            trading - So far unsuccessful...
           </p>
         </div>
 
@@ -47,11 +64,21 @@ export default function BentoSection() {
           className="fr-card fr-spot"
           style={{ padding: '28px 28px' }}
         >
-          <span className="fr-label" style={{ display: 'block', marginBottom: 20 }}>Interests</span>
-          {INTERESTS.map((name) => (
+          <span className="fr-label" style={{ display: 'block', marginBottom: 20 }}>
+            Interests
+          </span>
+          {INTERESTS.map(name => (
             <div key={name} className="fr-sys">
               <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: GREEN, opacity: 0.9 }} />
+                <div
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: '50%',
+                    background: GREEN,
+                    opacity: 0.9,
+                  }}
+                />
                 <span style={{ fontSize: 13, color: 'rgba(242,242,245,0.7)' }}>{name}</span>
               </div>
             </div>
@@ -84,7 +111,9 @@ export default function BentoSection() {
             >
               {s.val}
             </div>
-            <div style={{ fontSize: 13, color: 'rgba(242,242,245,0.4)', fontWeight: 500 }}>{s.label}</div>
+            <div style={{ fontSize: 13, color: 'rgba(242,242,245,0.4)', fontWeight: 500 }}>
+              {s.label}
+            </div>
           </div>
         ))}
       </div>

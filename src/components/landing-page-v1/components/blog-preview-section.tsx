@@ -4,7 +4,7 @@ import { typography, spacing } from '../../../lib/design-system';
 import { getAllPosts } from '@/lib/content/blog';
 
 // Client component for the blog card with animations
-import { BlogCard}  from './blog-card'
+import { BlogCard } from './blog-card';
 
 export default async function BlogPreviewSection() {
   // Fetch all blog posts and get the top 3 most recent
@@ -25,7 +25,7 @@ export default async function BlogPreviewSection() {
               Latest Articles
             </h2>
           </AnimatedContainer>
-          
+
           <AnimatedContainer variant="slideIn" delay={0.2}>
             <Link href="/blog" className="text-primary text-sm font-medium hover:underline">
               View all articles →
