@@ -5,58 +5,78 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { z } from 'zod';
 
-export type TopicCategory = 'experience' | 'project' | 'skill' | 'education' | 'interest';
+const CATEGORIES = ['experience', 'project', 'skill', 'education', 'interest'] as const;
+export type TopicCategory = (typeof CATEGORIES)[number];
 
-export interface Topic {
+// Frontmatter schemas. Topics are loose: extra fields (contexts, aircraft, clients, …) are kept
+// and returned by get_topic_details as-is. A bad file throws with its name and the problems.
+const TopicFrontmatter = z.looseObject({
+  name: z.string(),
+  category: z.enum(CATEGORIES),
+  summary: z.string(), // one-liner for list_topics
+  skills: z.array(z.string()).optional(),
+  tech_stack: z.array(z.string()).optional(),
+  links: z.array(z.string()).optional(),
+});
+
+const OverviewFrontmatter = z.object({
+  name: z.string(),
+  headline: z.string(),
+  currentRole: z.string(),
+  location: z.string(),
+  yearsExperience: z.string(),
+  topSkills: z.array(z.string()),
+  contact: z.object({
+    website: z.string(),
+    email: z.string().optional(),
+    linkedin: z.string().optional(),
+    github: z.string().optional(),
+  }),
+});
+
+export type Topic = z.infer<typeof TopicFrontmatter> & {
   id: string; // = filename without .md, used by get_topic_details
-  name: string;
-  category: TopicCategory;
-  summary: string; // frontmatter one-liner for list_topics
   details: string; // the markdown body
-  skills?: string[];
-  tech_stack?: string[];
-  dates?: string;
-  links?: string[];
-}
+};
 
-export interface Overview {
-  name: string;
-  headline: string;
-  currentRole: string;
-  location: string;
-  yearsExperience: string;
+export type Overview = z.infer<typeof OverviewFrontmatter> & {
   summary: string; // the markdown body of overview.md
-  topSkills: string[];
-  contact: { website: string; email?: string; linkedin?: string; github?: string };
-}
+};
 
 const CV_DIR = path.join(process.cwd(), 'src/content/cv');
-const CATEGORY_ORDER: TopicCategory[] = ['experience', 'project', 'skill', 'education', 'interest'];
 
-// ponytail: no cache — 8 tiny files, sync reads are negligible and dev edits show live.
-function load(): { overview: Overview; topics: Topic[] } {
+function parse<T>(schema: z.ZodType<T>, data: unknown, file: string): T {
+  const result = schema.safeParse(data);
+  if (!result.success) {
+    throw new Error(
+      `cv: invalid frontmatter in src/content/cv/${file}\n${z.prettifyError(result.error)}`
+    );
+  }
+  return result.data;
+}
+
+// ponytail: no cache — a handful of tiny files, sync reads are negligible and dev edits show live.
+export function load(): { overview: Overview; topics: Topic[] } {
   const files = fs.readdirSync(CV_DIR).filter(f => f.endsWith('.md'));
   let overview: Overview | null = null;
   const topics: Topic[] = [];
 
   for (const file of files) {
     const { data, content } = matter(fs.readFileSync(path.join(CV_DIR, file), 'utf8'));
-    const body = content.trim();
+    const details = content.trim();
     if (file === 'overview.md') {
-      overview = { ...(data as Omit<Overview, 'summary'>), summary: body };
+      overview = { ...parse(OverviewFrontmatter, data, file), summary: details };
     } else {
-      topics.push({
-        id: file.replace(/\.md$/, ''),
-        ...(data as Omit<Topic, 'id' | 'details'>),
-        details: body,
-      });
+      const id = file.replace(/\.md$/, '');
+      topics.push({ id, ...parse(TopicFrontmatter, data, file), details });
     }
   }
 
   if (!overview) throw new Error('cv: src/content/cv/overview.md is missing');
   // Stable sort → experience first, then projects, skills, education, interests.
-  topics.sort((a, b) => CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category));
+  topics.sort((a, b) => CATEGORIES.indexOf(a.category) - CATEGORIES.indexOf(b.category));
   return { overview, topics };
 }
 

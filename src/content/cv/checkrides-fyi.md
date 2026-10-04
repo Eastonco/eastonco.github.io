@@ -1,6 +1,7 @@
 ---
 name: Checkrides.fyi
 category: project
+summary: A Yelp-style platform that helps pilots find and review Designated Pilot Examiners (DPEs) for their checkrides.
 tech_stack:
   - Claude
   - Vercel
