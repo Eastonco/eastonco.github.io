@@ -19,7 +19,13 @@ export default function MCPSection() {
   return (
     <section
       id="mcp"
-      style={{ maxWidth: 1100, margin: '0 auto', padding: '0 32px 100px', position: 'relative', zIndex: 1 }}
+      style={{
+        maxWidth: 1100,
+        margin: '0 auto',
+        padding: '0 32px 100px',
+        position: 'relative',
+        zIndex: 1,
+      }}
     >
       <span data-reveal className="fr-label" style={{ display: 'block', marginBottom: 20 }}>
         06 · MCP
@@ -33,7 +39,10 @@ export default function MCPSection() {
         style={{ padding: '48px 48px' }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
-          <div className="fr-pulse" style={{ width: 8, height: 8, borderRadius: '50%', background: GREEN }} />
+          <div
+            className="fr-pulse"
+            style={{ width: 8, height: 8, borderRadius: '50%', background: GREEN }}
+          />
           <span style={{ fontSize: 13, fontWeight: 600, color: GREEN }}>Live for AI agents</span>
         </div>
 
@@ -50,7 +59,15 @@ export default function MCPSection() {
         >
           Query my résumé over MCP
         </h2>
-        <p style={{ fontSize: 15, color: 'rgba(242,242,245,0.5)', lineHeight: 1.8, margin: '0 0 28px', maxWidth: 560 }}>
+        <p
+          style={{
+            fontSize: 15,
+            color: 'rgba(242,242,245,0.5)',
+            lineHeight: 1.8,
+            margin: '0 0 28px',
+            maxWidth: 560,
+          }}
+        >
           My CV is a live{' '}
           <a
             href="https://modelcontextprotocol.io"
@@ -60,8 +77,9 @@ export default function MCPSection() {
           >
             Model Context Protocol
           </a>{' '}
-          server. Point Claude, Cursor, or any MCP client at it and just ask about my experience — it can
-          fetch an overview, dig into specific jobs and projects, or find where I&apos;ve used a given skill.
+          server. Point Claude, Cursor, or any MCP client at it and just ask about my experience —
+          it can fetch an overview, dig into specific jobs and projects, or find where I&apos;ve
+          used a given skill.
         </p>
 
         {/* Endpoint URL */}

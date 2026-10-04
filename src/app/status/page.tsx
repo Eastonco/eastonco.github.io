@@ -33,9 +33,9 @@ const STATUS_CONFIG: Record<Status, { label: string; color: string }> = {
 
 const BAR_COLORS = ['#2EB886', '#F1C40F', '#E74C3C'];
 
-const overallStatus: Status = SERVICES.some((s) => s.status === 'major_outage')
+const overallStatus: Status = SERVICES.some(s => s.status === 'major_outage')
   ? 'major_outage'
-  : SERVICES.some((s) => s.status === 'degraded')
+  : SERVICES.some(s => s.status === 'degraded')
     ? 'degraded'
     : 'operational';
 
@@ -49,7 +49,10 @@ export default function StatusPage() {
   const { color: bannerColor } = STATUS_CONFIG[overallStatus];
 
   return (
-    <div className="min-h-screen bg-white" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <div
+      className="min-h-screen bg-white"
+      style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
+    >
       {/* Header */}
       <header className="border-b border-gray-200 bg-white px-6 py-3">
         <div className="mx-auto flex max-w-4xl items-center justify-between">
@@ -67,9 +70,18 @@ export default function StatusPage() {
 
       <main className="mx-auto max-w-4xl px-6 py-10">
         {/* Overall status banner */}
-        <div className="mb-8 rounded-md px-6 py-5 text-white" style={{ backgroundColor: bannerColor }}>
+        <div
+          className="mb-8 rounded-md px-6 py-5 text-white"
+          style={{ backgroundColor: bannerColor }}
+        >
           <div className="flex items-center gap-3">
-            <svg className="h-6 w-6 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+            <svg
+              className="h-6 w-6 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2.5}
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
             </svg>
             <span className="text-xl font-semibold">{OVERALL_LABEL[overallStatus]}</span>
@@ -78,11 +90,11 @@ export default function StatusPage() {
 
         {/* Components */}
         <section className="mb-10">
-          <h2 className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-gray-500">
+          <h2 className="mb-4 text-[13px] font-semibold tracking-wider text-gray-500 uppercase">
             Current Status by Service
           </h2>
           <div className="divide-y divide-gray-100 overflow-hidden rounded-lg border border-gray-200">
-            {SERVICES.map((service) => {
+            {SERVICES.map(service => {
               const cfg = STATUS_CONFIG[service.status];
               const bars = generateBars(service.uptimePct, service.seed);
 
@@ -124,7 +136,7 @@ export default function StatusPage() {
 
         {/* Past Incidents */}
         <section>
-          <h2 className="mb-4 text-[13px] font-semibold uppercase tracking-wider text-gray-500">
+          <h2 className="mb-4 text-[13px] font-semibold tracking-wider text-gray-500 uppercase">
             Past Incidents
           </h2>
 

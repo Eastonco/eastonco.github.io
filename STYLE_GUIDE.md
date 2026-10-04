@@ -18,48 +18,48 @@ Every color in the theme is derived from these base values. Use them consistentl
 
 ### Background & Surface
 
-| Name | Value | Where used |
-|------|-------|------------|
-| Root background | `#0A0A0E` | `<body>` / root div |
-| Surface (default) | `rgba(255,255,255,0.04)` | All glass cards at rest |
-| Surface (hover) | `rgba(255,255,255,0.07)` | Card hover state |
+| Name                 | Value                    | Where used              |
+| -------------------- | ------------------------ | ----------------------- |
+| Root background      | `#0A0A0E`                | `<body>` / root div     |
+| Surface (default)    | `rgba(255,255,255,0.04)` | All glass cards at rest |
+| Surface (hover)      | `rgba(255,255,255,0.07)` | Card hover state        |
 | Surface (subtle row) | `rgba(255,255,255,0.03)` | System status row hover |
 
 ### Borders
 
-| Name | Value | Where used |
-|------|-------|------------|
-| Border default | `rgba(255,255,255,0.08)` | Card edges, nav |
-| Border hover | `rgba(255,255,255,0.14)` | Card edge on hover |
-| Border faint | `rgba(255,255,255,0.06)` | Footer divider, section lines |
-| Border strong | `rgba(255,255,255,0.1)` | Ghost button border |
-| Border strong hover | `rgba(255,255,255,0.18)` | Ghost button border on hover |
+| Name                | Value                    | Where used                    |
+| ------------------- | ------------------------ | ----------------------------- |
+| Border default      | `rgba(255,255,255,0.08)` | Card edges, nav               |
+| Border hover        | `rgba(255,255,255,0.14)` | Card edge on hover            |
+| Border faint        | `rgba(255,255,255,0.06)` | Footer divider, section lines |
+| Border strong       | `rgba(255,255,255,0.1)`  | Ghost button border           |
+| Border strong hover | `rgba(255,255,255,0.18)` | Ghost button border on hover  |
 
 ### Text
 
-| Name | Value | Where used |
-|------|-------|------------|
-| Text primary | `#F2F2F5` | Headings, active nav, labels |
-| Text body | `rgba(242,242,245,0.55)` | Hero bio paragraph |
-| Text secondary | `rgba(242,242,245,0.5)` | Card body copy |
-| Text muted | `rgba(242,242,245,0.4)` | Stat card labels |
-| Text faint | `rgba(242,242,245,0.35)` | Uptime values |
-| Text dim | `rgba(242,242,245,0.3)` | Section labels (`.fr-label`) |
-| Text subdued | `rgba(242,242,245,0.45)` | Nav links at rest |
-| Text link rest | `rgba(242,242,245,0.5)` | Project "View →" link |
+| Name           | Value                    | Where used                   |
+| -------------- | ------------------------ | ---------------------------- |
+| Text primary   | `#F2F2F5`                | Headings, active nav, labels |
+| Text body      | `rgba(242,242,245,0.55)` | Hero bio paragraph           |
+| Text secondary | `rgba(242,242,245,0.5)`  | Card body copy               |
+| Text muted     | `rgba(242,242,245,0.4)`  | Stat card labels             |
+| Text faint     | `rgba(242,242,245,0.35)` | Uptime values                |
+| Text dim       | `rgba(242,242,245,0.3)`  | Section labels (`.fr-label`) |
+| Text subdued   | `rgba(242,242,245,0.45)` | Nav links at rest            |
+| Text link rest | `rgba(242,242,245,0.5)`  | Project "View →" link        |
 
 > **Rule:** Never use pure `rgba(242,242,245,1)` / `#F2F2F5` for body text. It is reserved for headings and high-emphasis elements only. Body always uses an opacity step.
 
 ### Accent Colors
 
-| Name | Constant | Value | Where used |
-|------|----------|-------|------------|
-| Violet | `VIOLET` | `#7B5FEA` | Gradient start, skill dot, label dot |
-| Blue | `BLUE` | `#4F9EE8` | Gradient mid, skill dot |
-| Green | `GREEN` | `#4ADE80` | Status lights, system dots |
-| Green bg tint | — | `rgba(74,222,128,0.08)` | Status pill background in nav |
-| Green border | — | `rgba(74,222,128,0.18)` | Status pill border in nav |
-| Green text dim | — | `rgba(74,222,128,0.7)` | Footer status text |
+| Name           | Constant | Value                   | Where used                           |
+| -------------- | -------- | ----------------------- | ------------------------------------ |
+| Violet         | `VIOLET` | `#7B5FEA`               | Gradient start, skill dot, label dot |
+| Blue           | `BLUE`   | `#4F9EE8`               | Gradient mid, skill dot              |
+| Green          | `GREEN`  | `#4ADE80`               | Status lights, system dots           |
+| Green bg tint  | —        | `rgba(74,222,128,0.08)` | Status pill background in nav        |
+| Green border   | —        | `rgba(74,222,128,0.18)` | Status pill border in nav            |
+| Green text dim | —        | `rgba(74,222,128,0.7)`  | Footer status text                   |
 
 ### Gradient
 
@@ -70,19 +70,20 @@ linear-gradient(135deg, #7B5FEA 0%, #4F9EE8 50%, rgba(242,242,245,0.8) 100%)
 ```
 
 Stat card numbers use a simpler white fade:
+
 ```
 linear-gradient(135deg, #F2F2F5, rgba(242,242,245,0.45))
 ```
 
 ### Shadow
 
-| Usage | Value |
-|-------|-------|
-| Card hover depth | `0 24px 60px rgba(0,0,0,0.5)` |
-| Nav pill | `0 8px 32px rgba(0,0,0,0.4)` |
-| White button | `0 0 0 1px rgba(255,255,255,0.15), 0 4px 20px rgba(255,255,255,0.08)` |
-| White button hover | `0 0 0 1px rgba(255,255,255,0.2), 0 8px 32px rgba(255,255,255,0.14)` |
-| Project card (per-card) | `0 24px 64px {project.glowColor}, 0 0 0 1px rgba(255,255,255,0.12)` |
+| Usage                   | Value                                                                 |
+| ----------------------- | --------------------------------------------------------------------- |
+| Card hover depth        | `0 24px 60px rgba(0,0,0,0.5)`                                         |
+| Nav pill                | `0 8px 32px rgba(0,0,0,0.4)`                                          |
+| White button            | `0 0 0 1px rgba(255,255,255,0.15), 0 4px 20px rgba(255,255,255,0.08)` |
+| White button hover      | `0 0 0 1px rgba(255,255,255,0.2), 0 8px 32px rgba(255,255,255,0.14)`  |
+| Project card (per-card) | `0 24px 64px {project.glowColor}, 0 0 0 1px rgba(255,255,255,0.12)`   |
 
 ---
 
@@ -103,44 +104,45 @@ Both are variable fonts — no `weight` declaration needed. Apply both variables
 <div className={`${bricolage.variable} ${dm.variable}`}>
 ```
 
-| Role | CSS Variable | Font | Usage |
-|------|-------------|------|-------|
+| Role               | CSS Variable          | Font                | Usage                                             |
+| ------------------ | --------------------- | ------------------- | ------------------------------------------------- |
 | Display / headings | `var(--font-display)` | Bricolage Grotesque | Hero name, card headlines, nav logo, stat numbers |
-| Body / UI | `var(--font-body)` | DM Sans | Bio copy, buttons, labels, tags, chips |
-| Monospace | `monospace` (system) | System mono | Year metadata, uptime values |
+| Body / UI          | `var(--font-body)`    | DM Sans             | Bio copy, buttons, labels, tags, chips            |
+| Monospace          | `monospace` (system)  | System mono         | Year metadata, uptime values                      |
 
 ### Type Scale
 
-| Element | Size | Weight | Tracking | Line-height | Notes |
-|---------|------|--------|----------|-------------|-------|
-| Hero name | `clamp(64px, 11vw, 148px)` | 800 | `-0.04em` | `0.9` | Two separate `<h1>` elements |
-| Contact heading | `clamp(40px, 6vw, 76px)` | 800 | `-0.04em` | `0.95` | — |
-| Bento quote | `clamp(22px, 2.8vw, 30px)` | 700 | — | `1.45` | `var(--font-display)` |
-| Project card title | `22px` | 700 | `-0.02em` | — | — |
-| Stat number | `44px` | 800 | `-0.03em` | `1` | Gradient clipped |
-| Hero bio | `17px` | 400 | — | `1.75` | `rgba(242,242,245,0.55)` |
-| Card body | `15px` | 400 | — | `1.8` | `rgba(242,242,245,0.5)` |
-| Project desc | `14px` | 400 | — | `1.7` | — |
-| Button | `14px` | 600 | — | — | `var(--font-body)` |
-| Chip | `13px` | 500 | — | — | — |
-| Section label | `11px` | 600 | `0.12em` | — | Uppercase, `rgba(242,242,245,0.3)` |
-| Tag | `11px` | 500 | — | — | — |
-| Nav link | `14px` | 400 | — | — | — |
-| Hero eyebrow | `12px` | 600 | `0.08em` | — | Uppercase pill |
-| Uptime / year | `11px` | 600 | — | — | Monospace |
+| Element            | Size                       | Weight | Tracking  | Line-height | Notes                              |
+| ------------------ | -------------------------- | ------ | --------- | ----------- | ---------------------------------- |
+| Hero name          | `clamp(64px, 11vw, 148px)` | 800    | `-0.04em` | `0.9`       | Two separate `<h1>` elements       |
+| Contact heading    | `clamp(40px, 6vw, 76px)`   | 800    | `-0.04em` | `0.95`      | —                                  |
+| Bento quote        | `clamp(22px, 2.8vw, 30px)` | 700    | —         | `1.45`      | `var(--font-display)`              |
+| Project card title | `22px`                     | 700    | `-0.02em` | —           | —                                  |
+| Stat number        | `44px`                     | 800    | `-0.03em` | `1`         | Gradient clipped                   |
+| Hero bio           | `17px`                     | 400    | —         | `1.75`      | `rgba(242,242,245,0.55)`           |
+| Card body          | `15px`                     | 400    | —         | `1.8`       | `rgba(242,242,245,0.5)`            |
+| Project desc       | `14px`                     | 400    | —         | `1.7`       | —                                  |
+| Button             | `14px`                     | 600    | —         | —           | `var(--font-body)`                 |
+| Chip               | `13px`                     | 500    | —         | —           | —                                  |
+| Section label      | `11px`                     | 600    | `0.12em`  | —           | Uppercase, `rgba(242,242,245,0.3)` |
+| Tag                | `11px`                     | 500    | —         | —           | —                                  |
+| Nav link           | `14px`                     | 400    | —         | —           | —                                  |
+| Hero eyebrow       | `12px`                     | 600    | `0.08em`  | —           | Uppercase pill                     |
+| Uptime / year      | `11px`                     | 600    | —         | —           | Monospace                          |
 
 ### Gradient Text
 
 Used on the hero surname and stat numbers. Pattern:
 
 ```css
-background: linear-gradient(135deg, #7B5FEA 0%, #4F9EE8 50%, rgba(242,242,245,0.8) 100%);
+background: linear-gradient(135deg, #7b5fea 0%, #4f9ee8 50%, rgba(242, 242, 245, 0.8) 100%);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 background-clip: text;
 ```
 
 In React inline styles:
+
 ```tsx
 style={{
   background: `linear-gradient(135deg, ${VIOLET} 0%, ${BLUE} 50%, rgba(242,242,245,0.8) 100%)`,
@@ -188,6 +190,7 @@ gap: 12px;
 ### Project Grid
 
 Two equal columns:
+
 ```css
 display: grid;
 grid-template-columns: 1fr 1fr;
@@ -204,15 +207,18 @@ The core surface component. Everything interactive is a glass card.
 
 ```css
 .fr-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s !important;
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    transform 0.25s !important;
 }
 .fr-card:hover {
-  border-color: rgba(255,255,255,0.14);
+  border-color: rgba(255, 255, 255, 0.14);
   transform: translateY(-3px);
-  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
 }
 ```
 
@@ -223,14 +229,27 @@ The core surface component. Everything interactive is a glass card.
 Layered on top of `.fr-card` to add a radial gradient that follows the cursor. Uses CSS custom properties set from a React `onMouseMove` handler.
 
 ```css
-.fr-spot { position: relative; overflow: hidden; }
+.fr-spot {
+  position: relative;
+  overflow: hidden;
+}
 .fr-spot::after {
-  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: radial-gradient(480px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.055), transparent 50%);
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    480px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.055),
+    transparent 50%
+  );
   opacity: 0;
   transition: opacity 0.3s !important;
 }
-.fr-spot:hover::after { opacity: 1; }
+.fr-spot:hover::after {
+  opacity: 1;
+}
 ```
 
 ```tsx
@@ -249,22 +268,33 @@ function trackMouse(e: React.MouseEvent<HTMLDivElement>) {
 Used on the contact CTA. A `::before` pseudo-element sits at `inset: -1px` and fades in on hover, creating the appearance of a gradient border.
 
 ```css
-.fr-grad-wrap { position: relative; border-radius: 20px; }
+.fr-grad-wrap {
+  position: relative;
+  border-radius: 20px;
+}
 .fr-grad-wrap::before {
-  content: ''; position: absolute; inset: -1px; border-radius: 21px; z-index: 0;
-  background: linear-gradient(135deg, #7B5FEA, #4F9EE8, #4ADE80);
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 21px;
+  z-index: 0;
+  background: linear-gradient(135deg, #7b5fea, #4f9ee8, #4ade80);
   opacity: 0;
   transition: opacity 0.4s !important;
 }
-.fr-grad-wrap:hover::before { opacity: 1; }
-.fr-grad-inner { position: relative; z-index: 1; border-radius: 20px; }
+.fr-grad-wrap:hover::before {
+  opacity: 1;
+}
+.fr-grad-inner {
+  position: relative;
+  z-index: 1;
+  border-radius: 20px;
+}
 ```
 
 ```tsx
 <div className="fr-grad-wrap">
-  <div className="fr-card fr-spot fr-grad-inner">
-    {/* content */}
-  </div>
+  <div className="fr-card fr-spot fr-grad-inner">{/* content */}</div>
 </div>
 ```
 
@@ -276,31 +306,42 @@ Two variants: **primary** (white) and **ghost** (transparent).
 
 ```css
 .fr-btn {
-  display: inline-block; padding: 11px 26px; border-radius: 10px;
-  font-family: var(--font-body); font-size: 14px; font-weight: 600;
-  text-decoration: none; cursor: pointer;
+  display: inline-block;
+  padding: 11px 26px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
   transition: all 0.18s !important;
 }
 
 /* Primary — white fill */
 .fr-btn-white {
-  background: white; color: #0A0A0E;
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.15), 0 4px 20px rgba(255,255,255,0.08);
+  background: white;
+  color: #0a0a0e;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 4px 20px rgba(255, 255, 255, 0.08);
 }
 .fr-btn-white:hover {
-  background: rgba(255,255,255,0.92);
+  background: rgba(255, 255, 255, 0.92);
   transform: translateY(-1px);
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 8px 32px rgba(255,255,255,0.14);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 8px 32px rgba(255, 255, 255, 0.14);
 }
 
 /* Ghost — translucent */
 .fr-btn-ghost {
-  background: rgba(255,255,255,0.06); color: #F2F2F5;
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: #f2f2f5;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .fr-btn-ghost:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: rgba(255,255,255,0.18);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
   transform: translateY(-1px);
 }
 ```
@@ -313,24 +354,33 @@ Pill-shaped tag with a colored dot indicator.
 
 ```css
 .fr-chip {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 7px 15px; border-radius: 99px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.09);
-  font-size: 13px; font-weight: 500;
-  transition: background 0.18s, border-color 0.18s, transform 0.18s !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 15px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  font-size: 13px;
+  font-weight: 500;
+  transition:
+    background 0.18s,
+    border-color 0.18s,
+    transform 0.18s !important;
   cursor: default;
 }
 .fr-chip:hover {
-  background: rgba(255,255,255,0.09);
-  border-color: rgba(255,255,255,0.16);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.16);
   transform: translateY(-1px);
 }
 ```
 
 ```tsx
 <span className="fr-chip">
-  <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#7B5FEA', flexShrink: 0 }} />
+  <span
+    style={{ width: 7, height: 7, borderRadius: '50%', background: '#7B5FEA', flexShrink: 0 }}
+  />
   TypeScript
 </span>
 ```
@@ -341,10 +391,12 @@ Smaller, non-interactive label used inside project cards.
 
 ```css
 .fr-tag {
-  font-size: 11px; padding: 3px 10px; border-radius: 99px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(242,242,245,0.6);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(242, 242, 245, 0.6);
   font-weight: 500;
 }
 ```
@@ -355,9 +407,11 @@ The `01 ·`, `02 ·` section numbering used above each content block.
 
 ```css
 .fr-label {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(242,242,245,0.3);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(242, 242, 245, 0.3);
 }
 ```
 
@@ -365,25 +419,39 @@ The `01 ·`, `02 ·` section numbering used above each content block.
 
 ```css
 .fr-nav {
-  font-size: 14px; text-decoration: none;
-  color: rgba(242,242,245,0.45);
-  padding: 6px 14px; border-radius: 8px;
-  transition: color 0.15s, background 0.15s !important;
+  font-size: 14px;
+  text-decoration: none;
+  color: rgba(242, 242, 245, 0.45);
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition:
+    color 0.15s,
+    background 0.15s !important;
 }
-.fr-nav:hover { color: #F2F2F5; background: rgba(255,255,255,0.07); }
+.fr-nav:hover {
+  color: #f2f2f5;
+  background: rgba(255, 255, 255, 0.07);
+}
 ```
 
 ### System Status Row — `.fr-sys`
 
 ```css
 .fr-sys {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 4px; border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 6px;
   transition: background 0.15s !important;
 }
-.fr-sys:last-child { border-bottom: none; }
-.fr-sys:hover { background: rgba(255,255,255,0.03); }
+.fr-sys:last-child {
+  border-bottom: none;
+}
+.fr-sys:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
 ```
 
 Each row contains a `6px` green dot + skill name on the left, and a monospace uptime value on the right.
@@ -398,15 +466,33 @@ Five elements animate in on page load using a single `@keyframes fr-load` with s
 
 ```css
 @keyframes fr-load {
-  from { opacity: 0; transform: translateY(20px); filter: blur(4px); }
-  to   { opacity: 1; transform: none; filter: blur(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
 }
 
-.h0 { animation: fr-load 0.75s cubic-bezier(0.16,1,0.3,1) 0.05s both; }  /* eyebrow label */
-.h1 { animation: fr-load 0.75s cubic-bezier(0.16,1,0.3,1) 0.15s both; }  /* "Connor" */
-.h2 { animation: fr-load 0.75s cubic-bezier(0.16,1,0.3,1) 0.25s both; }  /* "Easton" gradient */
-.h3 { animation: fr-load 0.75s cubic-bezier(0.16,1,0.3,1) 0.38s both; }  /* bio paragraph */
-.h4 { animation: fr-load 0.75s cubic-bezier(0.16,1,0.3,1) 0.52s both; }  /* CTA buttons */
+.h0 {
+  animation: fr-load 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+} /* eyebrow label */
+.h1 {
+  animation: fr-load 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+} /* "Connor" */
+.h2 {
+  animation: fr-load 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+} /* "Easton" gradient */
+.h3 {
+  animation: fr-load 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.38s both;
+} /* bio paragraph */
+.h4 {
+  animation: fr-load 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.52s both;
+} /* CTA buttons */
 ```
 
 The easing `cubic-bezier(0.16, 1, 0.3, 1)` is a snappy spring: fast start, overshoots slightly, settles. This is the standard Framer motion easing.
@@ -416,15 +502,16 @@ The easing `cubic-bezier(0.16, 1, 0.3, 1)` is a snappy spring: fast start, overs
 All below-the-fold content uses `IntersectionObserver`. Elements start hidden via CSS and gain `.fr-on` when they enter the viewport.
 
 **CSS:**
+
 ```css
 [data-reveal] {
   opacity: 0;
   transform: translateY(22px);
   filter: blur(3px);
   transition:
-    opacity 0.7s cubic-bezier(0.16,1,0.3,1),
-    transform 0.7s cubic-bezier(0.16,1,0.3,1),
-    filter 0.7s cubic-bezier(0.16,1,0.3,1) !important;
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 .fr-on {
   opacity: 1 !important;
@@ -434,12 +521,13 @@ All below-the-fold content uses `IntersectionObserver`. Elements start hidden vi
 ```
 
 **React (runs once on mount):**
+
 ```tsx
 useEffect(() => {
   const els = document.querySelectorAll('[data-reveal]');
   const obs = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
+    entries => {
+      entries.forEach(e => {
         if (e.isIntersecting) {
           const d = parseInt((e.target as HTMLElement).dataset.delay ?? '0');
           setTimeout(() => e.target.classList.add('fr-on'), d);
@@ -449,12 +537,13 @@ useEffect(() => {
     },
     { threshold: 0.08 }
   );
-  els.forEach((el) => obs.observe(el));
+  els.forEach(el => obs.observe(el));
   return () => obs.disconnect();
 }, []);
 ```
 
 **Usage on elements:**
+
 ```tsx
 <div data-reveal data-delay="0">First item</div>
 <div data-reveal data-delay="100">Second item (100ms later)</div>
@@ -469,10 +558,17 @@ The `box-shadow` keyframe expands from `0` radius to `8px` with full transparenc
 
 ```css
 @keyframes fr-pulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.55); }
-  60%      { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55);
+  }
+  60% {
+    box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
+  }
 }
-.fr-pulse { animation: fr-pulse 2.4s ease-in-out infinite; }
+.fr-pulse {
+  animation: fr-pulse 2.4s ease-in-out infinite;
+}
 ```
 
 ```tsx
@@ -490,11 +586,20 @@ The gradient mesh container is oversized (`inset: '-20%'`) so the slow scale/tra
 
 ```css
 @keyframes fr-mesh {
-  0%,100% { transform: scale(1) translate(0, 0); }
-  40%     { transform: scale(1.06) translate(-1%, 2%); }
-  70%     { transform: scale(0.96) translate(2%, -1%); }
+  0%,
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+  40% {
+    transform: scale(1.06) translate(-1%, 2%);
+  }
+  70% {
+    transform: scale(0.96) translate(2%, -1%);
+  }
 }
-.fr-mesh { animation: fr-mesh 22s ease-in-out infinite; }
+.fr-mesh {
+  animation: fr-mesh 22s ease-in-out infinite;
+}
 ```
 
 ```tsx
@@ -502,7 +607,8 @@ The gradient mesh container is oversized (`inset: '-20%'`) so the slow scale/tra
   <div
     className="fr-mesh"
     style={{
-      position: 'absolute', inset: '-20%',
+      position: 'absolute',
+      inset: '-20%',
       background: `
         radial-gradient(ellipse at 18% 32%, rgba(123,95,234,0.22) 0%, transparent 52%),
         radial-gradient(ellipse at 82% 14%, rgba(79,158,232,0.14) 0%, transparent 44%),
@@ -511,14 +617,17 @@ The gradient mesh container is oversized (`inset: '-20%'`) so the slow scale/tra
     }}
   />
   {/* Grid overlay */}
-  <div style={{
-    position: 'absolute', inset: 0,
-    backgroundImage: `
+  <div
+    style={{
+      position: 'absolute',
+      inset: 0,
+      backgroundImage: `
       linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)
     `,
-    backgroundSize: '80px 80px',
-  }} />
+      backgroundSize: '80px 80px',
+    }}
+  />
 </div>
 ```
 
@@ -537,8 +646,13 @@ onMouseLeave={e => {
 ```
 
 The `.fr-proj-glow` class provides the transition:
+
 ```css
-.fr-proj-glow { transition: box-shadow 0.3s, transform 0.3s !important; }
+.fr-proj-glow {
+  transition:
+    box-shadow 0.3s,
+    transform 0.3s !important;
+}
 ```
 
 ---
@@ -549,11 +663,11 @@ The `.fr-proj-glow` class provides the transition:
 
 Three overlapping `radial-gradient` ellipses create ambient colored zones. Opacity is kept low to avoid overwhelming the dark background:
 
-| Zone | Position | Color | Opacity |
-|------|----------|-------|---------|
-| Violet | `18% 32%` | `#7B5FEA` (123,95,234) | `0.22` |
-| Blue | `82% 14%` | `#4F9EE8` (79,158,232) | `0.14` |
-| Green | `55% 82%` | `#4ADE80` (74,222,128) | `0.09` |
+| Zone   | Position  | Color                  | Opacity |
+| ------ | --------- | ---------------------- | ------- |
+| Violet | `18% 32%` | `#7B5FEA` (123,95,234) | `0.22`  |
+| Blue   | `82% 14%` | `#4F9EE8` (79,158,232) | `0.14`  |
+| Green  | `55% 82%` | `#4ADE80` (74,222,128) | `0.09`  |
 
 ### Grid Overlay
 
@@ -575,18 +689,31 @@ When building new UI for this theme:
 ### Transition `!important` rule
 
 `globals.css` has:
+
 ```css
-* { transition-duration: 200ms; }
+* {
+  transition-duration: 200ms;
+}
 ```
 
 Every `transition` property in this theme must end with `!important` or the custom duration will be silently ignored.
 
 ```css
 /* ✅ Correct */
-.fr-card { transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s !important; }
+.fr-card {
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    transform 0.25s !important;
+}
 
 /* ❌ Will be overridden — appears to work but snaps at 200ms */
-.fr-card { transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s; }
+.fr-card {
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s,
+    transform 0.25s;
+}
 ```
 
 ---

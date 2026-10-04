@@ -1,4 +1,5 @@
 import { getPostBySlug } from '@/lib/content/blog';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Background from '@/components/framer-theme/Background';
 import Nav from '@/components/framer-theme/Nav';
@@ -27,7 +28,15 @@ export default async function BlogPost({ params }: { params: Params }) {
   const { frontmatter, content } = post;
 
   return (
-    <div style={{ background: '#0A0A0E', minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+    <div
+      style={{
+        background: '#0A0A0E',
+        minHeight: '100vh',
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <Background />
       <Nav />
       <ScrollRevealInit />
@@ -43,13 +52,13 @@ export default async function BlogPost({ params }: { params: Params }) {
         }}
       >
         {/* Back link */}
-        <a
+        <Link
           href="/blog"
           className="fr-btn fr-btn-ghost"
           style={{ marginBottom: 40, display: 'inline-flex', alignItems: 'center', gap: 8 }}
         >
           ← All posts
-        </a>
+        </Link>
 
         {/* Post header card */}
         <div className="fr-card" style={{ padding: '36px', marginBottom: 40 }}>

@@ -7,7 +7,10 @@ import { supabase } from '../../lib/supabase';
 export default function DumpsterDivePage() {
   const [text, setText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [notification, setNotification] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [notification, setNotification] = useState<{
+    type: 'success' | 'error';
+    message: string;
+  } | null>(null);
 
   // Function to show notification
   const showNotification = (type: 'success' | 'error', message: string) => {
@@ -24,14 +27,12 @@ export default function DumpsterDivePage() {
 
     setIsLoading(true);
     try {
-      const { error } = await supabase
-        .from('dumpster_entries')
-        .insert([
-          {
-            content: text.trim(),
-            dumped_at: new Date().toISOString()
-          }
-        ]);
+      const { error } = await supabase.from('dumpster_entries').insert([
+        {
+          content: text.trim(),
+          dumped_at: new Date().toISOString(),
+        },
+      ]);
 
       if (error) {
         throw error;
@@ -52,9 +53,7 @@ export default function DumpsterDivePage() {
     setIsLoading(true);
     try {
       // Get a random entry from the database
-      const { data, error } = await supabase
-        .from('dumpster_entries')
-        .select('*');
+      const { data, error } = await supabase.from('dumpster_entries').select('*');
 
       console.log('Dive result:', { data, error }); // Debug log
 
@@ -71,7 +70,7 @@ export default function DumpsterDivePage() {
       // Pick a random entry
       const randomEntry = data[Math.floor(Math.random() * data.length)];
       console.log('Random entry selected:', randomEntry); // Debug log
-      
+
       if (randomEntry && randomEntry.content) {
         setText(randomEntry.content); // Replace the main text content
         showNotification('success', 'Found something in the dumpster! 🔍');
@@ -95,7 +94,7 @@ export default function DumpsterDivePage() {
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newText = e.target.value;
     const lines = newText.split('\n');
-    
+
     if (lines.length <= 20) {
       setText(newText);
     } else {
@@ -108,63 +107,64 @@ export default function DumpsterDivePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 p-8">
       {/* Header */}
-      <motion.div 
-        className="text-center mb-12"
+      <motion.div
+        className="mb-12 text-center"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.h1 
-          className="text-6xl font-bold bg-gradient-to-r from-gray-300 via-slate-200 to-gray-400 bg-clip-text text-transparent mb-4"
-          animate={{ 
-            backgroundPosition: ['0%', '100%', '0%'] 
+        <motion.h1
+          className="mb-4 bg-gradient-to-r from-gray-300 via-slate-200 to-gray-400 bg-clip-text text-6xl font-bold text-transparent"
+          animate={{
+            backgroundPosition: ['0%', '100%', '0%'],
           }}
-          transition={{ 
-            duration: 4, 
+          transition={{
+            duration: 4,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: 'easeInOut',
           }}
         >
           🗑️ Dumpster Dive
         </motion.h1>
-        <p className="text-xl text-gray-300">
-          Dump your thoughts, dive for treasures
-        </p>
+        <p className="text-xl text-gray-300">Dump your thoughts, dive for treasures</p>
       </motion.div>
 
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="mx-auto max-w-4xl space-y-8">
         {/* Main text area with line numbers */}
-        <motion.div 
-          className="bg-slate-800/90 backdrop-blur-sm rounded-2xl p-6 border-2 border-slate-600 shadow-xl"
+        <motion.div
+          className="rounded-2xl border-2 border-slate-600 bg-slate-800/90 p-6 shadow-xl backdrop-blur-sm"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
         >
           <div className="flex">
             {/* Line numbers */}
-            <div className="pr-4 text-right text-sm text-slate-400 font-mono border-r border-slate-600 select-none min-w-[3rem]"
-                 style={{ 
-                   height: '500px',
-                   padding: '16px 16px 16px 0', // More padding for comfort
-                   overflow: 'hidden'
-                 }}>
-              {getLineNumbers().map((lineNum) => (
-                <div key={lineNum} className="leading-6 h-6">
+            <div
+              className="min-w-[3rem] border-r border-slate-600 pr-4 text-right font-mono text-sm text-slate-400 select-none"
+              style={{
+                height: '500px',
+                padding: '16px 16px 16px 0', // More padding for comfort
+                overflow: 'hidden',
+              }}
+            >
+              {getLineNumbers().map(lineNum => (
+                <div key={lineNum} className="h-6 leading-6">
                   {lineNum}
                 </div>
               ))}
             </div>
-            
+
             {/* Text area */}
             <textarea
               value={text}
               onChange={handleTextChange}
               placeholder="Start typing to dump your thoughts into the digital dumpster..."
-              className="flex-1 ml-4 text-lg font-mono leading-6 bg-transparent border-none outline-none resize-none text-slate-100 placeholder-slate-400 overflow-hidden"
-              style={{ 
+              className="ml-4 flex-1 resize-none overflow-hidden border-none bg-transparent font-mono text-lg leading-6 text-slate-100 placeholder-slate-400 outline-none"
+              style={{
                 height: '500px', // More space for 20 lines
                 padding: '16px 0 16px 0', // More comfortable padding
-                fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+                fontFamily:
+                  'ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
               }}
               spellCheck={false}
               rows={20}
@@ -173,8 +173,8 @@ export default function DumpsterDivePage() {
         </motion.div>
 
         {/* Action buttons */}
-        <motion.div 
-          className="flex gap-4 justify-center"
+        <motion.div
+          className="flex justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
@@ -182,10 +182,10 @@ export default function DumpsterDivePage() {
           <motion.button
             onClick={handleDump}
             disabled={isLoading}
-            className="px-8 py-4 bg-gradient-to-r from-slate-700 to-slate-600 text-white font-semibold rounded-xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:from-slate-600 hover:to-slate-500"
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(71, 85, 105, 0.3)" }}
+            className="rounded-xl bg-gradient-to-r from-slate-700 to-slate-600 px-8 py-4 font-semibold text-white shadow-lg hover:from-slate-600 hover:to-slate-500 disabled:cursor-not-allowed disabled:opacity-50"
+            whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(71, 85, 105, 0.3)' }}
             whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
           >
             {isLoading ? '🔄 Dumping...' : '🗑️ Dump'}
           </motion.button>
@@ -193,10 +193,10 @@ export default function DumpsterDivePage() {
           <motion.button
             onClick={handleDive}
             disabled={isLoading}
-            className="px-8 py-4 bg-gradient-to-r from-slate-600 to-gray-700 text-white font-semibold rounded-xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:from-slate-500 hover:to-gray-600"
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(55, 65, 81, 0.3)" }}
+            className="rounded-xl bg-gradient-to-r from-slate-600 to-gray-700 px-8 py-4 font-semibold text-white shadow-lg hover:from-slate-500 hover:to-gray-600 disabled:cursor-not-allowed disabled:opacity-50"
+            whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(55, 65, 81, 0.3)' }}
             whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
           >
             {isLoading ? '🔄 Diving...' : '🔍 Dive'}
           </motion.button>
@@ -207,10 +207,8 @@ export default function DumpsterDivePage() {
       <AnimatePresence>
         {notification && (
           <motion.div
-            className={`fixed bottom-8 right-8 p-4 rounded-xl shadow-lg text-white font-medium ${
-              notification.type === 'success' 
-                ? 'bg-slate-600' 
-                : 'bg-red-600'
+            className={`fixed right-8 bottom-8 rounded-xl p-4 font-medium text-white shadow-lg ${
+              notification.type === 'success' ? 'bg-slate-600' : 'bg-red-600'
             }`}
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}

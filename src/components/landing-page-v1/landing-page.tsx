@@ -10,7 +10,7 @@ import { GlobalBackground } from '../ui/animated-backgrounds';
 
 export default async function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col relative overflow-hidden">
+    <div className="relative flex min-h-screen flex-col overflow-hidden">
       <GlobalBackground>
         <ScrollAnimations />
         <Header />

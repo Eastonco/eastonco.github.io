@@ -9,7 +9,22 @@ contexts:
   - Software Engineer II, Core Services (Mar 2023 – Mar 2024)
   - Software Engineer III, Core Services (Mar 2024 – Apr 2025)
   - Software Engineer III, Experience Platform (Apr 2025 – Present)
-skills: [TypeScript, React, GraphQL, Node.js, Kotlin, Spring Boot, Postgres, Redis, Qiankun, NX, Okta, MCP, Claude Code]
+skills:
+  [
+    TypeScript,
+    React,
+    GraphQL,
+    Node.js,
+    Kotlin,
+    Spring Boot,
+    Postgres,
+    Redis,
+    Qiankun,
+    NX,
+    Okta,
+    MCP,
+    Claude Code,
+  ]
 projects:
   - Flight credit redemption checkout flow
   - Rental car checkout preview widget
@@ -20,29 +35,32 @@ projects:
   - Claude Desktop training (800+ attendees)
   - Enterprise skill governance plan
 impact:
-  - "$1.8B in outstanding airline credit redeemed; 80% reduction in call center traffic"
-  - "25+ teams enabled to independently build/deploy micro frontends"
-  - "300+ admins supported via Product Admin Panel"
-  - "90% reduction in onboarding time; 33% increase in user sign-ups"
-  - "$400K deal with Duetto; entry into $20B+ data-as-a-service market"
-  - "500+ internal users; ~200–250M template requests/day (~2B/week)"
-  - "800+ employees trained on Claude Desktop"
+  - '$1.8B in outstanding airline credit redeemed; 80% reduction in call center traffic'
+  - '25+ teams enabled to independently build/deploy micro frontends'
+  - '300+ admins supported via Product Admin Panel'
+  - '90% reduction in onboarding time; 33% increase in user sign-ups'
+  - '$400K deal with Duetto; entry into $20B+ data-as-a-service market'
+  - '500+ internal users; ~200–250M template requests/day (~2B/week)'
+  - '800+ employees trained on Claude Desktop'
 date_range: 2020–Present
 ---
 
 # Expedia Group Experience
 
 ## Software Engineering Intern — Flights Team
+
 **Expedia Group | Summer 2020 (Remote)**
 
 I joined Expedia Group as my first internship in the summer of 2020, right in the middle of COVID, working fully remote. On the Flights team, I helped deliver a full-stack shopping and booking checkout flow that let customers redeem $1.8 billion in outstanding airline credit, cutting call center traffic by 80%. It was a great introduction to the scale Expedia operates at.
 
 ## Software Engineering Intern — Checkout Team
+
 **Expedia Group | Summer 2021**
 
 I returned for a second internship the following summer, as I was staying an extra semester in college. I joined the Checkout team and built a checkout preview widget for rental cars, along with general bug fixes across the checkout experience.
 
 ## Software Engineer I — Core Services
+
 **Expedia Group | January 2022 – March 2023 (1 yr 3 mo)**
 
 I came back full-time in January 2022 after receiving a return offer, joining the Core Services team to work on EG Console — Expedia's attempt at becoming the "Shopify of travel," building a marketplace for buyers and sellers of travel goods. Early on, I developed a modular monorepo architecture using Qiankun, NX, GraphQL, and Node, enabling 25+ teams to build and deploy micro frontends independently while maintaining seamless integration into a unified platform.
@@ -50,6 +68,7 @@ I came back full-time in January 2022 after receiving a return offer, joining th
 About six months in, a senior engineer and I were specifically selected to spin up a new project from scratch: the Product Admin Panel. This tool let product owners manage their offerings — setting API rate limits, managing access whitelists, monitoring usage analytics, and handling promotion processes. The team grew to 8–10 people at its peak, and I became one of the team leads based on my tenure and experience/expertise.
 
 ## Software Engineer II — Core Services
+
 **Expedia Group | March 2023 – March 2024 (1 yr 1 mo)**
 
 Promoted to SDE II, I continued building out the Product Admin Panel:
@@ -59,11 +78,13 @@ Promoted to SDE II, I continued building out the Product Admin Panel:
 - Formally mentored 3 interns and 2 college students, all of whom went on to secure full-time positions at Fortune 500 companies.
 
 ## Software Engineer III — Core Services
+
 **Expedia Group | March 2024 – April 2025 (1 yr 2 mo)**
 
 Promoted to SDE III, I co-led a team of 7 to deliver a billing subscription service that resulted in a $400K deal with Duetto, helping Expedia Group enter the $20B+ data-as-a-service market.
 
 ## Software Engineer III — Experience Platform
+
 **Expedia Group | April 2025 – Present (1 yr 4 mo)**
 
 Following a reorg, I moved to the Experience Platform team, which owns Experience Manager — Expedia's core no-code content management system that lets non-technical users publish content directly to Expedia.com. The platform powers key pages (Home, Landing/Deals, Search, Product Details, Storefront, and Legal) across Expedia.com, Hotels.com, and Vrbo, supporting 500+ internal users and a stack handling roughly 200–250 million template requests per day (~2 billion per week).

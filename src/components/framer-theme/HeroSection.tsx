@@ -34,7 +34,15 @@ export default function HeroSection() {
           backdropFilter: 'blur(8px)',
         }}
       >
-        <span style={{ width: 6, height: 6, borderRadius: '50%', background: VIOLET, display: 'inline-block' }} />
+        <span
+          style={{
+            width: 6,
+            height: 6,
+            borderRadius: '50%',
+            background: VIOLET,
+            display: 'inline-block',
+          }}
+        />
         SOFTWARE ENGINEER · TEACHER · PILOT
       </div>
 
@@ -82,9 +90,15 @@ export default function HeroSection() {
           margin: '0 0 40px',
         }}
       >
-        Software Engineer at Expedia Group building the future of travel technology. Private pilot, film photographer, and lifelong tinkerer. Have you sent me a{' '}
-        <a href="https://printer.eastonco.net" style={{ color: 'rgba(242,242,245,0.55)', textDecoration: 'underline' }}>receipt</a>
-        {' '}yet?
+        Software Engineer at Expedia Group building the future of travel technology. Private pilot,
+        film photographer, and lifelong tinkerer. Have you sent me a{' '}
+        <a
+          href="https://printer.eastonco.net"
+          style={{ color: 'rgba(242,242,245,0.55)', textDecoration: 'underline' }}
+        >
+          receipt
+        </a>{' '}
+        yet?
       </p>
 
       {/* CTAs */}
@@ -110,7 +124,9 @@ export default function HeroSection() {
         }}
       >
         <div style={{ width: 1, height: 48, background: 'rgba(242,242,245,0.5)' }} />
-        <span style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase' }}>scroll</span>
+        <span style={{ fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase' }}>
+          scroll
+        </span>
       </div>
     </section>
   );

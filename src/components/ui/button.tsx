@@ -37,7 +37,7 @@ export function Button({
   rel,
 }: ButtonProps) {
   const baseClasses = `${sizeClasses[size]} font-medium rounded-lg transition-all shadow-lg ${animations.transitions.default}`;
-  
+
   const variantClasses = {
     primary: `bg-gradient-to-r from-[#4f46e5] to-[#8b5cf6] text-white hover:shadow-primary/50`,
     secondary: `bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 hover:shadow-white/15`,
@@ -98,11 +98,11 @@ export function IconButton({
   const baseClasses = `text-white/80 hover:text-white transition-all hover:scale-110 ${className}`;
 
   const motionProps = {
-    whileHover: { 
+    whileHover: {
       y: -3,
-      filter: `drop-shadow(0 0 8px ${hoverColor})`
+      filter: `drop-shadow(0 0 8px ${hoverColor})`,
     },
-    transition: { type: "spring" as const, stiffness: 400, damping: 10 }
+    transition: { type: 'spring' as const, stiffness: 400, damping: 10 },
   };
 
   if (href) {

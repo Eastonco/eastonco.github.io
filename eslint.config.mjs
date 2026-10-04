@@ -1,5 +1,5 @@
-import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
-import nextTypescript from "eslint-config-next/typescript";
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
+import nextTypescript from 'eslint-config-next/typescript';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
@@ -11,8 +11,13 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-const eslintConfig = [...nextCoreWebVitals, ...nextTypescript, ...compat.extends("prettier"), {
-  ignores: ['node_modules/', '.next/', 'out/', 'public/'],
-}];
+const eslintConfig = [
+  ...nextCoreWebVitals,
+  ...nextTypescript,
+  ...compat.extends('prettier'),
+  {
+    ignores: ['node_modules/', '.next/', 'out/', 'public/'],
+  },
+];
 
 export default eslintConfig;

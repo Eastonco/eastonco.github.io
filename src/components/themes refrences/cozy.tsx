@@ -2,18 +2,22 @@
 
 import { Nunito, Caveat } from 'next/font/google';
 
-const nunito = Nunito({ subsets: ['latin'], weight: ['400', '600', '700', '800'], variable: '--font-body' });
+const nunito = Nunito({
+  subsets: ['latin'],
+  weight: ['400', '600', '700', '800'],
+  variable: '--font-body',
+});
 const caveat = Caveat({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-accent' });
 
 const SKILLS = [
   { name: 'TypeScript', bg: '#E2D9F8', dot: '#8B6BC8', label: 'daily driver' },
-  { name: 'React',      bg: '#C8DEF5', dot: '#4A86C0', label: 'component brain' },
-  { name: 'Next.js',    bg: '#E0E0E8', dot: '#555',    label: 'full-stack' },
-  { name: 'Kotlin',     bg: '#F7DECE', dot: '#C06040', label: 'android side' },
-  { name: 'Node.js',    bg: '#C6EAD8', dot: '#3A8C60', label: 'backend' },
-  { name: 'Docker',     bg: '#C8DEF5', dot: '#2088D0', label: 'ship it' },
-  { name: 'Figma',      bg: '#F5D4E0', dot: '#C03070', label: 'design eye' },
-  { name: 'AI',         bg: '#FBF0B8', dot: '#B88020', label: 'experimenting' },
+  { name: 'React', bg: '#C8DEF5', dot: '#4A86C0', label: 'component brain' },
+  { name: 'Next.js', bg: '#E0E0E8', dot: '#555', label: 'full-stack' },
+  { name: 'Kotlin', bg: '#F7DECE', dot: '#C06040', label: 'android side' },
+  { name: 'Node.js', bg: '#C6EAD8', dot: '#3A8C60', label: 'backend' },
+  { name: 'Docker', bg: '#C8DEF5', dot: '#2088D0', label: 'ship it' },
+  { name: 'Figma', bg: '#F5D4E0', dot: '#C03070', label: 'design eye' },
+  { name: 'AI', bg: '#FBF0B8', dot: '#B88020', label: 'experimenting' },
 ];
 
 const PROJECTS = [
@@ -41,7 +45,13 @@ export default function CozyTheme() {
   return (
     <div
       className={`${nunito.variable} ${caveat.variable}`}
-      style={{ background: '#FDF8F2', minHeight: '100vh', fontFamily: 'var(--font-body)', position: 'relative', overflowX: 'hidden' }}
+      style={{
+        background: '#FDF8F2',
+        minHeight: '100vh',
+        fontFamily: 'var(--font-body)',
+        position: 'relative',
+        overflowX: 'hidden',
+      }}
     >
       <style>{`
         /* ── Blobs ── */
@@ -150,24 +160,44 @@ export default function CozyTheme() {
       {/* ── NAV ─────────────────────────────────────────── */}
       <nav
         style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-          display: 'flex', justifyContent: 'center', padding: '14px 0',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          display: 'flex',
+          justifyContent: 'center',
+          padding: '14px 0',
           backdropFilter: 'blur(12px)',
         }}
       >
         <div
           style={{
-            display: 'flex', gap: 4, alignItems: 'center',
+            display: 'flex',
+            gap: 4,
+            alignItems: 'center',
             background: 'rgba(255,248,242,0.85)',
             border: '2px solid rgba(180,140,110,0.18)',
-            borderRadius: 99, padding: '4px 8px',
+            borderRadius: 99,
+            padding: '4px 8px',
             boxShadow: '0 4px 24px rgba(100,60,30,0.1)',
           }}
         >
-          <span style={{ fontFamily: 'var(--font-accent)', fontSize: 20, color: '#C8906A', padding: '0 10px' }}>ce</span>
+          <span
+            style={{
+              fontFamily: 'var(--font-accent)',
+              fontSize: 20,
+              color: '#C8906A',
+              padding: '0 10px',
+            }}
+          >
+            ce
+          </span>
           <div style={{ width: 1, height: 20, background: 'rgba(180,140,110,0.2)' }} />
           {['about', 'work', 'contact'].map(l => (
-            <a key={l} href={`#${l}`} className="cz-nav-link">{l}</a>
+            <a key={l} href={`#${l}`} className="cz-nav-link">
+              {l}
+            </a>
           ))}
         </div>
       </nav>
@@ -175,21 +205,80 @@ export default function CozyTheme() {
       {/* ── HERO ────────────────────────────────────────── */}
       <section
         style={{
-          minHeight: '100vh', display: 'flex', flexDirection: 'column',
-          justifyContent: 'center', alignItems: 'center', textAlign: 'center',
-          padding: '80px 32px 64px', position: 'relative', zIndex: 1,
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+          padding: '80px 32px 64px',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         {/* Floating decorations */}
-        <div className="cz-float" style={{ position: 'absolute', top: '18%', left: '8%', fontSize: 28, userSelect: 'none', opacity: 0.7 }}>✦</div>
-        <div className="cz-float-b" style={{ position: 'absolute', top: '28%', right: '10%', fontSize: 22, userSelect: 'none', opacity: 0.6 }}>◌</div>
-        <div className="cz-float" style={{ position: 'absolute', bottom: '22%', left: '12%', fontSize: 18, userSelect: 'none', opacity: 0.5, animationDelay: '1.5s' }}>♡</div>
-        <div className="cz-float-b" style={{ position: 'absolute', bottom: '30%', right: '8%', fontSize: 24, userSelect: 'none', opacity: 0.55, animationDelay: '3s' }}>☁</div>
+        <div
+          className="cz-float"
+          style={{
+            position: 'absolute',
+            top: '18%',
+            left: '8%',
+            fontSize: 28,
+            userSelect: 'none',
+            opacity: 0.7,
+          }}
+        >
+          ✦
+        </div>
+        <div
+          className="cz-float-b"
+          style={{
+            position: 'absolute',
+            top: '28%',
+            right: '10%',
+            fontSize: 22,
+            userSelect: 'none',
+            opacity: 0.6,
+          }}
+        >
+          ◌
+        </div>
+        <div
+          className="cz-float"
+          style={{
+            position: 'absolute',
+            bottom: '22%',
+            left: '12%',
+            fontSize: 18,
+            userSelect: 'none',
+            opacity: 0.5,
+            animationDelay: '1.5s',
+          }}
+        >
+          ♡
+        </div>
+        <div
+          className="cz-float-b"
+          style={{
+            position: 'absolute',
+            bottom: '30%',
+            right: '8%',
+            fontSize: 24,
+            userSelect: 'none',
+            opacity: 0.55,
+            animationDelay: '3s',
+          }}
+        >
+          ☁
+        </div>
 
         {/* Greeting */}
         <div
           style={{
-            fontFamily: 'var(--font-accent)', fontSize: 24, color: '#B09080', marginBottom: 12,
+            fontFamily: 'var(--font-accent)',
+            fontSize: 24,
+            color: '#B09080',
+            marginBottom: 12,
           }}
         >
           hi there, i&apos;m
@@ -197,20 +286,28 @@ export default function CozyTheme() {
 
         <h1
           style={{
-            fontFamily: 'var(--font-body)', fontSize: 'clamp(52px, 9vw, 108px)',
-            fontWeight: 800, color: '#3D2B1F', margin: '0 0 6px',
-            lineHeight: 0.95, letterSpacing: '-0.03em',
+            fontFamily: 'var(--font-body)',
+            fontSize: 'clamp(52px, 9vw, 108px)',
+            fontWeight: 800,
+            color: '#3D2B1F',
+            margin: '0 0 6px',
+            lineHeight: 0.95,
+            letterSpacing: '-0.03em',
           }}
         >
           Connor
         </h1>
         <h1
           style={{
-            fontFamily: 'var(--font-body)', fontSize: 'clamp(52px, 9vw, 108px)',
-            fontWeight: 800, margin: '0 0 28px', lineHeight: 0.95,
+            fontFamily: 'var(--font-body)',
+            fontSize: 'clamp(52px, 9vw, 108px)',
+            fontWeight: 800,
+            margin: '0 0 28px',
+            lineHeight: 0.95,
             letterSpacing: '-0.03em',
             background: 'linear-gradient(135deg, #D06898 0%, #C8906A 50%, #9B72C8 100%)',
-            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}
         >
@@ -218,14 +315,25 @@ export default function CozyTheme() {
         </h1>
 
         {/* Pill subtitle */}
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 28 }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: 8,
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+            marginBottom: 28,
+          }}
+        >
           {['Software Engineer', 'Teacher', 'Builder'].map((t, i) => (
             <span
               key={t}
               style={{
-                padding: '6px 18px', borderRadius: 99,
+                padding: '6px 18px',
+                borderRadius: 99,
                 background: [' #E2D9F8', '#F7DECE', '#C6EAD8'][i],
-                fontSize: 13, fontWeight: 700, color: '#3D2B1F',
+                fontSize: 13,
+                fontWeight: 700,
+                color: '#3D2B1F',
                 boxShadow: '0 2px 10px rgba(100,60,30,0.08)',
               }}
             >
@@ -236,18 +344,24 @@ export default function CozyTheme() {
 
         <p
           style={{
-            fontSize: 17, color: '#8A6A58', lineHeight: 1.75,
-            maxWidth: 480, margin: '0 0 40px',
+            fontSize: 17,
+            color: '#8A6A58',
+            lineHeight: 1.75,
+            maxWidth: 480,
+            margin: '0 0 40px',
           }}
         >
-          Building on the web with TypeScript, React, and Kotlin.
-          The craft matters more than the framework.
-          Available for the right work.
+          Building on the web with TypeScript, React, and Kotlin. The craft matters more than the
+          framework. Available for the right work.
         </p>
 
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-          <a href="#work" className="cz-btn cz-btn-warm">see my work ✦</a>
-          <a href="#contact" className="cz-btn cz-btn-ghost">say hello ☁</a>
+          <a href="#work" className="cz-btn cz-btn-warm">
+            see my work ✦
+          </a>
+          <a href="#contact" className="cz-btn cz-btn-ghost">
+            say hello ☁
+          </a>
         </div>
       </section>
 
@@ -255,13 +369,17 @@ export default function CozyTheme() {
       <section
         id="about"
         style={{
-          maxWidth: 680, margin: '0 auto', padding: '80px 32px',
-          position: 'relative', zIndex: 1,
+          maxWidth: 680,
+          margin: '0 auto',
+          padding: '80px 32px',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         <div
           style={{
-            background: 'white', borderRadius: 28,
+            background: 'white',
+            borderRadius: 28,
             padding: '40px 44px',
             boxShadow: '0 6px 32px rgba(100,60,30,0.08)',
             border: '2px solid rgba(180,140,110,0.14)',
@@ -269,14 +387,39 @@ export default function CozyTheme() {
           }}
         >
           {/* Corner deco */}
-          <div style={{ position: 'absolute', top: 20, right: 24, fontFamily: 'var(--font-accent)', fontSize: 40, color: '#E2D9F8', userSelect: 'none' }}>✦</div>
+          <div
+            style={{
+              position: 'absolute',
+              top: 20,
+              right: 24,
+              fontFamily: 'var(--font-accent)',
+              fontSize: 40,
+              color: '#E2D9F8',
+              userSelect: 'none',
+            }}
+          >
+            ✦
+          </div>
 
           <h2 className="cz-section-title">a little about me</h2>
 
           <p style={{ fontSize: 17, color: '#6A5040', lineHeight: 1.9, margin: '0 0 20px' }}>
-            <span style={{ fontFamily: 'var(--font-accent)', fontSize: 56, color: '#E8A878', float: 'left', lineHeight: 0.8, marginRight: 8, marginTop: 8 }}>E</span>
+            <span
+              style={{
+                fontFamily: 'var(--font-accent)',
+                fontSize: 56,
+                color: '#E8A878',
+                float: 'left',
+                lineHeight: 0.8,
+                marginRight: 8,
+                marginTop: 8,
+              }}
+            >
+              E
+            </span>
             ngineer by trade, teacher by choice. I&apos;ve built and shipped software for years, and
-            spent just as long making it teachable. The craft of making complexity legible never gets old.
+            spent just as long making it teachable. The craft of making complexity legible never
+            gets old.
           </p>
 
           <p style={{ fontSize: 15, color: '#8A6A58', lineHeight: 1.85, margin: 0 }}>
@@ -289,11 +432,16 @@ export default function CozyTheme() {
       {/* ── SKILLS ──────────────────────────────────────── */}
       <section
         style={{
-          maxWidth: 680, margin: '0 auto', padding: '0 32px 80px',
-          position: 'relative', zIndex: 1,
+          maxWidth: 680,
+          margin: '0 auto',
+          padding: '0 32px 80px',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
-        <h2 className="cz-section-title" style={{ textAlign: 'center' }}>things i know ◌</h2>
+        <h2 className="cz-section-title" style={{ textAlign: 'center' }}>
+          things i know ◌
+        </h2>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center' }}>
           {SKILLS.map(s => (
             <span key={s.name} className="cz-chip" style={{ background: s.bg }}>
@@ -309,8 +457,11 @@ export default function CozyTheme() {
       <section
         id="work"
         style={{
-          maxWidth: 680, margin: '0 auto', padding: '0 32px 80px',
-          position: 'relative', zIndex: 1,
+          maxWidth: 680,
+          margin: '0 auto',
+          padding: '0 32px 80px',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         <h2 className="cz-section-title">things i&apos;ve made ♡</h2>
@@ -323,25 +474,47 @@ export default function CozyTheme() {
             >
               <div style={{ fontSize: 44, flexShrink: 0, lineHeight: 1 }}>{p.emoji}</div>
               <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                    marginBottom: 8,
+                  }}
+                >
                   <h3
                     style={{
-                      fontFamily: 'var(--font-body)', fontSize: 20, fontWeight: 800,
-                      color: '#3D2B1F', margin: 0,
+                      fontFamily: 'var(--font-body)',
+                      fontSize: 20,
+                      fontWeight: 800,
+                      color: '#3D2B1F',
+                      margin: 0,
                     }}
                   >
                     {p.title}
                   </h3>
-                  <span style={{ fontFamily: 'var(--font-accent)', fontSize: 16, color: '#8A6A58' }}>{p.year}</span>
+                  <span
+                    style={{ fontFamily: 'var(--font-accent)', fontSize: 16, color: '#8A6A58' }}
+                  >
+                    {p.year}
+                  </span>
                 </div>
-                <p style={{ fontSize: 14, color: '#6A5040', lineHeight: 1.7, margin: '0 0 16px' }}>{p.desc}</p>
+                <p style={{ fontSize: 14, color: '#6A5040', lineHeight: 1.7, margin: '0 0 16px' }}>
+                  {p.desc}
+                </p>
                 <a
                   href={p.href}
                   style={{
-                    fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 700,
-                    color: '#3D2B1F', textDecoration: 'none',
-                    display: 'inline-flex', alignItems: 'center', gap: 4,
-                    borderBottom: `2px solid rgba(60,40,20,0.2)`, paddingBottom: 1,
+                    fontFamily: 'var(--font-body)',
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: '#3D2B1F',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 4,
+                    borderBottom: `2px solid rgba(60,40,20,0.2)`,
+                    paddingBottom: 1,
                   }}
                 >
                   take a look →
@@ -356,34 +529,69 @@ export default function CozyTheme() {
       <section
         id="contact"
         style={{
-          maxWidth: 680, margin: '0 auto', padding: '0 32px 100px',
-          position: 'relative', zIndex: 1,
+          maxWidth: 680,
+          margin: '0 auto',
+          padding: '0 32px 100px',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         <div
           style={{
-            background: '#FBF0B8', borderRadius: 28, padding: '40px 44px',
+            background: '#FBF0B8',
+            borderRadius: 28,
+            padding: '40px 44px',
             boxShadow: '0 6px 32px rgba(160,120,40,0.1)',
             border: '2px solid rgba(200,170,80,0.3)',
             textAlign: 'center',
           }}
         >
           <div style={{ fontFamily: 'var(--font-accent)', fontSize: 52, marginBottom: 12 }}>☁</div>
-          <h2 className="cz-section-title" style={{ margin: '0 0 14px' }}>let&apos;s chat!</h2>
-          <p style={{ fontSize: 15, color: '#8A7040', lineHeight: 1.8, margin: '0 0 32px', maxWidth: 380, marginLeft: 'auto', marginRight: 'auto' }}>
-            I&apos;m always happy to hear from interesting people. Whether it&apos;s a project,
-            a question, or just a hello — my inbox is open.
+          <h2 className="cz-section-title" style={{ margin: '0 0 14px' }}>
+            let&apos;s chat!
+          </h2>
+          <p
+            style={{
+              fontSize: 15,
+              color: '#8A7040',
+              lineHeight: 1.8,
+              margin: '0 0 32px',
+              maxWidth: 380,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}
+          >
+            I&apos;m always happy to hear from interesting people. Whether it&apos;s a project, a
+            question, or just a hello — my inbox is open.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, maxWidth: 360, margin: '0 auto' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 10,
+              maxWidth: 360,
+              margin: '0 auto',
+            }}
+          >
             <a href="mailto:hello@eastonco.net" className="cz-contact-link">
               <span style={{ fontSize: 20 }}>✉</span>
               hello@eastonco.net
             </a>
-            <a href="https://calendly.com/eastonco" target="_blank" rel="noopener noreferrer" className="cz-contact-link">
+            <a
+              href="https://calendly.com/eastonco"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cz-contact-link"
+            >
               <span style={{ fontSize: 20 }}>📅</span>
               schedule a call on Calendly
             </a>
-            <a href="https://github.com/Eastonco" target="_blank" rel="noopener noreferrer" className="cz-contact-link">
+            <a
+              href="https://github.com/Eastonco"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cz-contact-link"
+            >
               <span style={{ fontSize: 20 }}>🐙</span>
               github.com/Eastonco
             </a>
@@ -396,8 +604,12 @@ export default function CozyTheme() {
         style={{
           borderTop: '2px solid rgba(180,140,110,0.12)',
           padding: '28px 32px',
-          display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 10,
-          position: 'relative', zIndex: 1,
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 10,
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         <span style={{ fontFamily: 'var(--font-accent)', fontSize: 20, color: '#C8906A' }}>
