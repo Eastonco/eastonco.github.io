@@ -40,6 +40,10 @@ export function createCvServer(ctx?: McpRequestContext): McpServer {
     async () => track('list_topics', {}, () => json(listTopics()))
   );
 
+  // Enums rebuilt from CV content on every request, so clients always see the current options.
+  const topicIds = listTopics().map(t => t.id) as [string, ...string[]];
+  const skills = listSkills() as [string, ...string[]];
+
   server.registerTool(
     'get_topic_details',
     {
@@ -47,25 +51,18 @@ export function createCvServer(ctx?: McpRequestContext): McpServer {
       description:
         'Get the full write-up for one CV topic: summary, the details in markdown, and any extra fields like roles, skills, dates, and links.',
       inputSchema: z.object({
-        id: z.string().describe('Topic id from list_topics, e.g. "expedia-group"'),
+        id: z.enum(topicIds).describe('Topic id (also listed by list_topics)'),
       }),
       annotations: READ_ONLY,
     },
     async ({ id }) =>
       track('get_topic_details', { id }, () => {
         const topic = getTopic(id);
-        if (!topic) {
-          const valid = listTopics()
-            .map(t => t.id)
-            .join(', ');
-          return { ...json({ error: `No topic "${id}". Valid ids: ${valid}` }), isError: true };
-        }
+        // Unreachable unless a CV file is removed mid-request; the enum rejects unknown ids.
+        if (!topic) return { ...json({ error: `No topic "${id}"` }), isError: true };
         return json(topic);
       })
   );
-
-  // Enum rebuilt from CV frontmatter on every request, so clients always see the current skills.
-  const skills = listSkills() as [string, ...string[]];
 
   server.registerTool(
     'search_by_skill',

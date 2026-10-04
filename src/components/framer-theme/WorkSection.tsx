@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { PROJECTS } from '@/content/site';
 import { trackMouse } from './trackMouse';
 
@@ -82,17 +83,12 @@ export default function WorkSection() {
                   }}
                 />
                 {p.image ? (
-                  <img
+                  <Image
                     src={p.image}
                     alt={p.title}
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      opacity: 0.85,
-                    }}
+                    fill
+                    sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 360px"
+                    style={{ objectFit: 'cover', opacity: 0.85 }}
                   />
                 ) : (
                   <span
