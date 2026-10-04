@@ -8,17 +8,23 @@ import { PostHogProvider } from '@/components/PostHogProvider';
 const bricolage = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-display' });
 const dm = DM_Sans({ subsets: ['latin'], variable: '--font-body' });
 
+const SITE_URL = 'https://eastonco.net';
+const TITLE = 'Connor Easton | Personal Website';
+const DESCRIPTION =
+  'Connor Easton is a Seattle-based software engineer at Expedia Group, teacher, and private pilot.';
+
 export const metadata: Metadata = {
-  title: 'Connor Easton | Personal Website',
-  description: 'Designer, developer, and creative technologist',
-  authors: [{ name: 'Connor Easton' }],
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
+  authors: [{ name: 'Connor Easton', url: SITE_URL }],
   robots: 'index, follow',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://yourwebsite.com',
-    title: 'Connor Easton | Personal Website',
-    description: 'Designer, developer, and creative technologist',
+    url: SITE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
     siteName: 'eastonco.net',
   },
 };
