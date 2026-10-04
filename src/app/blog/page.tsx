@@ -1,4 +1,4 @@
-import { getAllPosts } from '@/lib/mdx';
+import { getAllPosts } from '@/lib/content/blog';
 import Background from '@/components/framer-theme/Background';
 import Nav from '@/components/framer-theme/Nav';
 import Footer from '@/components/framer-theme/Footer';

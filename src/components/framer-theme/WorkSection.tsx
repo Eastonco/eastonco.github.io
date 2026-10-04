@@ -1,6 +1,6 @@
 'use client';
 
-import { PROJECTS } from '@/lib/framer-tokens';
+import { PROJECTS } from '@/content/site';
 import { trackMouse } from './trackMouse';
 
 // Cycles through these palettes by index — add more as needed

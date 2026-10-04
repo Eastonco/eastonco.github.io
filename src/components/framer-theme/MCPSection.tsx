@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { GREEN } from '@/lib/framer-tokens';
+import { GREEN } from './tokens';
 import { trackMouse } from './trackMouse';
 
 const MCP_URL = 'https://eastonco.net/api/mcp';

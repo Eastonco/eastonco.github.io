@@ -1,4 +1,4 @@
-import { GREEN } from '@/lib/framer-tokens';
+import { GREEN } from './tokens';
 
 export default function Footer() {
   return (

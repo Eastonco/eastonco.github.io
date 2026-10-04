@@ -1,4 +1,4 @@
-import { VIOLET, BLUE } from '@/lib/framer-tokens';
+import { VIOLET, BLUE } from './tokens';
 
 export default function HeroSection() {
   return (

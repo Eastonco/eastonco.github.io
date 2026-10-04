@@ -1,5 +1,5 @@
 // Loads the CV/resume from markdown files in src/content/cv/ for the MCP server
-// (src/app/api/[transport]/route.ts). One file per topic; overview.md is special.
+// (src/lib/mcp/server.ts). One file per topic; overview.md is special.
 // ponytail: gray-matter to split frontmatter/body, then return the RAW markdown —
 // no compileMDX/JSX, because MCP clients (LLMs) consume markdown text directly.
 import fs from 'fs';

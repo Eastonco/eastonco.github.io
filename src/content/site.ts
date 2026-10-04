@@ -1,6 +1,5 @@
-export const GREEN = '#4ADE80';
-export const VIOLET = '#7B5FEA';
-export const BLUE = '#4F9EE8';
+// Homepage content shown by src/components/framer-theme. Edit copy here, not in components.
+// Long-form CV content for the MCP server lives in src/content/cv/*.md.
 
 export const SKILLS = [
   { name: 'TypeScript', dot: '#7B5FEA' },
