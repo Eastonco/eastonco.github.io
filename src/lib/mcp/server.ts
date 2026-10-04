@@ -13,8 +13,9 @@ const READ_ONLY = { readOnlyHint: true, openWorldHint: false } as const;
 export function createCvServer(): McpServer {
   const server = new McpServer({ name: 'eastonco-cv', version: '2.0.0' });
   // PostHog MCP analytics: records every tool call as $mcp_tool_call (skipped if PostHog is unset).
+  // reportMissing adds a get_more_tools tool agents call when no tool fits (Missing capabilities tab).
   const posthog = getPostHog();
-  if (posthog) instrument(server, posthog);
+  if (posthog) instrument(server, posthog, { reportMissing: true });
 
   server.registerTool(
     'get_overview',
