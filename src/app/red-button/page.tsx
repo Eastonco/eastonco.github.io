@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../../lib/supabase';
-import { RealtimeChannel } from '@supabase/supabase-js';
 
 // Counter ID - use this same ID in your Supabase table
 const COUNTER_ID = 'global-button-counter';
@@ -12,8 +11,6 @@ export default function RedButtonPage() {
   const [counter, setCounter] = useState(0);
   const [onlineUsers, setOnlineUsers] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  // This subscription state is used for cleanup
-  const [, setSubscription] = useState<RealtimeChannel | null>(null);
 
   // Fetch initial counter value
   useEffect(() => {
@@ -83,8 +80,6 @@ export default function RedButtonPage() {
           await channel.track({ online_at: new Date().toISOString() });
         }
       });
-
-    setSubscription(channel);
 
     // Clean up the subscription when component unmounts
     return () => {

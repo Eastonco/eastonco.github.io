@@ -49,7 +49,7 @@ export default function BentoSection() {
               maxWidth: 460,
             }}
           >
-            I'm a Software Engineer at Expedia Group working on travel technology, focusing on
+            I&apos;m a Software Engineer at Expedia Group working on travel technology, focusing on
             modernizing legacy systems to work with AI tooling. Outside of work, I spend time flying
             as an instrument rated private pilot, traveling, and trying to beat the S&P via algo
             trading - So far unsuccessful...

@@ -22,8 +22,11 @@ const colors = {
 const FloatingBubble = ({ delay = 0 }: { delay?: number }) => {
   const [isPopped, setIsPopped] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [shape] = useState(() => colors.shapes[Math.floor(Math.random() * colors.shapes.length)]);
 
   useEffect(() => {
+    // Needs window, so it can only run on the client.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPosition({
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
@@ -61,7 +64,7 @@ const FloatingBubble = ({ delay = 0 }: { delay?: number }) => {
           onClick={handlePop}
         >
           <div
-            className={`h-12 w-12 rounded-full bg-gradient-to-br ${colors.shapes[Math.floor(Math.random() * colors.shapes.length)]} shadow-lg backdrop-blur-sm`}
+            className={`h-12 w-12 rounded-full bg-gradient-to-br ${shape} shadow-lg backdrop-blur-sm`}
           />
         </motion.div>
       )}
@@ -230,6 +233,8 @@ export default function SatisfyingInteractions() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // Client-only render: the random shapes would otherwise cause a hydration mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

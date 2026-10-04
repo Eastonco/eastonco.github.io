@@ -67,6 +67,8 @@ export default function RetroTheme() {
         { length: count },
         () => `${rand(3000)}px ${rand(3000)}px ${colors[rand(colors.length)]}`
       ).join(', ');
+    // Random stars are generated client-side only to avoid a hydration mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setStarShadow(makeStars(600, ['#ffffff', '#ffffff', '#ffffff', '#ffff99', '#aaaaff']));
     setStarShadow2(makeStars(150, ['#ffff00', '#ff00ff', '#00ffff', '#ff6600']));
   }, []);
