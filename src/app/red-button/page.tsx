@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { reportError } from '@/lib/report-error';
 import { supabase } from '../../lib/supabase';
 
 // Counter ID - use this same ID in your Supabase table
@@ -25,11 +26,15 @@ export default function RedButtonPage() {
         .single();
 
       if (error) {
-        console.error('Error fetching counter:', error);
         // If the counter doesn't exist, create it
         if (error.code === 'PGRST116') {
-          await supabase.from('counters').insert({ id: COUNTER_ID, count: 0 });
+          const { error: insertError } = await supabase
+            .from('counters')
+            .insert({ id: COUNTER_ID, count: 0 });
+          if (insertError) reportError(insertError, 'red-button.create');
           setCounter(0);
+        } else {
+          reportError(error, 'red-button.fetch');
         }
       } else if (data) {
         setCounter(data.count);
@@ -75,9 +80,14 @@ export default function RedButtonPage() {
         const count = Object.keys(presenceState).length;
         setOnlineUsers(count);
       })
-      .subscribe(async status => {
+      .subscribe(async (status, err) => {
         if (status === 'SUBSCRIBED') {
           await channel.track({ online_at: new Date().toISOString() });
+        } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
+          // CLOSED is skipped: it also fires on a normal unmount via removeChannel.
+          reportError(err ?? new Error(`Realtime channel ${status}`), 'red-button.realtime', {
+            status,
+          });
         }
       });
 
@@ -100,7 +110,7 @@ export default function RedButtonPage() {
     });
 
     if (error) {
-      console.error('Error incrementing counter:', error);
+      reportError(error, 'red-button.increment');
       // Revert the optimistic update if there was an error
       setCounter(prevCount => prevCount - 1);
     }
