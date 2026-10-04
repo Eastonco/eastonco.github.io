@@ -4,6 +4,7 @@ import { load } from '@/lib/content/cv';
 import { flushLogs, log } from '@/lib/logger';
 import { createCvServer } from '@/lib/mcp/server';
 import { flushPostHog } from '@/lib/posthog';
+import { flushTraces } from '@/lib/tracing';
 
 // Next evaluates this module at build time, so invalid CV frontmatter fails the build.
 load();
@@ -17,8 +18,8 @@ export const runtime = 'nodejs'; // cv.ts reads markdown from disk
 export const maxDuration = 60;
 
 const serve = (request: Request) => {
-  // Send this request's PostHog events and logs once the response is done, before the function sleeps.
-  after(() => Promise.all([flushPostHog(), flushLogs()]));
+  // Send this request's PostHog events, logs, and spans once the response is done, before the function sleeps.
+  after(() => Promise.all([flushPostHog(), flushLogs(), flushTraces()]));
   return handler.fetch(request);
 };
 export { serve as GET, serve as POST, serve as DELETE };

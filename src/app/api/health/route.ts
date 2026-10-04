@@ -4,6 +4,7 @@
 
 import { after } from 'next/server';
 import { flushLogs, log } from '@/lib/logger';
+import { flushTraces } from '@/lib/tracing';
 
 export const dynamic = 'force-dynamic';
 
@@ -40,6 +41,8 @@ export async function GET() {
     check('/rest/v1/counters?select=id&limit=1'), // PostgREST + Postgres, via an anon-readable table
   ]);
   const ok = auth.ok && database.ok;
+  // Send this request's spans (and any log) once the response is done.
+  after(() => Promise.all([flushLogs(), flushTraces()]));
   if (!ok) {
     log('warn', '[health] Supabase check failed', {
       auth_ok: auth.ok,
@@ -47,7 +50,6 @@ export async function GET() {
       database_ok: database.ok,
       database_error: database.error ?? null,
     });
-    after(flushLogs);
   }
 
   return Response.json(
