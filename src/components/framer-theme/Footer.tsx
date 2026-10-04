@@ -19,7 +19,14 @@ export default function Footer() {
         boxSizing: 'border-box',
       }}
     >
-      <span style={{ fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 700, color: 'rgba(242,242,245,0.5)' }}>
+      <span
+        style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: 16,
+          fontWeight: 700,
+          color: 'rgba(242,242,245,0.5)',
+        }}
+      >
         eastonco
       </span>
       <span style={{ fontSize: 12, color: 'rgba(242,242,245,0.2)', letterSpacing: '0.06em' }}>
@@ -31,8 +38,13 @@ export default function Footer() {
         rel="noopener noreferrer"
         style={{ display: 'flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}
       >
-        <div className="fr-pulse" style={{ width: 6, height: 6, borderRadius: '50%', background: GREEN }} />
-        <span style={{ fontSize: 12, color: 'rgba(74,222,128,0.7)', fontWeight: 600 }}>All systems operational</span>
+        <div
+          className="fr-pulse"
+          style={{ width: 6, height: 6, borderRadius: '50%', background: GREEN }}
+        />
+        <span style={{ fontSize: 12, color: 'rgba(74,222,128,0.7)', fontWeight: 600 }}>
+          All systems operational
+        </span>
       </a>
     </footer>
   );

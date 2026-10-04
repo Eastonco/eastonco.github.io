@@ -16,7 +16,15 @@ export default async function BlogPage() {
   const posts = await getAllPosts();
 
   return (
-    <div style={{ background: '#0A0A0E', minHeight: '100vh', position: 'relative', display: 'flex', flexDirection: 'column' }}>
+    <div
+      style={{
+        background: '#0A0A0E',
+        minHeight: '100vh',
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
       <Background />
       <Nav />
       <ScrollRevealInit />
@@ -29,10 +37,7 @@ export default async function BlogPage() {
             padding: '60px 32px 100px',
           }}
         >
-          <p
-            className="h0 fr-label"
-            style={{ marginBottom: 16 }}
-          >
+          <p className="h0 fr-label" style={{ marginBottom: 16 }}>
             Writing
           </p>
 
