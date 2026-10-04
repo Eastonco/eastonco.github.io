@@ -1,4 +1,4 @@
-import { getPostBySlug } from '@/lib/mdx';
+import { getPostBySlug } from '@/lib/content/blog';
 import { notFound } from 'next/navigation';
 import Background from '@/components/framer-theme/Background';
 import Nav from '@/components/framer-theme/Nav';

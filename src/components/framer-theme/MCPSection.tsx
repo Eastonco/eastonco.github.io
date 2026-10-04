@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { GREEN } from '@/lib/framer-tokens';
+import { GREEN } from './tokens';
 import { trackMouse } from './trackMouse';
 
 const MCP_URL = 'https://eastonco.net/api/mcp';
@@ -61,7 +61,7 @@ export default function MCPSection() {
             Model Context Protocol
           </a>{' '}
           server. Point Claude, Cursor, or any MCP client at it and just ask about my experience — it can
-          fetch an overview, dig into specific projects, or search across everything.
+          fetch an overview, dig into specific jobs and projects, or find where I&apos;ve used a given skill.
         </p>
 
         {/* Endpoint URL */}

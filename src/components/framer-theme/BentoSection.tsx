@@ -1,6 +1,7 @@
 'use client';
 
-import { GREEN, STATS, INTERESTS } from '@/lib/framer-tokens';
+import { GREEN } from './tokens';
+import { STATS, INTERESTS } from '@/content/site';
 import { trackMouse } from './trackMouse';
 
 export default function BentoSection() {

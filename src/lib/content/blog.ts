@@ -6,7 +6,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
-// The path to where your MDX files are stored
+// Blog posts: MDX files in src/content/blog/, compiled at request time.
 const contentDirectory = path.join(process.cwd(), 'src/content/blog');
 
 // Get all posts
@@ -25,17 +25,7 @@ export async function getAllPosts() {
       const fileContents = fs.readFileSync(filePath, 'utf8');
       const { data } = matter(fileContents);
 
-      return {
-        slug: path.basename(file, '.mdx'),
-        frontmatter: {
-          title: data.title || 'Untitled',
-          date: data.date ? new Date(data.date).toISOString() : new Date().toISOString(),
-          excerpt: data.excerpt || '',
-          tags: data.tags || [],
-          author: data.author || 'Anonymous',
-          readingTime: data.readingTime || '3 min read',
-        },
-      };
+      return { slug: path.basename(file, '.mdx'), frontmatter: parseFrontmatter(data) };
     })
     .sort(
       (a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
@@ -79,14 +69,18 @@ export async function getPostBySlug(slug: string) {
 
   return {
     content: mdxSource.content,
-    frontmatter: {
-      slug,
-      title: data.title || 'Untitled',
-      date: data.date ? new Date(data.date).toISOString() : new Date().toISOString(),
-      excerpt: data.excerpt || '',
-      tags: data.tags || [],
-      author: data.author || 'Anonymous',
-      readingTime: data.readingTime || '3 min read',
-    },
+    frontmatter: { slug, ...parseFrontmatter(data) },
+  };
+}
+
+// Single source of truth for blog frontmatter defaults.
+function parseFrontmatter(data: Record<string, unknown>) {
+  return {
+    title: (data.title as string) || 'Untitled',
+    date: data.date ? new Date(data.date as string).toISOString() : new Date().toISOString(),
+    excerpt: (data.excerpt as string) || '',
+    tags: (data.tags as string[]) || [],
+    author: (data.author as string) || 'Anonymous',
+    readingTime: (data.readingTime as string) || '3 min read',
   };
 }

@@ -1,4 +1,4 @@
-import { SKILLS } from '@/lib/framer-tokens';
+import { SKILLS } from '@/content/site';
 
 export default function SkillsSection() {
   return (

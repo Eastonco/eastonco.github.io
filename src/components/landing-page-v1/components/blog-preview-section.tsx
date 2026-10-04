@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Section, Container, AnimatedContainer } from '../../ui/layout';
 import { typography, spacing } from '../../../lib/design-system';
-import { getAllPosts } from '../../../lib/mdx';
+import { getAllPosts } from '@/lib/content/blog';
 
 // Client component for the blog card with animations
 import { BlogCard}  from './blog-card'

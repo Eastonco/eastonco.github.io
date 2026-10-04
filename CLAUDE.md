@@ -21,11 +21,13 @@ This is Connor Easton's personal portfolio site — a Next.js 15 App Router proj
 **Key directories:**
 - `src/app/` — App Router pages (`page.tsx`, `layout.tsx`) and route segments
 - `src/components/` — Shared React components; `ui/` holds primitives
-- `src/lib/` — Utilities: `mdx.ts` (blog content), `supabase.ts` (client), `posthog.ts` (server-side analytics), `design-system.ts` (design tokens), `metadata.ts`
-- `src/content/blog/` — MDX files for blog posts (read via `src/lib/mdx.ts`)
+- `src/lib/` — Utilities: `content/blog.ts` and `content/cv.ts` (content loaders), `mcp/server.ts` (MCP server), `supabase.ts` (client), `posthog.ts` (server-side analytics), `design-system.ts` (design tokens), `metadata.ts`
+- `src/content/` — Editable content: `blog/*.mdx` (blog posts), `cv/*.md` (CV served over MCP), `site.ts` (homepage copy: projects, skills, stats)
 - `src/styles/` — Global CSS
 
-**Blog system:** MDX files in `src/content/blog/` are read at request time by `getAllPosts()` and `getPostBySlug()` in `src/lib/mdx.ts`. They use `next-mdx-remote/rsc` with `rehype-pretty-code` (github-dark theme) and `rehype-slug` for code highlighting and heading anchors. Frontmatter fields: `title`, `date`, `excerpt`, `tags`, `author`, `readingTime`.
+**Blog system:** MDX files in `src/content/blog/` are read at request time by `getAllPosts()` and `getPostBySlug()` in `src/lib/content/blog.ts`. They use `next-mdx-remote/rsc` with `rehype-pretty-code` (github-dark theme) and `rehype-slug` for code highlighting and heading anchors. Frontmatter fields: `title`, `date`, `excerpt`, `tags`, `author`, `readingTime`.
+
+**MCP server:** Public, read-only MCP server for the CV at `/api/mcp`, built on the official `@modelcontextprotocol/server` (v2). Tools are registered in `src/lib/mcp/server.ts` (`createCvServer` factory); `src/app/api/mcp/route.ts` just wraps it with `createMcpHandler`, which serves the 2026-07-28 protocol plus a stateless fallback for 2025-era clients. Add tools in `server.ts` only.
 
 **Analytics:** PostHog is proxied through `/ingest/*` rewrites in `next.config.ts` to avoid ad blockers. Client-side is initialized in `src/components/PostHogProvider.tsx` (wraps the root layout); server-side uses `src/lib/posthog.ts`. Required env: `NEXT_PUBLIC_POSTHOG_KEY`.
 
