@@ -12,7 +12,7 @@ npm run format     # Prettier (write)
 npm run format:check  # Prettier (check only)
 ```
 
-No test suite is configured.
+No test suite is configured. CI (`.github/workflows/ci.yml`) runs lint, format check, and build on every PR. Node version: `.nvmrc` (24).
 
 ## Architecture
 
@@ -28,7 +28,7 @@ This is Connor Easton's personal portfolio site — a Next.js 15 App Router proj
 
 **Blog system:** MDX files in `src/content/blog/` are read at request time by `getAllPosts()` and `getPostBySlug()` in `src/lib/content/blog.ts`. They use `next-mdx-remote/rsc` with `rehype-pretty-code` (github-dark theme) and `rehype-slug` for code highlighting and heading anchors. Frontmatter fields: `title`, `date`, `excerpt`, `tags`, `author`, `readingTime`.
 
-**MCP server:** Public, read-only MCP server for the CV at `/api/mcp`, built on the official `@modelcontextprotocol/server` (v2). Tools are registered in `src/lib/mcp/server.ts` (`createCvServer` factory); `src/app/api/mcp/route.ts` just wraps it with `createMcpHandler`, which serves the 2026-07-28 protocol plus a stateless fallback for 2025-era clients. Add tools in `server.ts` only.
+**MCP server:** Public, read-only MCP server for the CV at `/api/mcp`, built on the official `@modelcontextprotocol/server` (v2). Tools are registered in `src/lib/mcp/server.ts` (`createCvServer` factory); `src/app/api/mcp/route.ts` just wraps it with `createMcpHandler`, which serves the 2026-07-28 protocol plus a stateless fallback for 2025-era clients. Add tools in `server.ts` only. CV frontmatter is validated with zod in `src/lib/content/cv.ts`; invalid frontmatter fails the build.
 
 **Analytics:** PostHog is proxied through `/ingest/*` rewrites in `next.config.ts` to avoid ad blockers. Client-side is initialized in `src/components/PostHogProvider.tsx` (wraps the root layout); server-side uses `src/lib/posthog.ts`. Required env: `NEXT_PUBLIC_POSTHOG_KEY`.
 
