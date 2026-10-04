@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { reportError } from '@/lib/report-error';
 import { supabase } from '../../lib/supabase';
 
 export default function DumpsterDivePage() {
@@ -41,7 +42,7 @@ export default function DumpsterDivePage() {
       setText('');
       showNotification('success', 'Text dumped successfully! 🗑️');
     } catch (error) {
-      console.error('Error dumping text:', error);
+      reportError(error, 'dumpster-dive.dump');
       showNotification('error', 'Failed to dump text. Try again!');
     } finally {
       setIsLoading(false);
@@ -55,12 +56,7 @@ export default function DumpsterDivePage() {
       // Get a random entry from the database
       const { data, error } = await supabase.from('dumpster_entries').select('*');
 
-      console.log('Dive result:', { data, error }); // Debug log
-
-      if (error) {
-        console.error('Supabase error:', error);
-        throw error;
-      }
+      if (error) throw error;
 
       if (!data || data.length === 0) {
         showNotification('error', 'The dumpster is empty! Dump something first.');
@@ -69,7 +65,6 @@ export default function DumpsterDivePage() {
 
       // Pick a random entry
       const randomEntry = data[Math.floor(Math.random() * data.length)];
-      console.log('Random entry selected:', randomEntry); // Debug log
 
       if (randomEntry && randomEntry.content) {
         setText(randomEntry.content); // Replace the main text content
@@ -78,7 +73,7 @@ export default function DumpsterDivePage() {
         showNotification('error', 'Found an entry but it seems to be empty.');
       }
     } catch (error) {
-      console.error('Error diving:', error);
+      reportError(error, 'dumpster-dive.dive');
       showNotification('error', 'Failed to dive. Try again!');
     } finally {
       setIsLoading(false);
