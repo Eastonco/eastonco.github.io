@@ -1,0 +1,87 @@
+/* Editorial theme tokens. Scoped to .ed so the blog and other routes are unaffected. */
+.ed {
+  --ed-bg: #0b0b0c;
+  --ed-surface: #121214;
+  --ed-line: rgba(255, 255, 255, 0.08);
+  --ed-line-strong: rgba(255, 255, 255, 0.16);
+  --ed-text: #ededea;
+  --ed-muted: rgba(237, 237, 234, 0.58);
+  --ed-faint: rgba(237, 237, 234, 0.36);
+  /* G1000 magenta: the course line on the glass cockpits I fly. The only accent. */
+  --ed-accent: #ff4fd8;
+
+  background: var(--ed-bg);
+  color: var(--ed-text);
+  font-family: var(--font-ed-sans), ui-sans-serif, system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.ed ::selection {
+  background: var(--ed-accent);
+  color: #000;
+}
+
+.ed-serif {
+  font-family: var(--font-ed-serif), ui-serif, Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.ed-mono {
+  font-family: var(--font-ed-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ed-link {
+  color: var(--ed-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ed-line-strong);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s;
+}
+.ed-link:hover {
+  text-decoration-color: var(--ed-accent);
+}
+
+.ed-row {
+  transition: background 0.2s;
+}
+.ed-row:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+.ed-row:hover .ed-row-arrow {
+  color: var(--ed-accent);
+  transform: translate(2px, -2px);
+}
+.ed-row-arrow {
+  transition:
+    transform 0.2s,
+    color 0.2s;
+}
+
+.ed-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  background: var(--ed-accent);
+  vertical-align: -2px;
+  animation: ed-blink 1s steps(1) infinite;
+}
+@keyframes ed-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ed-cursor {
+    animation: none;
+  }
+}
+
+/* Keep anchored sections clear of the fixed header. */
+.ed section[id] {
+  scroll-margin-top: 48px;
+}
