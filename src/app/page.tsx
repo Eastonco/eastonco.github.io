@@ -1,7 +1,5 @@
-import FramerTheme from '../components/framer-theme';
-import { getAllPosts } from '@/lib/content/blog';
+import EditorialTheme from '../components/editorial-theme';
 
-export default async function Home() {
-  const posts = (await getAllPosts()).slice(0, 3);
-  return <FramerTheme posts={posts} />;
+export default function Home() {
+  return <EditorialTheme />;
 }

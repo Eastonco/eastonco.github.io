@@ -21,9 +21,9 @@ This is Connor Easton's personal portfolio site — a Next.js 16 App Router proj
 **Key directories:**
 
 - `src/app/` — App Router pages (`page.tsx`, `layout.tsx`) and route segments
-- `src/components/` — React components. `framer-theme/` is the live homepage theme (accent colors in `framer-theme/tokens.ts`); `themes/` holds unrouted theme references (see below)
+- `src/components/` — React components. `editorial-theme/` is the live homepage theme (tokens in `editorial-theme/editorial.css`); `framer-theme/` and `themes/` hold unrouted theme references (see below)
 - `src/lib/` — Utilities: `content/blog.ts` and `content/cv.ts` (content loaders), `mcp/server.ts` (MCP server), `supabase.ts` (client), `posthog.ts` (server-side analytics)
-- `src/content/` — Editable content: `blog/*.mdx` (blog posts), `cv/*.md` (CV served over MCP), `site.ts` (homepage copy: projects, skills, stats)
+- `src/content/` — Editable content: `blog/*.mdx` (blog posts), `cv/*.md` (CV served over MCP), `site.ts` (homepage copy: the editorial theme's thesis, beliefs, case studies and lab, plus the older framer theme's projects, skills and stats)
 - `src/styles/` — Global CSS
 
 **Blog system:** MDX files in `src/content/blog/` are read at request time by `getAllPosts()` and `getPostBySlug()` in `src/lib/content/blog.ts`. They use `next-mdx-remote/rsc` with `rehype-pretty-code` (github-dark theme) and `rehype-slug` for code highlighting and heading anchors. Frontmatter fields: `title`, `date`, `excerpt`, `tags`, `author`, `readingTime`.
@@ -34,7 +34,7 @@ This is Connor Easton's personal portfolio site — a Next.js 16 App Router proj
 
 **Supabase:** Client is initialized in `src/lib/supabase.ts` (marked `'use client'`). Required env: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Supabase is self-hosted (Docker, exposed at `supabase.eastonco.net`); `GET /api/health` checks its auth service and database and returns 200 or 503, for uptime monitors.
 
-**Themes:** The homepage renders `src/components/framer-theme`. `src/components/themes/` keeps alternate theme references (cozy, framer, retro, web2) that are intentionally not routed, for a future theme switcher. `src/components/satisfying-interactions.tsx` is likewise kept but unrouted.
+**Themes:** The homepage renders `src/components/editorial-theme`, whose "Now" section has a live terminal that calls `/api/mcp` from the browser. `src/components/framer-theme` (the previous homepage) and `src/components/themes/` keep alternate theme references (cozy, framer, retro, web2) that are intentionally not routed, for a future theme switcher. `src/components/satisfying-interactions.tsx` is likewise kept but unrouted.
 
 ## Styling conventions
 
