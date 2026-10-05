@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { RealtimeChannel } from '@supabase/supabase-js';
+import { reportError } from '@/lib/report-error';
 import { supabase } from '@/lib/supabase';
 
 // Counter ID - use this same ID in your Supabase table
@@ -57,11 +58,15 @@ export function useRedButtonRealtime({ onRemotePress, onMilestone }: Options) {
         .single();
 
       if (error) {
-        console.error('Error fetching counter:', error);
         // If the counter doesn't exist, create it
         if (error.code === 'PGRST116') {
-          await supabase.from('counters').insert({ id: COUNTER_ID, count: 0 });
+          const { error: insertError } = await supabase
+            .from('counters')
+            .insert({ id: COUNTER_ID, count: 0 });
+          if (insertError) reportError(insertError, 'red-button.create');
           receiveServerCount(0);
+        } else {
+          reportError(error, 'red-button.fetch');
         }
       } else if (data) {
         receiveServerCount(data.count);
@@ -113,10 +118,15 @@ export function useRedButtonRealtime({ onRemotePress, onMilestone }: Options) {
         const presenceState = channel.presenceState();
         setOnlineUsers(Object.keys(presenceState).length);
       })
-      .subscribe(async status => {
+      .subscribe(async (status, err) => {
         if (status === 'SUBSCRIBED') {
           subscribedRef.current = true;
           await channel.track({ online_at: new Date().toISOString() });
+        } else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') {
+          // CLOSED is skipped: it also fires on a normal unmount via removeChannel.
+          reportError(err ?? new Error(`Realtime channel ${status}`), 'red-button.realtime', {
+            status,
+          });
         }
       });
 
@@ -156,7 +166,7 @@ export function useRedButtonRealtime({ onRemotePress, onMilestone }: Options) {
       });
 
       if (error) {
-        console.error('Error incrementing counter:', error);
+        reportError(error, 'red-button.increment');
         setCount(prev => prev - 1);
         return null;
       }

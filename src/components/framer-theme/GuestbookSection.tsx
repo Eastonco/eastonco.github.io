@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
+import { reportError } from '@/lib/report-error';
 import { supabase } from '@/lib/supabase';
 
 type GuestbookEntry = {
@@ -62,7 +63,7 @@ export default function GuestbookSection() {
         .limit(50);
       if (!cancelled) {
         if (error) {
-          console.error(error);
+          reportError(error, 'guestbook.load');
           showNotification('error', "couldn't load the guestbook :(");
         } else {
           setEntries(data ?? []);
@@ -117,7 +118,7 @@ export default function GuestbookSection() {
       markSubmitted();
       showNotification('success', 'signed!! thanks ✍');
     } catch (err) {
-      console.error(err);
+      reportError(err, 'guestbook.sign');
       showNotification('error', 'failed to sign, try again');
     } finally {
       setSubmitting(false);
