@@ -1,7 +1,19 @@
 import Link from 'next/link';
 import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google';
-import { BELIEFS, CASE_STUDIES, LAB, LINKS, NOW, OFF_KEYBOARD, THESIS } from '@/content/site';
+import {
+  BELIEFS,
+  CASE_STUDIES,
+  FIGURE_INTROS,
+  LAB,
+  LINKS,
+  NOW,
+  OFF_KEYBOARD,
+  THESIS,
+} from '@/content/site';
 import Chrome from './Chrome';
+import DeployGrid from './figures/DeployGrid';
+import GlassCockpit from './figures/GlassCockpit';
+import ReceiptPrinter from './figures/ReceiptPrinter';
 import McpTerminal from './McpTerminal';
 import './editorial.css';
 
@@ -13,6 +25,29 @@ const serif = Instrument_Serif({
 });
 const sans = Geist({ subsets: ['latin'], variable: '--font-ed-sans' });
 const mono = Geist_Mono({ subsets: ['latin'], variable: '--font-ed-mono' });
+
+// A section's isometric figure beside its intro. `flip` puts the figure on the right.
+function FigureRow({
+  figure,
+  intro,
+  flip = false,
+}: {
+  figure: React.ReactNode;
+  intro: { title: string; body: string };
+  flip?: boolean;
+}) {
+  return (
+    <div className="mb-16 grid items-center gap-10 lg:grid-cols-[1fr_1fr] lg:gap-16">
+      {figure}
+      <div className={flip ? 'lg:order-first' : undefined}>
+        <h2 className="ed-serif m-0 text-[clamp(32px,4vw,52px)] leading-[1.05]">{intro.title}</h2>
+        <p className="mt-6 mb-0 max-w-lg text-[16px] leading-relaxed text-[var(--ed-muted)]">
+          {intro.body}
+        </p>
+      </div>
+    </div>
+  );
+}
 
 function SectionHead({ n, label }: { n: string; label: string }) {
   return (
@@ -104,6 +139,7 @@ export default function EditorialTheme() {
         {/* 03 · Work */}
         <section id="work" className="border-t border-[var(--ed-line)] py-24">
           <SectionHead n="03" label="Systems at scale" />
+          <FigureRow figure={<DeployGrid />} intro={FIGURE_INTROS.work} />
           <div className="grid border-t border-l border-[var(--ed-line)] md:grid-cols-2">
             {CASE_STUDIES.map(c => (
               <article
@@ -125,6 +161,7 @@ export default function EditorialTheme() {
         {/* 04 · Lab */}
         <section id="lab" className="border-t border-[var(--ed-line)] py-24">
           <SectionHead n="04" label="Lab · things I build for fun" />
+          <FigureRow figure={<ReceiptPrinter />} intro={FIGURE_INTROS.lab} flip />
           <ul className="m-0 list-none border-t border-[var(--ed-line)] p-0">
             {LAB.map(item => {
               const external = item.href.startsWith('http');
@@ -156,6 +193,7 @@ export default function EditorialTheme() {
         {/* 05 · Off the keyboard */}
         <section id="off" className="border-t border-[var(--ed-line)] py-24">
           <SectionHead n="05" label="Off the keyboard" />
+          <FigureRow figure={<GlassCockpit />} intro={FIGURE_INTROS.off} />
           <div className="grid gap-12 md:grid-cols-3 md:gap-10">
             {OFF_KEYBOARD.map(o => (
               <div key={o.kicker}>

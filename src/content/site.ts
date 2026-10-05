@@ -218,3 +218,19 @@ export const OFF_KEYBOARD = [
     body: 'About 300 coworkers learning the basics of IRAs, account types and investing. I also keep trying to beat the S&P 500 with code. Not yet.',
   },
 ];
+
+// Intros that sit beside each section's isometric figure.
+export const FIGURE_INTROS = {
+  work: {
+    title: 'Four years on the systems underneath',
+    body: 'Before the AI work, I built the platform pieces other teams stand on: checkout flows, a console that 25+ teams deploy into on their own schedule, and the billing behind a new line of business.',
+  },
+  lab: {
+    title: 'I build things because they are fun',
+    body: 'Most of these started as a slightly ridiculous idea, and AI made it cheap to find out whether they would work. The receipt printer is real: anyone on the internet can print to my desk.',
+  },
+  off: {
+    title: 'Usually somewhere around 5,000 feet',
+    body: 'I fly G1000 Cessnas out of Seattle. The magenta on this site is the course line on that screen.',
+  },
+};

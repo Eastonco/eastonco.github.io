@@ -9,6 +9,12 @@
   --ed-faint: rgba(237, 237, 234, 0.36);
   /* G1000 magenta: the course line on the glass cockpits I fly. The only accent. */
   --ed-accent: #ff4fd8;
+  /* Isometric figure faces: lit top, mid left, dark right. */
+  --iso-top: #1e1e21;
+  --iso-left: #161618;
+  --iso-right: #0f0f11;
+  --iso-line: rgba(237, 237, 234, 0.32);
+  --iso-line-soft: rgba(237, 237, 234, 0.14);
 
   background: var(--ed-bg);
   color: var(--ed-text);
@@ -84,4 +90,20 @@
 /* Keep anchored sections clear of the fixed header. */
 .ed section[id] {
   scroll-margin-top: 48px;
+}
+
+/* Blinking status lights inside figures. Duration and delay are set inline per light. */
+.ed-led {
+  animation: ed-led 1.6s steps(1) infinite;
+}
+@keyframes ed-led {
+  60% {
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ed-led {
+    animation: none;
+  }
 }
