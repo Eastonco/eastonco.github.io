@@ -221,16 +221,16 @@ export const OFF_KEYBOARD = [
 
 // Intros that sit beside each section's isometric figure.
 export const FIGURE_INTROS = {
-  work: {
-    title: 'Four years on the systems underneath',
-    body: 'Before the AI work, I built the platform pieces other teams stand on: checkout flows, a console that 25+ teams deploy into on their own schedule, and the billing behind a new line of business.',
+  beliefs: {
+    title: 'Every skill gets a review',
+    body: 'Once anyone at a company can publish a skill, you have a package ecosystem. I am writing the plan for how Expedia reviews them: real owners, a quality bar, and a stamp of approval instead of vibes.',
   },
   lab: {
     title: 'I build things because they are fun',
     body: 'Most of these started as a slightly ridiculous idea, and AI made it cheap to find out whether they would work. The receipt printer is real: anyone on the internet can print to my desk.',
   },
   off: {
-    title: 'Usually somewhere around 5,000 feet',
-    body: 'I fly G1000 Cessnas out of Seattle. The magenta on this site is the course line on that screen.',
+    title: 'Usually doing laps around Boeing Field',
+    body: 'Most flight practice is touch-and-goes: land, add power, take off, and go around again until the landing is smooth. I fly G1000 Cessnas out of Seattle. See if you can grease one.',
   },
 };

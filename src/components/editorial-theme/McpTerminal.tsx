@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const MCP_URL = 'https://eastonco.net/api/mcp';
 const CLI = `claude mcp add --transport http eastonco ${MCP_URL}`;
@@ -47,11 +47,29 @@ export default function McpTerminal() {
   const [output, setOutput] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
   const [copied, setCopied] = useState(false);
+  const [shown, setShown] = useState(0);
+
+  // Stream the response in like an agent reading it, instead of dumping it all at once.
+  useEffect(() => {
+    if (status !== 'done') return;
+    const chunk = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? Infinity : 24;
+    let frame = 0;
+    const step = () => {
+      setShown(n => {
+        const next = Math.min(output.length, n + chunk);
+        if (next < output.length) frame = requestAnimationFrame(step);
+        return next;
+      });
+    };
+    frame = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frame);
+  }, [status, output]);
 
   const run = async (call: Call) => {
     setActive(call);
     setStatus('loading');
     setOutput('');
+    setShown(0);
     try {
       setOutput(await callTool(call));
       setStatus('done');
@@ -112,7 +130,8 @@ export default function McpTerminal() {
             {'\n\n'}
             {status === 'loading' && <span className="ed-cursor" />}
             {status === 'error' && <span className="text-red-400">{output}</span>}
-            {status === 'done' && output}
+            {status === 'done' && output.slice(0, shown)}
+            {status === 'done' && shown < output.length && <span className="ed-cursor" />}
           </>
         )}
       </pre>

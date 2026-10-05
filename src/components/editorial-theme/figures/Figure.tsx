@@ -41,14 +41,24 @@ export default function Figure({
   );
 }
 
-// One shaded box. Faces use the --iso-* tokens from editorial.css; `top` overrides the top fill.
-export function IsoBox({ box, top }: { box: Box; top?: string }) {
+// One shaded box. Faces default to the --iso-* tokens from editorial.css; pass `fills` to paint it.
+export function IsoBox({
+  box,
+  top,
+  fills,
+  opacity,
+}: {
+  box: Box;
+  top?: string;
+  fills?: { top: string; left: string; right: string };
+  opacity?: number;
+}) {
   const f = boxFaces(box);
   return (
-    <g strokeWidth={0.8} strokeLinejoin="round" stroke="var(--iso-line)">
-      <polygon points={f.left} fill="var(--iso-left)" />
-      <polygon points={f.right} fill="var(--iso-right)" />
-      <polygon points={f.top} fill={top ?? 'var(--iso-top)'} style={{ transition: 'fill 0.6s' }} />
+    <g strokeWidth={0.8} strokeLinejoin="round" stroke="var(--iso-line)" opacity={opacity}>
+      <polygon points={f.left} fill={fills?.left ?? 'var(--iso-left)'} />
+      <polygon points={f.right} fill={fills?.right ?? 'var(--iso-right)'} />
+      <polygon points={f.top} fill={top ?? fills?.top ?? 'var(--iso-top)'} />
     </g>
   );
 }

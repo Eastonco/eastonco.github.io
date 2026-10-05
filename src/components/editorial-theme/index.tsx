@@ -11,9 +11,9 @@ import {
   THESIS,
 } from '@/content/site';
 import Chrome from './Chrome';
-import DeployGrid from './figures/DeployGrid';
-import GlassCockpit from './figures/GlassCockpit';
 import ReceiptPrinter from './figures/ReceiptPrinter';
+import SkillLine from './figures/SkillLine';
+import TouchAndGo from './figures/TouchAndGo';
 import McpTerminal from './McpTerminal';
 import './editorial.css';
 
@@ -109,6 +109,7 @@ export default function EditorialTheme() {
         {/* 02 · Beliefs */}
         <section id="beliefs" className="border-t border-[var(--ed-line)] py-24">
           <SectionHead n="02" label="What I believe" />
+          <FigureRow figure={<SkillLine />} intro={FIGURE_INTROS.beliefs} />
           <ol className="m-0 list-none p-0">
             {BELIEFS.map((b, i) => (
               <li
@@ -139,7 +140,6 @@ export default function EditorialTheme() {
         {/* 03 · Work */}
         <section id="work" className="border-t border-[var(--ed-line)] py-24">
           <SectionHead n="03" label="Systems at scale" />
-          <FigureRow figure={<DeployGrid />} intro={FIGURE_INTROS.work} />
           <div className="grid border-t border-l border-[var(--ed-line)] md:grid-cols-2">
             {CASE_STUDIES.map(c => (
               <article
@@ -193,7 +193,7 @@ export default function EditorialTheme() {
         {/* 05 · Off the keyboard */}
         <section id="off" className="border-t border-[var(--ed-line)] py-24">
           <SectionHead n="05" label="Off the keyboard" />
-          <FigureRow figure={<GlassCockpit />} intro={FIGURE_INTROS.off} />
+          <FigureRow figure={<TouchAndGo />} intro={FIGURE_INTROS.off} />
           <div className="grid gap-12 md:grid-cols-3 md:gap-10">
             {OFF_KEYBOARD.map(o => (
               <div key={o.kicker}>
